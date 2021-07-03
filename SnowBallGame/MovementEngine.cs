@@ -14,6 +14,8 @@ namespace SnowBallGame
 
 		private Control gamePanel;
 
+		private int gamePanelMargin = 100;
+
 		private Random random = new Random();
 
 		public MovementEngine(Control gamePanel, List<Control> platforms)
@@ -25,65 +27,78 @@ namespace SnowBallGame
 		public void Move(Player p, Dictionary<Keys, bool> pressedKeys)
 		{
 			var entity = p.Entity;
-
 			var controler = p.Controler;
+			var movement = p.Movement;
 
-			if (pressedKeys[controler.Left]) entity.Left -= p.MoveSpeed;
-			if (pressedKeys[controler.Right]) entity.Left += p.MoveSpeed;
-			if (pressedKeys[controler.Up] && p.CanJump && p.StandOn != null) p.CanJump = false;
-			if (pressedKeys[controler.Down] && p.StandOn != null) p.FallTrought = p.StandOn;
-
-
-			if (p.FallTrought != null && !entity.Bounds.IntersectsWith(p.FallTrought.Bounds)) p.FallTrought = null;
-
-			if (!p.CanJump && p.ForceCounter < 0)
+			if (pressedKeys[controler.Left])
 			{
-				p.CanJump = true;
+				entity.Left -= movement.MoveSpeed;
+				p.SetDirectionLeft();
+			}
+			if (pressedKeys[controler.Right])
+			{
+				entity.Left += movement.MoveSpeed;
+				p.SetDirectionRight();
 			}
 
+			if (pressedKeys[controler.Up] && movement.CanJump && movement.StandOn != null) movement.CanJump = false;
+			if (pressedKeys[controler.Down] && movement.StandOn != null) movement.FallTrought = movement.StandOn;
 
-			if (!p.CanJump)
+			if (movement.FallTrought != null && !entity.Bounds.IntersectsWith(movement.FallTrought.Bounds)) movement.FallTrought = null;
+
+			if (!movement.CanJump && movement.JumpForceCounter < 0)
 			{
-				if (p.JumpSpeed > 0) p.ReverseJumpSpeed();
-				p.DecreaseForceCounter();
+				movement.CanJump = true;
+			}
+
+			if (!movement.CanJump)
+			{
+				if (movement.JumpSpeed > 0) movement.ReverseJumpSpeed();
+				movement.DecreaseJumpForceCounter();
 			}
 			else
 			{
-				if (p.JumpSpeed < 0) p.ReverseJumpSpeed();
+				if (movement.JumpSpeed < 0) movement.ReverseJumpSpeed();
 			}
 
-			CheckPlatformStand(p);
-			CheckGamePanelBorderOut(p);
+			CheckPlatformStand(p.Entity, p.Movement);
+			CheckGamePanelBorderOut(p.Entity);
 		}
 
-		private void CheckGamePanelBorderOut(Player p)
+		private void CheckGamePanelBorderOut(Control entity)
 		{
-			var entity = p.Entity;
-
-			if(entity.Top > gamePanel.Top + gamePanel.Height + 100)
+			if(OutOfGamePanel(entity))
 			{
-				entity.Top = -100;
-				entity.Left = GetRandomLeftPosition();
+				SetSpawnPosition(entity);
 			}
 		}
 
-		private void CheckPlatformStand(Player p)
+		private void CheckPlatformStand(Control entity, PlayerMovement movement)
 		{
-			var entity = p.Entity;
-
 			foreach(var platform in platforms)
 			{
-				if (entity.Bounds.IntersectsWith(platform.Bounds) && p.CanJump && platform != p.FallTrought)
+				if (entity.Bounds.IntersectsWith(platform.Bounds) && movement.CanJump && platform != movement.FallTrought)
 				{
-					p.ResetForceCounter();
-					entity.Top = platform.Top - p.EntitySize + 1;
-					p.StandOn = platform;
+					movement.ResetForceCounter();
+					entity.Top = platform.Top - entity.Height + 1;
+					movement.StandOn = platform;
 					return;	
 				}
 			}
 
-			entity.Top += p.JumpSpeed;
-			p.StandOn = null;
+			entity.Top += movement.JumpSpeed;
+			movement.StandOn = null;
+		}
+
+		private void SetSpawnPosition(Control entity)
+		{
+			entity.Top = -gamePanelMargin;
+			entity.Left = GetRandomLeftPosition();
+		}
+
+		private bool OutOfGamePanel(Control entity)
+		{
+			return entity.Top > gamePanel.Top + gamePanel.Height + gamePanelMargin;
 		}
 
 		private int GetRandomLeftPosition()

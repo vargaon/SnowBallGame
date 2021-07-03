@@ -7,12 +7,14 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	struct PlayerControler
+	class PlayerControler
 	{
 		public Keys Up { get; private set; }
 		public Keys Down { get; private set; }
 		public Keys Left { get; private set; }
 		public Keys Right { get; private set; }
+
+		private PlayerControler() { }
 
 		static public PlayerControler FromKeys(Keys up, Keys down, Keys left, Keys right)
 		{
