@@ -18,10 +18,20 @@ namespace SnowBallGame
 
 		private Random random = new Random();
 
-		public MovementEngine(Control gamePanel, List<Control> platforms)
-		{
-			this.platforms = platforms;
+		public MovementEngine(Control gamePanel)
+		{ 
 			this.gamePanel = gamePanel;
+			RegisterPlatforms();
+		}
+
+		private void RegisterPlatforms()
+		{
+			this.platforms = new List<Control>();
+
+			foreach (Control x in gamePanel.Controls)
+			{
+				if (x.Tag != null && x.Tag.ToString() == "platform") platforms.Add(x);
+			}
 		}
 
 		public void Move(Player p, Dictionary<Keys, bool> pressedKeys)
@@ -96,6 +106,14 @@ namespace SnowBallGame
 			entity.Left = GetRandomLeftPosition();
 		}
 
+		public void SetPlayersSpawnPosition()
+		{
+			foreach (Control x in gamePanel.Controls)
+			{
+				if (x.Tag != null && x.Tag.ToString() == "player") SetSpawnPosition(x);
+			}
+		}
+
 		private bool OutOfGamePanel(Control entity)
 		{
 			return entity.Top > gamePanel.Top + gamePanel.Height + gamePanelMargin;
@@ -103,8 +121,13 @@ namespace SnowBallGame
 
 		private int GetRandomLeftPosition()
 		{
-			var platform = platforms[random.Next(0, platforms.Count)];
-			return random.Next(platform.Left, platform.Left + platform.Width);
+			if(platforms.Count > 0)
+			{
+				var platform = platforms[random.Next(0, platforms.Count)];
+				return random.Next(platform.Left, platform.Left + platform.Width);
+			}
+
+			return 0;
 		}
 	}
 }

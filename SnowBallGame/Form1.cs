@@ -25,24 +25,27 @@ namespace SnowBallGame
 		{
 			InitializeComponent();
 
+			mEngine = new MovementEngine(game_panel);
+
 			InitializePlayers();
 			InitializeKeysHooks();
-			InitializePlatforms();
-
-			mEngine = new MovementEngine(game_panel, platforms);
 		}
 
 		private void InitializePlayers()
 		{
 			var en1 = new PictureBox();
+			en1.Tag = "player";
 			game_panel.Controls.Add(en1);
 			var p1 = new Player(Color.Red,en1, PlayerControler.FromKeys(Keys.W, Keys.S, Keys.A, Keys.D));
 			players.Add(p1);
 
 			var en2 = new PictureBox();
+			en2.Tag = "player";
 			game_panel.Controls.Add(en2);
 			var p2 = new Player(Color.Blue,en2, PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right));
 			players.Add(p2);
+
+			mEngine.SetPlayersSpawnPosition();
 		}
 
 		private void InitializeKeysHooks()
@@ -55,14 +58,6 @@ namespace SnowBallGame
 				pressedKeys.Add(controler.Down, false);
 				pressedKeys.Add(controler.Left, false);
 				pressedKeys.Add(controler.Right, false);
-			}
-		}
-
-		private void InitializePlatforms()
-		{
-			foreach(Control x in game_panel.Controls)
-			{
-				if (x.Tag != null && x.Tag.ToString() == "platform") platforms.Add(x);
 			}
 		}
 

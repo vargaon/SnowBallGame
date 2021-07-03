@@ -32,7 +32,6 @@ namespace SnowBallGame
 			this.Entity.Width = EntitySize;
 			this.Entity.Height = EntitySize;
 			this.Entity.BackColor = c;
-			this.Entity.Left = 600;
 		}
 
 		public void SetSize(int value)
