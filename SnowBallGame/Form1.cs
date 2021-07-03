@@ -17,16 +17,17 @@ namespace SnowBallGame
 
 		List<Player> players = new List<Player>();
 
-		List<Control> platforms = new List<Control>();
-
 		MovementEngine mEngine;
+
+		SnowBallFactory snowBallFactory;
 
 		public Form1()
 		{
 			InitializeComponent();
 
-			mEngine = new MovementEngine(game_panel);
-
+			snowBallFactory = new SnowBallFactory(game_panel);
+			mEngine = new MovementEngine(game_panel, snowBallFactory);
+			
 			InitializePlayers();
 			InitializeKeysHooks();
 		}
@@ -36,13 +37,13 @@ namespace SnowBallGame
 			var en1 = new PictureBox();
 			en1.Tag = "player";
 			game_panel.Controls.Add(en1);
-			var p1 = new Player(Color.Red,en1, PlayerControler.FromKeys(Keys.W, Keys.S, Keys.A, Keys.D));
+			var p1 = new Player(Color.Red,en1, PlayerControler.FromKeys(Keys.W, Keys.S, Keys.A, Keys.D, Keys.V));
 			players.Add(p1);
 
 			var en2 = new PictureBox();
 			en2.Tag = "player";
 			game_panel.Controls.Add(en2);
-			var p2 = new Player(Color.Blue,en2, PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right));
+			var p2 = new Player(Color.Blue,en2, PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.M));
 			players.Add(p2);
 
 			mEngine.SetPlayersSpawnPosition();
@@ -58,6 +59,7 @@ namespace SnowBallGame
 				pressedKeys.Add(controler.Down, false);
 				pressedKeys.Add(controler.Left, false);
 				pressedKeys.Add(controler.Right, false);
+				pressedKeys.Add(controler.Throw, false);
 			}
 		}
 
@@ -95,6 +97,8 @@ namespace SnowBallGame
 			{
 				mEngine.Move(player, pressedKeys);
 			}
+
+			mEngine.MoveSnowBalls();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)

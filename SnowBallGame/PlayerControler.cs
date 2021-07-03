@@ -13,17 +13,20 @@ namespace SnowBallGame
 		public Keys Down { get; private set; }
 		public Keys Left { get; private set; }
 		public Keys Right { get; private set; }
+		
+		public Keys Throw { get; private set; }
 
 		private PlayerControler() { }
 
-		static public PlayerControler FromKeys(Keys up, Keys down, Keys left, Keys right)
+		static public PlayerControler FromKeys(Keys Up, Keys Down, Keys Left, Keys Right, Keys Throw)
 		{
 			var controler = new PlayerControler();
 
-			controler.Up = up;
-			controler.Down = down;
-			controler.Left = left;
-			controler.Right = right;
+			controler.Up = Up;
+			controler.Down = Down;
+			controler.Left = Left;
+			controler.Right = Right;
+			controler.Throw = Throw;
 
 			return controler;
 		}

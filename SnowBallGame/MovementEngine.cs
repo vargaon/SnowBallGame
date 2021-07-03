@@ -12,15 +12,20 @@ namespace SnowBallGame
 	{
 		private List<Control> platforms;
 
+		private List<SnowBall> snowBalls = new List<SnowBall>();
+
 		private Control gamePanel;
+
+		private SnowBallFactory snowBallFactory;
 
 		private int gamePanelMargin = 100;
 
 		private Random random = new Random();
 
-		public MovementEngine(Control gamePanel)
+		public MovementEngine(Control gamePanel, SnowBallFactory snowBallFactory)
 		{ 
 			this.gamePanel = gamePanel;
+			this.snowBallFactory = snowBallFactory;
 			RegisterPlatforms();
 		}
 
@@ -53,6 +58,11 @@ namespace SnowBallGame
 
 			if (pressedKeys[controler.Up] && movement.CanJump && movement.StandOn != null) movement.CanJump = false;
 			if (pressedKeys[controler.Down] && movement.StandOn != null) movement.FallTrought = movement.StandOn;
+
+			if (pressedKeys[controler.Throw])
+			{
+				snowBalls.Add(snowBallFactory.ThrowSnowBall(p));
+			}
 
 			if (movement.FallTrought != null && !entity.Bounds.IntersectsWith(movement.FallTrought.Bounds)) movement.FallTrought = null;
 
@@ -98,6 +108,49 @@ namespace SnowBallGame
 
 			entity.Top += movement.JumpSpeed;
 			movement.StandOn = null;
+		}
+
+		public void MoveSnowBalls()
+		{
+			foreach (var x in snowBalls)
+			{
+				MoveSnowBall(x);
+				CheckSnowBallExpiration(x);
+			}
+
+			snowBalls.RemoveAll(x => x.Active == false);
+		}
+
+		private void MoveSnowBall(SnowBall snowball)
+		{
+			var entity = snowball.Entity;
+			entity.Left += snowball.Direction * snowball.MoveSpeed;
+		}
+
+		private void CheckSnowBallExpiration(SnowBall snowball)
+		{
+			var entity = snowball.Entity;
+			if (entity.Left > gamePanel.Left + gamePanel.Width + gamePanelMargin || entity.Left < -gamePanelMargin)
+			{
+				snowball.Active = false;
+				gamePanel.Controls.Remove(entity);
+			}
+			else
+			{
+				foreach (Control x in gamePanel.Controls)
+				{
+					if (x.Tag != null && x.Tag.ToString() == "player")
+					{
+						if(entity.Bounds.IntersectsWith(x.Bounds) && snowball.Owner.Entity != x)
+						{
+							x.Left += snowball.Direction * snowball.PunchForce;
+							snowball.Active = false;
+							gamePanel.Controls.Remove(entity);
+							return;
+						}
+					}
+				}
+			}
 		}
 
 		private void SetSpawnPosition(Control entity)
