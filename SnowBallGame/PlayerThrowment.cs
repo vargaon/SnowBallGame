@@ -8,9 +8,9 @@ namespace SnowBallGame
 {
 	class PlayerThrowment
 	{
-		public int ThrowSpeed { get; private set; } = 15;
+		private int throwWait = 10;
 
-		public int ThrowSpeedCounter { get; private set; }
+		private int throwWaitCounter;
 
 		public bool CanThrow { get; set; } = true;
 
@@ -19,14 +19,26 @@ namespace SnowBallGame
 			ResetThrowSpeedCounter();
 		}
 
-		public void DecreaseThrowSpeedCounter()
+		public void ThrowTick()
 		{
-			ThrowSpeedCounter -= 1;
+			if (CanThrow) return;
+
+			DecreaseThrowSpeedCounter();
+			if(throwWaitCounter < 0)
+			{
+				CanThrow = true;
+				ResetThrowSpeedCounter();
+			}
 		}
 
-		public void ResetThrowSpeedCounter()
+		private void DecreaseThrowSpeedCounter()
 		{
-			ThrowSpeedCounter = ThrowSpeed;
+			throwWaitCounter -= 1;
+		}
+
+		private void ResetThrowSpeedCounter()
+		{
+			throwWaitCounter = throwWait;
 		}
 	}
 }

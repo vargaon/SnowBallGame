@@ -55,7 +55,7 @@ namespace SnowBallGame
 			// 
 			// game_panel
 			// 
-			this.game_panel.BackColor = System.Drawing.Color.Silver;
+			this.game_panel.BackColor = System.Drawing.Color.Black;
 			this.game_panel.Controls.Add(this.pictureBox4);
 			this.game_panel.Controls.Add(this.pictureBox3);
 			this.game_panel.Controls.Add(this.pictureBox2);
@@ -69,7 +69,7 @@ namespace SnowBallGame
 			// 
 			// pictureBox4
 			// 
-			this.pictureBox4.BackColor = System.Drawing.Color.Black;
+			this.pictureBox4.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox4.Location = new System.Drawing.Point(620, 265);
 			this.pictureBox4.Name = "pictureBox4";
 			this.pictureBox4.Size = new System.Drawing.Size(217, 11);
@@ -79,7 +79,7 @@ namespace SnowBallGame
 			// 
 			// pictureBox3
 			// 
-			this.pictureBox3.BackColor = System.Drawing.Color.Black;
+			this.pictureBox3.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox3.Location = new System.Drawing.Point(368, 357);
 			this.pictureBox3.Name = "pictureBox3";
 			this.pictureBox3.Size = new System.Drawing.Size(217, 11);
@@ -89,7 +89,7 @@ namespace SnowBallGame
 			// 
 			// pictureBox2
 			// 
-			this.pictureBox2.BackColor = System.Drawing.Color.Black;
+			this.pictureBox2.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox2.Location = new System.Drawing.Point(153, 265);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(217, 11);
@@ -99,7 +99,7 @@ namespace SnowBallGame
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.BackColor = System.Drawing.Color.Black;
+			this.pictureBox1.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox1.Location = new System.Drawing.Point(459, 498);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(217, 11);
@@ -109,7 +109,7 @@ namespace SnowBallGame
 			// 
 			// pictureBox5
 			// 
-			this.pictureBox5.BackColor = System.Drawing.Color.Black;
+			this.pictureBox5.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox5.Location = new System.Drawing.Point(105, 423);
 			this.pictureBox5.Name = "pictureBox5";
 			this.pictureBox5.Size = new System.Drawing.Size(217, 11);
@@ -119,7 +119,7 @@ namespace SnowBallGame
 			// 
 			// platform_4
 			// 
-			this.platform_4.BackColor = System.Drawing.Color.Black;
+			this.platform_4.BackColor = System.Drawing.Color.Sienna;
 			this.platform_4.Location = new System.Drawing.Point(652, 423);
 			this.platform_4.Name = "platform_4";
 			this.platform_4.Size = new System.Drawing.Size(217, 11);

@@ -38,7 +38,7 @@ namespace SnowBallGame
 			player_2.PlayerColor = Color.Blue;
 
 			prc.Add(player_1);
-			prc.Add(player_2);
+			prc.Add(player_2); 
 
 			AddPlayersToGame();
 			InitializePlayerKeysHooks();

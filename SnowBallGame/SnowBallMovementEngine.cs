@@ -7,44 +7,22 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class SnowBallMovementEngine
+	class SnowBallMovementEngine : MovementEngine<SnowBall>
 	{
-		private Control gamePanel;
-
-		private List<SnowBall> snowballs = new List<SnowBall>();
-
 		private List<Player> players;
 
-		private int gamePanelMargin = 100;
-
-		public SnowBallMovementEngine(Control gamePanel, List<Player> players)
+		public SnowBallMovementEngine(Control gamePanel, List<Player> players) :base(gamePanel)
 		{
-			this.gamePanel = gamePanel;
 			this.players = players;
 		}
 
-		public void AddSnowBall(SnowBall s)
-		{
-			snowballs.Add(s);
-		}
-
-		public void MoveSnowBalls()
-		{
-			foreach (var x in snowballs)
-			{
-				MoveSnowBall(x);
-				CheckSnowBallExpiration(x);
-			}
-
-			removeUnactiveSnowBalls();
-		}
-
-		private void MoveSnowBall(SnowBall snowball)
+		public void Move(SnowBall snowball)
 		{
 			var entity = snowball.Entity;
 			var movement = snowball.Movement;
 
 			entity.Left += movement.Direction * movement.MoveSpeed;
+			CheckSnowBallExpiration(snowball);
 		}
 
 		private void CheckSnowBallExpiration(SnowBall snowball)
@@ -52,9 +30,10 @@ namespace SnowBallGame
 			var entity = snowball.Entity;
 			var movement = snowball.Movement;
 
-			if (entity.Left > gamePanel.Left + gamePanel.Width + gamePanelMargin || entity.Left < -gamePanelMargin)
+			if (OutOfGamePanel(entity))
 			{
 				snowball.Active = false;
+				gamePanel.Controls.Remove(entity);
 			}
 			else
 			{
@@ -63,23 +42,18 @@ namespace SnowBallGame
 					var playerEntity = p.Entity;
 					if (entity.Bounds.IntersectsWith(playerEntity.Bounds) && snowball.Owner != p)
 					{
-						playerEntity.Left += movement.Direction * snowball.PunchForce;
+						p.Movement.SetPunchSpeed(movement.Direction * snowball.PunchForce);
 						snowball.Active = false;
+						gamePanel.Controls.Remove(entity);
 						return;
 					}
-					
 				}
 			}
 		}
 
-		private void removeUnactiveSnowBalls()
+		override protected bool OutOfGamePanel(Control entity)
 		{
-			foreach(var s in snowballs)
-			{
-				if(!s.Active) gamePanel.Controls.Remove(s.Entity);
-			}
-
-			snowballs.RemoveAll(x => x.Active == false);
+			return entity.Left > gamePanel.Left + gamePanel.Width + gamePanelMargin || entity.Left < -gamePanelMargin;
 		}
 	}
 }

@@ -9,13 +9,19 @@ namespace SnowBallGame
 {
 	class PlayerMovement : Movement
 	{
-		public int JumpSpeed { get; private set; } = 16;
+		public int JumpSpeed { get; private set; } = 12;
 
-		public int JumpForce { get; private set; } = 5;
+		public int JumpForce { get; private set; } = 6;
 
 		public int JumpForceCounter { get; private set; }
 
 		public bool CanJump { get; set; } = true;
+
+		public int PunchSpeed { get; private set; }
+
+		public int PunchForce { get; private set; } = 4;
+
+		public int PunchForceCounter { get; private set; }
 
 		public Control StandOn;
 
@@ -23,7 +29,8 @@ namespace SnowBallGame
 
 		public PlayerMovement() :base(10)
 		{
-			ResetForceCounter();
+			ResetJumpForceCounter();
+			ResetPunchForceCounter();
 		}
 
 		public void SetJumpSpeed(int value)
@@ -46,9 +53,42 @@ namespace SnowBallGame
 			JumpForceCounter -= 1;
 		}
 
-		public void ResetForceCounter()
+		public void ResetJumpForceCounter()
 		{
 			JumpForceCounter = JumpForce;
+		}
+
+		public void PunchTick()
+		{
+			if(PunchSpeed != 0)
+			{
+				DecreasePunchForceCounter();
+				if(PunchForceCounter < 0)
+				{
+					ResetPunchForceCounter();
+					ResetPunchSpeed();
+				}
+			}
+		}
+
+		private void DecreasePunchForceCounter()
+		{
+			PunchForceCounter -= 1;
+		}
+
+		private void ResetPunchForceCounter()
+		{
+			PunchForceCounter = PunchForce;
+		}
+
+		public void SetPunchSpeed(int value)
+		{
+			PunchSpeed = value;
+		}
+
+		private void ResetPunchSpeed()
+		{
+			PunchSpeed = 0;
 		}
 	}
 }

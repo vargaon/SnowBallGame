@@ -8,37 +8,18 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerMovementEngine
+	class PlayerMovementEngine : MovementEngine<Player>
 	{
-		private List<Control> platforms;
-
-		private Control gamePanel;
-
-		private int gamePanelMargin = 100;
-
-		private Random random = new Random();
-
-		public PlayerMovementEngine(Control gamePanel)
-		{ 
-			this.gamePanel = gamePanel;
-			RegisterPlatforms();
-		}
-
-		private void RegisterPlatforms()
-		{
-			this.platforms = new List<Control>();
-
-			foreach (Control x in gamePanel.Controls)
-			{
-				if (x.Tag != null && x.Tag.ToString() == "platform") platforms.Add(x);
-			}
-		}
+		public PlayerMovementEngine(Control gamePanel) :base(gamePanel) { }
 
 		public void Move(Player p, Dictionary<Keys, bool> pressedKeys)
 		{
 			var entity = p.Entity;
 			var controler = p.Controler.MovementContoler;
 			var movement = p.Movement;
+
+			entity.Left += movement.PunchSpeed;
+			movement.PunchTick();
 
 			if (pressedKeys[controler.Left])
 			{
@@ -55,6 +36,7 @@ namespace SnowBallGame
 			if (pressedKeys[controler.Down] && movement.StandOn != null) movement.FallTrought = movement.StandOn;
 
 			if (movement.FallTrought != null && !entity.Bounds.IntersectsWith(movement.FallTrought.Bounds)) movement.FallTrought = null;
+
 
 			if (!movement.CanJump && movement.JumpForceCounter < 0)
 			{
@@ -89,7 +71,7 @@ namespace SnowBallGame
 			{
 				if (entity.Bounds.IntersectsWith(platform.Bounds) && movement.CanJump && platform != movement.FallTrought)
 				{
-					movement.ResetForceCounter();
+					movement.ResetJumpForceCounter();
 					entity.Top = platform.Top - entity.Height + 1;
 					movement.StandOn = platform;
 					return;	
@@ -100,26 +82,9 @@ namespace SnowBallGame
 			movement.StandOn = null;
 		}
 
-		public void SetSpawnPosition(Control entity)
-		{
-			entity.Top = -gamePanelMargin;
-			entity.Left = GetRandomLeftPosition();
-		}
-
-		private bool OutOfGamePanel(Control entity)
+		override protected bool OutOfGamePanel(Control entity)
 		{
 			return entity.Top > gamePanel.Top + gamePanel.Height + gamePanelMargin;
-		}
-
-		private int GetRandomLeftPosition()
-		{
-			if(platforms.Count > 0)
-			{
-				var platform = platforms[random.Next(0, platforms.Count)];
-				return random.Next(platform.Left, platform.Left + platform.Width);
-			}
-
-			return 0;
 		}
 	}
 }

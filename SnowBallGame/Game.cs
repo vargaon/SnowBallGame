@@ -16,6 +16,7 @@ namespace SnowBallGame
 		private SnowBallFactory snowBallFactory;
 
 		private List<Player> players = new List<Player>();
+		private List<SnowBall> snowballs = new List<SnowBall>();
 
 		public Game(Control gamePanel)
 		{
@@ -33,38 +34,47 @@ namespace SnowBallGame
 			players.Add(player);
 		}
 
+		public void AddSnowBall(SnowBall s)
+		{
+			snowballs.Add(s);
+		}
+
 		public void TickAction(Dictionary<Keys, bool> pressedKeys)
 		{
 			foreach (var player in players)
 			{
 				playerMovementEngine.Move(player, pressedKeys);
-				ThrowingSnowBall(player, pressedKeys);
+				CheckForPlayerThrow(player, pressedKeys);
 			}
 
-			snowBallMovementEngine.MoveSnowBalls();
+			foreach (var snowBall in snowballs)
+			{
+				snowBallMovementEngine.Move(snowBall);
+			}
+
+			removeUnactiveSnowBalls();
 		}
 
 		//TODO samostaný modul
-		private void ThrowingSnowBall(Player p, Dictionary<Keys, bool> pressedKeys)
+		private void CheckForPlayerThrow(Player p, Dictionary<Keys, bool> pressedKeys)
 		{
 			var throwControler = p.Controler.ThrowContoler;
 			var throwment = p.Throwment;
 
-			throwment.DecreaseThrowSpeedCounter();
-			if(throwment.ThrowSpeedCounter < 0)
-			{
-				throwment.ResetThrowSpeedCounter();
-				throwment.CanThrow = true;
-			}
+			throwment.ThrowTick();
 
 			if (pressedKeys[throwControler.Throw])
 			{
 				if(throwment.CanThrow)
 				{
 					throwment.CanThrow = false;
-					snowBallMovementEngine.AddSnowBall(snowBallFactory.CreateSnowBall(p));
+					AddSnowBall(snowBallFactory.CreateSnowBall(p));
 				}
 			}
+		}
+		private void removeUnactiveSnowBalls()
+		{
+			snowballs.RemoveAll(x => x.Active == false);
 		}
 	}
 }

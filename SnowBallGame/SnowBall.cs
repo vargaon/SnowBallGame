@@ -16,9 +16,9 @@ namespace SnowBallGame
 
 		public SnowBallMovement Movement { get; } = new SnowBallMovement();
 
-		public int EntitySize { get; private set; } = 10;
+		public int EntitySize { get; private set; } = 15;
 
-		public int PunchForce { get; private set; } = 15;
+		public int PunchForce { get; private set; } = 20;
 
 		public bool Active { get; set; } = true;
 
@@ -39,6 +39,8 @@ namespace SnowBallGame
 		{
 			this.Entity.Width = EntitySize;
 			this.Entity.Height = EntitySize;
+
+			this.Entity.Top -= EntitySize / 2;
  
 			gp.AddEllipse(0, 0, this.Entity.Width - 3, this.Entity.Height - 3);
 
