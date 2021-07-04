@@ -10,6 +10,7 @@ namespace SnowBallGame
 	class Game
 	{
 		private PlayerMovementEngine playerMovementEngine;
+		private SnowBallMovementEngine snowBallMovementEngine;
 
 		private PlayerFactory playerFactory;
 		private SnowBallFactory snowBallFactory;
@@ -21,7 +22,8 @@ namespace SnowBallGame
 			playerFactory = new PlayerFactory(gamePanel);
 			snowBallFactory = new SnowBallFactory(gamePanel);
 
-			playerMovementEngine = new PlayerMovementEngine(gamePanel, snowBallFactory);
+			playerMovementEngine = new PlayerMovementEngine(gamePanel);
+			snowBallMovementEngine = new SnowBallMovementEngine(gamePanel);
 		}
 
 		public void AddPlayer(PlayerCreationRecord pcr)
@@ -36,9 +38,21 @@ namespace SnowBallGame
 			foreach (var player in players)
 			{
 				playerMovementEngine.Move(player, pressedKeys);
+				ThrowingSnowBall(player, pressedKeys);
 			}
 
-			playerMovementEngine.MoveSnowBalls();
+			snowBallMovementEngine.MoveSnowBalls();
+		}
+
+		//TODO samostaný modul
+		private void ThrowingSnowBall(Player p, Dictionary<Keys, bool> pressedKeys)
+		{
+			var throwControler = p.Controler.ThrowContoler;
+
+			if (pressedKeys[throwControler.Throw])
+			{
+				snowBallMovementEngine.AddSnowBall(snowBallFactory.CreateSnowBall(p));
+			}
 		}
 	}
 }

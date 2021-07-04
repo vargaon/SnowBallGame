@@ -56,13 +56,14 @@ namespace SnowBallGame
 		{
 			foreach (var player in prc)
 			{
-				var controler = player.Controler;
+				var movementControler = player.Controler.MovementContoler;
+				var throwControler = player.Controler.ThrowContoler;
 
-				pressedKeys.Add(controler.Up, false);
-				pressedKeys.Add(controler.Down, false);
-				pressedKeys.Add(controler.Left, false);
-				pressedKeys.Add(controler.Right, false);
-				pressedKeys.Add(controler.Throw, false);
+				pressedKeys.Add(movementControler.Jump, false);
+				pressedKeys.Add(movementControler.Down, false);
+				pressedKeys.Add(movementControler.Left, false);
+				pressedKeys.Add(movementControler.Right, false);
+				pressedKeys.Add(throwControler.Throw, false);
 			}
 		}
 

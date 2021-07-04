@@ -16,16 +16,14 @@ namespace SnowBallGame
 
 		private Control gamePanel;
 
-		private SnowBallFactory snowBallFactory;
 
 		private int gamePanelMargin = 100;
 
 		private Random random = new Random();
 
-		public PlayerMovementEngine(Control gamePanel, SnowBallFactory snowBallFactory)
+		public PlayerMovementEngine(Control gamePanel)
 		{ 
 			this.gamePanel = gamePanel;
-			this.snowBallFactory = snowBallFactory;
 			RegisterPlatforms();
 		}
 
@@ -42,7 +40,7 @@ namespace SnowBallGame
 		public void Move(Player p, Dictionary<Keys, bool> pressedKeys)
 		{
 			var entity = p.Entity;
-			var controler = p.Controler;
+			var controler = p.Controler.MovementContoler;
 			var movement = p.Movement;
 
 			if (pressedKeys[controler.Left])
@@ -56,13 +54,8 @@ namespace SnowBallGame
 				p.SetDirectionRight();
 			}
 
-			if (pressedKeys[controler.Up] && movement.CanJump && movement.StandOn != null) movement.CanJump = false;
+			if (pressedKeys[controler.Jump] && movement.CanJump && movement.StandOn != null) movement.CanJump = false;
 			if (pressedKeys[controler.Down] && movement.StandOn != null) movement.FallTrought = movement.StandOn;
-
-			if (pressedKeys[controler.Throw])
-			{
-				snowBalls.Add(snowBallFactory.CreateSnowBall(p));
-			}
 
 			if (movement.FallTrought != null && !entity.Bounds.IntersectsWith(movement.FallTrought.Bounds)) movement.FallTrought = null;
 
@@ -108,49 +101,6 @@ namespace SnowBallGame
 
 			entity.Top += movement.JumpSpeed;
 			movement.StandOn = null;
-		}
-
-		public void MoveSnowBalls()
-		{
-			foreach (var x in snowBalls)
-			{
-				MoveSnowBall(x);
-				CheckSnowBallExpiration(x);
-			}
-
-			snowBalls.RemoveAll(x => x.Active == false);
-		}
-
-		private void MoveSnowBall(SnowBall snowball)
-		{
-			var entity = snowball.Entity;
-			entity.Left += snowball.Direction * snowball.MoveSpeed;
-		}
-
-		private void CheckSnowBallExpiration(SnowBall snowball)
-		{
-			var entity = snowball.Entity;
-			if (entity.Left > gamePanel.Left + gamePanel.Width + gamePanelMargin || entity.Left < -gamePanelMargin)
-			{
-				snowball.Active = false;
-				gamePanel.Controls.Remove(entity);
-			}
-			else
-			{
-				foreach (Control x in gamePanel.Controls)
-				{
-					if (x.Tag != null && x.Tag.ToString() == "player")
-					{
-						if(entity.Bounds.IntersectsWith(x.Bounds) && snowball.Owner.Entity != x)
-						{
-							x.Left += snowball.Direction * snowball.PunchForce;
-							snowball.Active = false;
-							gamePanel.Controls.Remove(entity);
-							return;
-						}
-					}
-				}
-			}
 		}
 
 		public void SetSpawnPosition(Control entity)

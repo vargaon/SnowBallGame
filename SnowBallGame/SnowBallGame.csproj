@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SnowBallMovementEngine.cs" />
+    <Compile Include="ThrowContoler.cs" />
+    <Compile Include="MovementControler.cs" />
     <Compile Include="PlayerCreationRecord.cs" />
     <Compile Include="PlayerFactory.cs" />
     <Compile Include="Game.cs" />
