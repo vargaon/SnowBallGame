@@ -46,10 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayerCreationRecord.cs" />
+    <Compile Include="PlayerFactory.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="SnowBallFactory.cs" />
     <Compile Include="SnowBall.cs" />
     <Compile Include="PlayerMovement.cs" />
-    <Compile Include="MovementEngine.cs" />
+    <Compile Include="PlayerMovementEngine.cs" />
     <Compile Include="PlayerControler.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Form1.cs">

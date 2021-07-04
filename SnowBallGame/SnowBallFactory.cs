@@ -12,17 +12,19 @@ namespace SnowBallGame
 	{
 		private Control gamePanel;
 
+		public static string SNOWBALL_TAG = "snowball";
+
 		public SnowBallFactory(Control gamePanel)
 		{
 			this.gamePanel = gamePanel;
 		}
 
-		public SnowBall ThrowSnowBall(Player p)
+		public SnowBall CreateSnowBall(Player p)
 		{
 			var playerEntity = p.Entity;
 
 			var ballEntity = new PictureBox();
-			ballEntity.Tag = "snowball";
+			ballEntity.Tag = SNOWBALL_TAG;
 			ballEntity.Top = playerEntity.Top + (p.EntitySize / 2);
 			ballEntity.Left = playerEntity.Left + (p.EntitySize / 2);
 

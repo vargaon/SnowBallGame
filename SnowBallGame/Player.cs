@@ -20,23 +20,21 @@ namespace SnowBallGame
 
 		public int Direction { get; private set; } = 1;
 
-		public Player(Color c, Control entity, PlayerControler pc)
+		public Player(Control entity, PlayerControler controler)
 		{
-			Controler = pc;
+			this.Controler = controler;
 			this.Entity = entity;
-			SetUpEntity(c);
-		}
-
-		private void SetUpEntity(Color c)
-		{
-			this.Entity.Width = EntitySize;
-			this.Entity.Height = EntitySize;
-			this.Entity.BackColor = c;
+			UpdateEntitySize();
 		}
 
 		public void SetSize(int value)
 		{
 			this.EntitySize = value;
+			UpdateEntitySize();
+		}
+
+		private void UpdateEntitySize()
+		{
 			this.Entity.Width = EntitySize;
 			this.Entity.Height = EntitySize;
 		}

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class MovementEngine
+	class PlayerMovementEngine
 	{
 		private List<Control> platforms;
 
@@ -22,7 +22,7 @@ namespace SnowBallGame
 
 		private Random random = new Random();
 
-		public MovementEngine(Control gamePanel, SnowBallFactory snowBallFactory)
+		public PlayerMovementEngine(Control gamePanel, SnowBallFactory snowBallFactory)
 		{ 
 			this.gamePanel = gamePanel;
 			this.snowBallFactory = snowBallFactory;
@@ -61,7 +61,7 @@ namespace SnowBallGame
 
 			if (pressedKeys[controler.Throw])
 			{
-				snowBalls.Add(snowBallFactory.ThrowSnowBall(p));
+				snowBalls.Add(snowBallFactory.CreateSnowBall(p));
 			}
 
 			if (movement.FallTrought != null && !entity.Bounds.IntersectsWith(movement.FallTrought.Bounds)) movement.FallTrought = null;
@@ -153,18 +153,10 @@ namespace SnowBallGame
 			}
 		}
 
-		private void SetSpawnPosition(Control entity)
+		public void SetSpawnPosition(Control entity)
 		{
 			entity.Top = -gamePanelMargin;
 			entity.Left = GetRandomLeftPosition();
-		}
-
-		public void SetPlayersSpawnPosition()
-		{
-			foreach (Control x in gamePanel.Controls)
-			{
-				if (x.Tag != null && x.Tag.ToString() == "player") SetSpawnPosition(x);
-			}
 		}
 
 		private bool OutOfGamePanel(Control entity)

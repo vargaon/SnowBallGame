@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-//using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,45 +12,49 @@ namespace SnowBallGame
 {
 	public partial class Form1 : Form
 	{
-		Dictionary<Keys, bool> pressedKeys = new Dictionary<Keys, bool>();
+		private Dictionary<Keys, bool> pressedKeys = new Dictionary<Keys, bool>();
 
-		List<Player> players = new List<Player>();
+		private List<PlayerCreationRecord> prc = new List<PlayerCreationRecord>();
 
-		MovementEngine mEngine;
-
-		SnowBallFactory snowBallFactory;
+		private Game game;
 
 		public Form1()
 		{
 			InitializeComponent();
 
-			snowBallFactory = new SnowBallFactory(game_panel);
-			mEngine = new MovementEngine(game_panel, snowBallFactory);
+			this.game = new Game(game_panel);
 			
 			InitializePlayers();
-			InitializeKeysHooks();
 		}
 
 		private void InitializePlayers()
 		{
-			var en1 = new PictureBox();
-			en1.Tag = "player";
-			game_panel.Controls.Add(en1);
-			var p1 = new Player(Color.Red,en1, PlayerControler.FromKeys(Keys.W, Keys.S, Keys.A, Keys.D, Keys.V));
-			players.Add(p1);
+			var player_1 = new PlayerCreationRecord();
+			player_1.Controler = PlayerControler.FromKeys(Keys.W, Keys.S, Keys.A, Keys.D, Keys.V);
+			player_1.PlayerColor = Color.Red;
 
-			var en2 = new PictureBox();
-			en2.Tag = "player";
-			game_panel.Controls.Add(en2);
-			var p2 = new Player(Color.Blue,en2, PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.M));
-			players.Add(p2);
+			var player_2 = new PlayerCreationRecord();
+			player_2.Controler = PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.M);
+			player_2.PlayerColor = Color.Blue;
 
-			mEngine.SetPlayersSpawnPosition();
+			prc.Add(player_1);
+			prc.Add(player_2);
+
+			AddPlayersToGame();
+			InitializePlayerKeysHooks();
 		}
 
-		private void InitializeKeysHooks()
+		private void AddPlayersToGame()
 		{
-			foreach (var player in players)
+			foreach (var player in prc)
+			{
+				game.AddPlayer(player);
+			}
+		}
+
+		private void InitializePlayerKeysHooks()
+		{
+			foreach (var player in prc)
 			{
 				var controler = player.Controler;
 
@@ -91,19 +94,9 @@ namespace SnowBallGame
 
 		}
 
-		private void OneTickAction()
-		{
-			foreach(var player in players)
-			{
-				mEngine.Move(player, pressedKeys);
-			}
-
-			mEngine.MoveSnowBalls();
-		}
-
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			OneTickAction();
+			this.game.TickAction(pressedKeys);
 		}
 	}
 }
