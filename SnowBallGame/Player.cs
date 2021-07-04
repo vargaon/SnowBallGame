@@ -18,8 +18,6 @@ namespace SnowBallGame
 
 		public int EntitySize { get; private set; } = 20;
 
-		public int Direction { get; private set; } = 1;
-
 		public Player(Control entity, PlayerControler controler)
 		{
 			this.Controler = controler;
@@ -37,16 +35,6 @@ namespace SnowBallGame
 		{
 			this.Entity.Width = EntitySize;
 			this.Entity.Height = EntitySize;
-		}
-
-		public void SetDirectionLeft()
-		{
-			Direction = -1;
-		}
-
-		public void SetDirectionRight()
-		{
-			Direction = 1;
 		}
 	}
 }

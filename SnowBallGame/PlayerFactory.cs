@@ -32,7 +32,6 @@ namespace SnowBallGame
 			var entity = new PictureBox();
 			entity.Tag = PLAYER_TAG;
 			entity.BackColor = c;
-			
 
 			return entity;
 		}

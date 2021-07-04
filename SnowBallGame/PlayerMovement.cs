@@ -7,10 +7,8 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerMovement
+	class PlayerMovement : Movement
 	{
-		public int MoveSpeed { get; private set; } = 5;
-
 		public int JumpSpeed { get; private set; } = 8;
 
 		public int JumpForce { get; private set; } = 10;
@@ -23,14 +21,9 @@ namespace SnowBallGame
 
 		public Control FallTrought;
 
-		public PlayerMovement()
+		public PlayerMovement() :base(5)
 		{
 			JumpForceCounter = JumpSpeed;
-		}
-
-		public void SetMoveSpeed(int value)
-		{
-			MoveSpeed = value;
 		}
 
 		public void SetJumpSpeed(int value)

@@ -39,12 +39,16 @@ namespace SnowBallGame
 		private void MoveSnowBall(SnowBall snowball)
 		{
 			var entity = snowball.Entity;
-			entity.Left += snowball.Direction * snowball.MoveSpeed;
+			var movement = snowball.Movement;
+
+			entity.Left += movement.Direction * movement.MoveSpeed;
 		}
 
 		private void CheckSnowBallExpiration(SnowBall snowball)
 		{
 			var entity = snowball.Entity;
+			var movement = snowball.Movement;
+
 			if (entity.Left > gamePanel.Left + gamePanel.Width + gamePanelMargin || entity.Left < -gamePanelMargin)
 			{
 				snowball.Active = false;
@@ -58,7 +62,7 @@ namespace SnowBallGame
 					{
 						if (entity.Bounds.IntersectsWith(x.Bounds) && snowball.Owner.Entity != x)
 						{
-							x.Left += snowball.Direction * snowball.PunchForce;
+							x.Left += movement.Direction * snowball.PunchForce;
 							snowball.Active = false;
 							gamePanel.Controls.Remove(entity);
 							return;

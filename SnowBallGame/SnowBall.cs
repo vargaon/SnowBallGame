@@ -14,21 +14,23 @@ namespace SnowBallGame
 
 		public Control Entity { get; private set; }
 
-		public int MoveSpeed { get; private set; } = 10;
+		public SnowBallMovement Movement { get; } = new SnowBallMovement();
 
-		public int Direction { get; private set; }
-
-		public int EntitySize { get; private set; } = 5;
+		public int EntitySize { get; private set; } = 10;
 
 		public int PunchForce { get; private set; } = 15;
 
 		public bool Active { get; set; } = true;
 
+		private System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+
 		public SnowBall(Player p, Control e, Color c)
 		{
 			this.Owner = p;
 			this.Entity = e;
-			this.Direction = p.Direction;
+
+			if (p.Movement.Direction < 0) Movement.SetDirectionLeft();
+			else Movement.SetDirectionRight();
 
 			SetUpEntity(c);
 		}
@@ -37,6 +39,12 @@ namespace SnowBallGame
 		{
 			this.Entity.Width = EntitySize;
 			this.Entity.Height = EntitySize;
+ 
+			gp.AddEllipse(0, 0, this.Entity.Width - 3, this.Entity.Height - 3);
+
+			Region rg = new Region(gp);
+			this.Entity.Region = rg;
+
 			this.Entity.BackColor = c;
 		}
 	}

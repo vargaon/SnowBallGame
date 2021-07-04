@@ -12,10 +12,7 @@ namespace SnowBallGame
 	{
 		private List<Control> platforms;
 
-		private List<SnowBall> snowBalls = new List<SnowBall>();
-
 		private Control gamePanel;
-
 
 		private int gamePanelMargin = 100;
 
@@ -46,12 +43,12 @@ namespace SnowBallGame
 			if (pressedKeys[controler.Left])
 			{
 				entity.Left -= movement.MoveSpeed;
-				p.SetDirectionLeft();
+				movement.SetDirectionLeft();
 			}
 			if (pressedKeys[controler.Right])
 			{
 				entity.Left += movement.MoveSpeed;
-				p.SetDirectionRight();
+				movement.SetDirectionRight();
 			}
 
 			if (pressedKeys[controler.Jump] && movement.CanJump && movement.StandOn != null) movement.CanJump = false;
