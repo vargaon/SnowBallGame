@@ -23,7 +23,7 @@ namespace SnowBallGame
 			snowBallFactory = new SnowBallFactory(gamePanel);
 
 			playerMovementEngine = new PlayerMovementEngine(gamePanel);
-			snowBallMovementEngine = new SnowBallMovementEngine(gamePanel);
+			snowBallMovementEngine = new SnowBallMovementEngine(gamePanel, players);
 		}
 
 		public void AddPlayer(PlayerCreationRecord pcr)
@@ -48,10 +48,22 @@ namespace SnowBallGame
 		private void ThrowingSnowBall(Player p, Dictionary<Keys, bool> pressedKeys)
 		{
 			var throwControler = p.Controler.ThrowContoler;
+			var throwment = p.Throwment;
+
+			throwment.DecreaseThrowSpeedCounter();
+			if(throwment.ThrowSpeedCounter < 0)
+			{
+				throwment.ResetThrowSpeedCounter();
+				throwment.CanThrow = true;
+			}
 
 			if (pressedKeys[throwControler.Throw])
 			{
-				snowBallMovementEngine.AddSnowBall(snowBallFactory.CreateSnowBall(p));
+				if(throwment.CanThrow)
+				{
+					throwment.CanThrow = false;
+					snowBallMovementEngine.AddSnowBall(snowBallFactory.CreateSnowBall(p));
+				}
 			}
 		}
 	}

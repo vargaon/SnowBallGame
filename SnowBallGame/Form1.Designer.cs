@@ -50,7 +50,7 @@ namespace SnowBallGame
 			// timer1
 			// 
 			this.timer1.Enabled = true;
-			this.timer1.Interval = 15;
+			this.timer1.Interval = 20;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// game_panel
@@ -120,7 +120,7 @@ namespace SnowBallGame
 			// platform_4
 			// 
 			this.platform_4.BackColor = System.Drawing.Color.Black;
-			this.platform_4.Location = new System.Drawing.Point(732, 397);
+			this.platform_4.Location = new System.Drawing.Point(652, 423);
 			this.platform_4.Name = "platform_4";
 			this.platform_4.Size = new System.Drawing.Size(217, 11);
 			this.platform_4.TabIndex = 3;

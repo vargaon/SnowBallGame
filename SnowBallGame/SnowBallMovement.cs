@@ -8,6 +8,6 @@ namespace SnowBallGame
 {
 	class SnowBallMovement : Movement
 	{
-		public SnowBallMovement() : base(8) { }
+		public SnowBallMovement() : base(15) { }
 	}
 }

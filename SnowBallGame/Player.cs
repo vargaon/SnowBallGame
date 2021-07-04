@@ -16,6 +16,8 @@ namespace SnowBallGame
 
 		public PlayerMovement Movement { get; } = new PlayerMovement();
 
+		public PlayerThrowment Throwment { get; } = new PlayerThrowment();
+
 		public int EntitySize { get; private set; } = 20;
 
 		public Player(Control entity, PlayerControler controler)

@@ -9,9 +9,9 @@ namespace SnowBallGame
 {
 	class PlayerMovement : Movement
 	{
-		public int JumpSpeed { get; private set; } = 8;
+		public int JumpSpeed { get; private set; } = 16;
 
-		public int JumpForce { get; private set; } = 10;
+		public int JumpForce { get; private set; } = 5;
 
 		public int JumpForceCounter { get; private set; }
 
@@ -21,9 +21,9 @@ namespace SnowBallGame
 
 		public Control FallTrought;
 
-		public PlayerMovement() :base(5)
+		public PlayerMovement() :base(10)
 		{
-			JumpForceCounter = JumpSpeed;
+			ResetForceCounter();
 		}
 
 		public void SetJumpSpeed(int value)

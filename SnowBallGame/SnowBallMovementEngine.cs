@@ -13,11 +13,14 @@ namespace SnowBallGame
 
 		private List<SnowBall> snowballs = new List<SnowBall>();
 
+		private List<Player> players;
+
 		private int gamePanelMargin = 100;
 
-		public SnowBallMovementEngine(Control gamePanel)
+		public SnowBallMovementEngine(Control gamePanel, List<Player> players)
 		{
 			this.gamePanel = gamePanel;
+			this.players = players;
 		}
 
 		public void AddSnowBall(SnowBall s)
@@ -33,7 +36,7 @@ namespace SnowBallGame
 				CheckSnowBallExpiration(x);
 			}
 
-			snowballs.RemoveAll(x => x.Active == false);
+			removeUnactiveSnowBalls();
 		}
 
 		private void MoveSnowBall(SnowBall snowball)
@@ -52,24 +55,31 @@ namespace SnowBallGame
 			if (entity.Left > gamePanel.Left + gamePanel.Width + gamePanelMargin || entity.Left < -gamePanelMargin)
 			{
 				snowball.Active = false;
-				gamePanel.Controls.Remove(entity);
 			}
 			else
 			{
-				foreach (Control x in gamePanel.Controls)
+				foreach (var p in players)
 				{
-					if (x.Tag != null && x.Tag.ToString() == PlayerFactory.PLAYER_TAG)
+					var playerEntity = p.Entity;
+					if (entity.Bounds.IntersectsWith(playerEntity.Bounds) && snowball.Owner != p)
 					{
-						if (entity.Bounds.IntersectsWith(x.Bounds) && snowball.Owner.Entity != x)
-						{
-							x.Left += movement.Direction * snowball.PunchForce;
-							snowball.Active = false;
-							gamePanel.Controls.Remove(entity);
-							return;
-						}
+						playerEntity.Left += movement.Direction * snowball.PunchForce;
+						snowball.Active = false;
+						return;
 					}
+					
 				}
 			}
+		}
+
+		private void removeUnactiveSnowBalls()
+		{
+			foreach(var s in snowballs)
+			{
+				if(!s.Active) gamePanel.Controls.Remove(s.Entity);
+			}
+
+			snowballs.RemoveAll(x => x.Active == false);
 		}
 	}
 }
