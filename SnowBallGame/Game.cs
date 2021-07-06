@@ -31,6 +31,7 @@ namespace SnowBallGame
 		{
 			var player = playerFactory.CreatePlayer(pcr.PlayerColor, pcr.Controler);
 			playerMovementEngine.SetSpawnPosition(player.Entity);
+			player.Throwment.SetThrownBall(() => snowBallFactory.CreateClassicSnowBall(player));
 			players.Add(player);
 		}
 
@@ -48,10 +49,10 @@ namespace SnowBallGame
 
 			snowballs.ForEach(x => snowBallMovementEngine.Move(x));
 
-			removeUnactiveSnowBalls();
+			RemoveDeadPlayers();
+			RemoveUnactiveSnowBalls();
 		}
 
-		//TODO samostaný modul
 		private void CheckForPlayerThrow(Player p, Dictionary<Keys, bool> pressedKeys)
 		{
 			var throwControler = p.Controler.ThrowContoler;
@@ -62,15 +63,19 @@ namespace SnowBallGame
 			if (pressedKeys[throwControler.Throw])
 			{
 				if(throwment.CanThrow)
-				{
-					throwment.CanThrow = false;
-					AddSnowBall(snowBallFactory.CreateSnowBall(p));
+				{	
+					AddSnowBall(throwment.ThrowBall());
 				}
 			}
 		}
-		private void removeUnactiveSnowBalls()
+		private void RemoveUnactiveSnowBalls()
 		{
 			snowballs.RemoveAll(x => x.Active == false);
+		}
+
+		private void RemoveDeadPlayers()
+		{
+			players.RemoveAll(x => x.Lives <= 0);
 		}
 	}
 }

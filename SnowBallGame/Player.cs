@@ -41,9 +41,11 @@ namespace SnowBallGame
 			this.Entity.Height = EntitySize;
 		}
 
-		public void LoseLive()
+		public bool LoseLive()
 		{
 			Lives -= 1;
+
+			return Lives <= 0;
 		}
 	}
 }

@@ -54,13 +54,16 @@ namespace SnowBallGame
 			}
 
 			CheckPlatformStand(p.Entity, p.Movement);
-			CheckGamePanelBorderOut(p.Entity);
+			CheckGamePanelBorderOut(p);
 		}
 
-		private void CheckGamePanelBorderOut(Control entity)
+		private void CheckGamePanelBorderOut(Player p)
 		{
+			var entity = p.Entity;
+
 			if(OutOfGamePanel(entity))
 			{
+				if(p.LoseLive()) gamePanel.Controls.Remove(entity);
 				SetSpawnPosition(entity);
 			}
 		}
