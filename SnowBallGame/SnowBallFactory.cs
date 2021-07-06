@@ -25,10 +25,12 @@ namespace SnowBallGame
 
 			var ballEntity = new Label();
 			ballEntity.Tag = SNOWBALL_TAG;
+			
 			ballEntity.Top = playerEntity.Top + (p.EntitySize / 2);
 			ballEntity.Left = playerEntity.Left + (p.EntitySize / 2);
 
 			gamePanel.Controls.Add(ballEntity);
+			ballEntity.BringToFront();
 
 			return new SnowBall(p, ballEntity, Color.White);
 		}

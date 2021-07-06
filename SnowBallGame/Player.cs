@@ -20,6 +20,8 @@ namespace SnowBallGame
 
 		public int EntitySize { get; private set; } = 25;
 
+		public int Lives { get; private set; } = 3;
+
 		public Player(Control entity, PlayerControler controler)
 		{
 			this.Controler = controler;
@@ -27,7 +29,7 @@ namespace SnowBallGame
 			UpdateEntitySize();
 		}
 
-		public void SetSize(int value)
+		public void SetEntitySize(int value)
 		{
 			this.EntitySize = value;
 			UpdateEntitySize();
@@ -37,6 +39,11 @@ namespace SnowBallGame
 		{
 			this.Entity.Width = EntitySize;
 			this.Entity.Height = EntitySize;
+		}
+
+		public void LoseLive()
+		{
+			Lives -= 1;
 		}
 	}
 }

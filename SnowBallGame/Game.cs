@@ -27,7 +27,7 @@ namespace SnowBallGame
 			snowBallMovementEngine = new SnowBallMovementEngine(gamePanel, players);
 		}
 
-		public void AddPlayer(PlayerCreationRecord pcr)
+		public void RegisterPlayer(PlayerCreationRecord pcr)
 		{
 			var player = playerFactory.CreatePlayer(pcr.PlayerColor, pcr.Controler);
 			playerMovementEngine.SetSpawnPosition(player.Entity);
@@ -41,16 +41,12 @@ namespace SnowBallGame
 
 		public void TickAction(Dictionary<Keys, bool> pressedKeys)
 		{
-			foreach (var player in players)
-			{
-				playerMovementEngine.Move(player, pressedKeys);
-				CheckForPlayerThrow(player, pressedKeys);
-			}
+			players.ForEach(x => {
+				playerMovementEngine.Move(x, pressedKeys);
+				CheckForPlayerThrow(x, pressedKeys);
+			});
 
-			foreach (var snowBall in snowballs)
-			{
-				snowBallMovementEngine.Move(snowBall);
-			}
+			snowballs.ForEach(x => snowBallMovementEngine.Move(x));
 
 			removeUnactiveSnowBalls();
 		}
