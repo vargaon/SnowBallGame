@@ -12,7 +12,7 @@ namespace SnowBallGame
 
 		private int throwWaitCounter;
 
-		private Func<SnowBall> thrownBall;
+		private Func<Ball> thrownBall;
 
 		public bool CanThrow { get; private set; } = true;
 
@@ -21,13 +21,13 @@ namespace SnowBallGame
 			ResetThrowSpeedCounter();
 		}
 
-		public SnowBall ThrowBall()
+		public Ball ThrowBall()
 		{
 			CanThrow = false;
 			return thrownBall();
 		}
 
-		public void SetThrownBall(Func<SnowBall> thrownBall)
+		public void SetThrownBall(Func<Ball> thrownBall)
 		{
 			this.thrownBall = thrownBall;
 		}

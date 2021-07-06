@@ -14,9 +14,30 @@ namespace SnowBallGame
 
 		public PlayerControler Controler { get; private set; }
 
-		public PlayerMovement Movement { get; } = new PlayerMovement();
+		private PlayerMovement _movement;
 
-		public PlayerThrowment Throwment { get; } = new PlayerThrowment();
+		private PlayerMovement _bonusMovement;
+
+		public PlayerMovement Movement { 
+			get {
+				if (_bonusMovement != null) return _bonusMovement;
+				else return _movement;
+			}
+			set { _movement = value; }
+		}
+
+		PlayerThrowment _throwment;
+
+		PlayerThrowment _bonusThrowment;
+
+		public PlayerThrowment Throwment {
+			get
+			{
+				if (_bonusThrowment != null) return _bonusThrowment;
+				else return _throwment;
+			}
+			set { _throwment = value; }
+		}
 
 		public int EntitySize { get; private set; } = 25;
 
@@ -26,6 +47,10 @@ namespace SnowBallGame
 		{
 			this.Controler = controler;
 			this.Entity = entity;
+
+			this.Movement = new PlayerMovement(10);
+			this.Throwment = new PlayerThrowment();
+
 			UpdateEntitySize();
 		}
 
@@ -33,6 +58,16 @@ namespace SnowBallGame
 		{
 			this.EntitySize = value;
 			UpdateEntitySize();
+		}
+
+		public void SetBonusMovement(PlayerMovement movement)
+		{
+			_bonusMovement = movement;
+		}
+
+		public void SetBonusThrowment(PlayerThrowment throwment)
+		{
+			_bonusThrowment = throwment;
 		}
 
 		private void UpdateEntitySize()

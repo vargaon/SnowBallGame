@@ -8,21 +8,18 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerFactory
+	class PlayerFactory : Factory
 	{
 		public static string PLAYER_TAG = "player";
 
-		private Control gamePanel;
-
-		public PlayerFactory(Control gamePanel)
+		public PlayerFactory(GamePanelManager gamePanel) :base(gamePanel)
 		{
-			this.gamePanel = gamePanel;
 		}
 
 		public Player CreatePlayer(Color c, PlayerControler controler)
 		{
 			var entity = CreatePlayerEntity(c);
-			RegisterPlayerEntity(entity);
+			gamePanel.Register(entity);
 
 			return new Player(entity, controler);
 		}
@@ -36,9 +33,5 @@ namespace SnowBallGame
 			return entity;
 		}
 
-		private void RegisterPlayerEntity(Control entity)
-		{
-			gamePanel.Controls.Add(entity);
-		}
 	}
 }

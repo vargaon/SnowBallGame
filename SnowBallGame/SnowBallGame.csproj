@@ -46,18 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bonus.cs" />
+    <Compile Include="GamePanelManager.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="SnowBall.cs" />
+    <Compile Include="SpeedBall.cs" />
+    <Compile Include="JellyBall.cs" />
     <Compile Include="MovementEngine.cs" />
     <Compile Include="PlayerThrowment.cs" />
     <Compile Include="Movement.cs" />
-    <Compile Include="SnowBallMovement.cs" />
-    <Compile Include="SnowBallMovementEngine.cs" />
+    <Compile Include="BallMovement.cs" />
+    <Compile Include="BallMovementEngine.cs" />
     <Compile Include="ThrowContoler.cs" />
     <Compile Include="MovementControler.cs" />
     <Compile Include="PlayerCreationRecord.cs" />
     <Compile Include="PlayerFactory.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="SnowBallFactory.cs" />
-    <Compile Include="SnowBall.cs" />
+    <Compile Include="BallFactory.cs" />
+    <Compile Include="Ball.cs" />
     <Compile Include="PlayerMovement.cs" />
     <Compile Include="PlayerMovementEngine.cs" />
     <Compile Include="PlayerControler.cs" />

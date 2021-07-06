@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SnowBallGame
 {
-	class SnowBallMovement : Movement
+	class BallMovement : Movement
 	{
-		public SnowBallMovement() : base(15) { }
+		public BallMovement(int moveSpeed) : base(moveSpeed) { }
 	}
 }

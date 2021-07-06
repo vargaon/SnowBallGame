@@ -27,7 +27,7 @@ namespace SnowBallGame
 
 		public Control FallTrought;
 
-		public PlayerMovement() :base(10)
+		public PlayerMovement(int moveSpeed) :base(moveSpeed)
 		{
 			ResetJumpForceCounter();
 			ResetPunchForceCounter();
@@ -71,6 +71,11 @@ namespace SnowBallGame
 			}
 		}
 
+		public void SetPunchForce(int value)
+		{
+			PunchForce = value;
+		}
+
 		private void DecreasePunchForceCounter()
 		{
 			PunchForceCounter -= 1;
@@ -90,5 +95,6 @@ namespace SnowBallGame
 		{
 			PunchSpeed = 0;
 		}
+
 	}
 }

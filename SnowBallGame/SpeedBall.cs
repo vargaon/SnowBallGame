@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace SnowBallGame
 {
-	class SnowBall : Ball
+	class SpeedBall : Ball
 	{
-		public SnowBall()
+		public SpeedBall()
 		{
-			EntitySize = 15;
-			PunchForce = 20;
-			BallColor = Color.White;
-			Movement = new BallMovement(15);
+			EntitySize = 10;
+			PunchForce = 40;
+			BallColor = Color.Yellow;
+			Movement = new BallMovement(30);
 		}
 	}
 }

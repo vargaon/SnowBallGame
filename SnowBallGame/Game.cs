@@ -10,34 +10,38 @@ namespace SnowBallGame
 	class Game
 	{
 		private PlayerMovementEngine playerMovementEngine;
-		private SnowBallMovementEngine snowBallMovementEngine;
+		private BallMovementEngine ballMovementEngine;
+
+		private GamePanelManager gamePanelManager;
 
 		private PlayerFactory playerFactory;
-		private SnowBallFactory snowBallFactory;
+		private BallFactory ballFactory;
 
 		private List<Player> players = new List<Player>();
-		private List<SnowBall> snowballs = new List<SnowBall>();
+		private List<Ball> balls = new List<Ball>();
 
-		public Game(Control gamePanel)
+		public Game(Control gamePanelEntity)
 		{
-			playerFactory = new PlayerFactory(gamePanel);
-			snowBallFactory = new SnowBallFactory(gamePanel);
+			gamePanelManager = new GamePanelManager(gamePanelEntity);
 
-			playerMovementEngine = new PlayerMovementEngine(gamePanel);
-			snowBallMovementEngine = new SnowBallMovementEngine(gamePanel, players);
+			playerFactory = new PlayerFactory(gamePanelManager);
+			ballFactory = new BallFactory(gamePanelManager);
+
+			playerMovementEngine = new PlayerMovementEngine(gamePanelManager);
+			ballMovementEngine = new BallMovementEngine(gamePanelManager, players);
 		}
 
 		public void RegisterPlayer(PlayerCreationRecord pcr)
 		{
 			var player = playerFactory.CreatePlayer(pcr.PlayerColor, pcr.Controler);
 			playerMovementEngine.SetSpawnPosition(player.Entity);
-			player.Throwment.SetThrownBall(() => snowBallFactory.CreateClassicSnowBall(player));
+			player.Throwment.SetThrownBall(() => ballFactory.CreateBall<SnowBall>(player));
 			players.Add(player);
 		}
 
-		public void AddSnowBall(SnowBall s)
+		public void AddSnowBall(Ball s)
 		{
-			snowballs.Add(s);
+			balls.Add(s);
 		}
 
 		public void TickAction(Dictionary<Keys, bool> pressedKeys)
@@ -47,7 +51,7 @@ namespace SnowBallGame
 				CheckForPlayerThrow(x, pressedKeys);
 			});
 
-			snowballs.ForEach(x => snowBallMovementEngine.Move(x));
+			balls.ForEach(x => ballMovementEngine.Move(x));
 
 			RemoveDeadPlayers();
 			RemoveUnactiveSnowBalls();
@@ -70,7 +74,7 @@ namespace SnowBallGame
 		}
 		private void RemoveUnactiveSnowBalls()
 		{
-			snowballs.RemoveAll(x => x.Active == false);
+			balls.RemoveAll(x => x.IsActive == false);
 		}
 
 		private void RemoveDeadPlayers()

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerMovementEngine : MovementEngine<Player>
+	class PlayerMovementEngine : MovementEngine
 	{
-		public PlayerMovementEngine(Control gamePanel) :base(gamePanel) { }
+		public PlayerMovementEngine(GamePanelManager gamePanel) :base(gamePanel) { }
 
 		public void Move(Player p, Dictionary<Keys, bool> pressedKeys)
 		{
@@ -63,14 +63,14 @@ namespace SnowBallGame
 
 			if(OutOfGamePanel(entity))
 			{
-				if(p.LoseLive()) gamePanel.Controls.Remove(entity);
+				if(p.LoseLive()) gamePanel.UnRegister(entity);
 				SetSpawnPosition(entity);
 			}
 		}
 
 		private void CheckPlatformStand(Control entity, PlayerMovement movement)
 		{
-			foreach(var platform in platforms)
+			foreach(var platform in gamePanel.Platforms)
 			{
 				if (entity.Bounds.IntersectsWith(platform.Bounds) && movement.CanJump && platform != movement.FallTrought)
 				{
@@ -87,7 +87,7 @@ namespace SnowBallGame
 
 		override protected bool OutOfGamePanel(Control entity)
 		{
-			return entity.Top > gamePanel.Top + gamePanel.Height + gamePanelMargin;
+			return entity.Top > gamePanel.Entity.Top + gamePanel.Entity.Height + gamePanel.Margin;
 		}
 	}
 }
