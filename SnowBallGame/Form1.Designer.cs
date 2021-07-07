@@ -37,14 +37,20 @@ namespace SnowBallGame
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox8 = new System.Windows.Forms.PictureBox();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.pictureBox6 = new System.Windows.Forms.PictureBox();
+			this.pictureBox7 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.game_panel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// timer1
@@ -56,11 +62,14 @@ namespace SnowBallGame
 			// game_panel
 			// 
 			this.game_panel.BackColor = System.Drawing.Color.Black;
+			this.game_panel.Controls.Add(this.pictureBox1);
+			this.game_panel.Controls.Add(this.pictureBox7);
+			this.game_panel.Controls.Add(this.pictureBox6);
+			this.game_panel.Controls.Add(this.pictureBox5);
 			this.game_panel.Controls.Add(this.panel2);
 			this.game_panel.Controls.Add(this.pictureBox4);
 			this.game_panel.Controls.Add(this.pictureBox3);
 			this.game_panel.Controls.Add(this.pictureBox2);
-			this.game_panel.Controls.Add(this.pictureBox1);
 			this.game_panel.Controls.Add(this.pictureBox8);
 			this.game_panel.Location = new System.Drawing.Point(12, 12);
 			this.game_panel.Name = "game_panel";
@@ -99,7 +108,7 @@ namespace SnowBallGame
 			// 
 			this.pictureBox3.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox3.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox3.Location = new System.Drawing.Point(110, 228);
+			this.pictureBox3.Location = new System.Drawing.Point(179, 158);
 			this.pictureBox3.Name = "pictureBox3";
 			this.pictureBox3.Size = new System.Drawing.Size(220, 10);
 			this.pictureBox3.TabIndex = 18;
@@ -110,35 +119,67 @@ namespace SnowBallGame
 			// 
 			this.pictureBox2.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox2.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox2.Location = new System.Drawing.Point(791, 228);
+			this.pictureBox2.Location = new System.Drawing.Point(698, 158);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(220, 10);
 			this.pictureBox2.TabIndex = 17;
 			this.pictureBox2.TabStop = false;
 			this.pictureBox2.Tag = "platform";
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox1.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox1.InitialImage = null;
-			this.pictureBox1.Location = new System.Drawing.Point(251, 307);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox1.TabIndex = 16;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Tag = "platform";
-			// 
 			// pictureBox8
 			// 
 			this.pictureBox8.BackColor = System.Drawing.Color.Sienna;
 			this.pictureBox8.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox8.Location = new System.Drawing.Point(445, 394);
+			this.pictureBox8.Location = new System.Drawing.Point(431, 394);
 			this.pictureBox8.Name = "pictureBox8";
 			this.pictureBox8.Size = new System.Drawing.Size(220, 10);
 			this.pictureBox8.TabIndex = 15;
 			this.pictureBox8.TabStop = false;
 			this.pictureBox8.Tag = "platform";
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox5.Image = global::SnowBallGame.Properties.Resources.platform;
+			this.pictureBox5.Location = new System.Drawing.Point(445, 228);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox5.TabIndex = 20;
+			this.pictureBox5.TabStop = false;
+			this.pictureBox5.Tag = "platform";
+			// 
+			// pictureBox6
+			// 
+			this.pictureBox6.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox6.Image = global::SnowBallGame.Properties.Resources.platform;
+			this.pictureBox6.Location = new System.Drawing.Point(216, 481);
+			this.pictureBox6.Name = "pictureBox6";
+			this.pictureBox6.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox6.TabIndex = 21;
+			this.pictureBox6.TabStop = false;
+			this.pictureBox6.Tag = "platform";
+			// 
+			// pictureBox7
+			// 
+			this.pictureBox7.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox7.Image = global::SnowBallGame.Properties.Resources.platform;
+			this.pictureBox7.Location = new System.Drawing.Point(836, 394);
+			this.pictureBox7.Name = "pictureBox7";
+			this.pictureBox7.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox7.TabIndex = 22;
+			this.pictureBox7.TabStop = false;
+			this.pictureBox7.Tag = "platform";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox1.Image = global::SnowBallGame.Properties.Resources.platform;
+			this.pictureBox1.Location = new System.Drawing.Point(57, 394);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox1.TabIndex = 23;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Tag = "platform";
 			// 
 			// Form1
 			// 
@@ -158,8 +199,11 @@ namespace SnowBallGame
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -172,9 +216,12 @@ namespace SnowBallGame
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel player_panel;
+		private System.Windows.Forms.PictureBox pictureBox7;
+		private System.Windows.Forms.PictureBox pictureBox6;
+		private System.Windows.Forms.PictureBox pictureBox5;
+		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }
 

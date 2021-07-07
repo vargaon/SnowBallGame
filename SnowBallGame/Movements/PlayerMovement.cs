@@ -27,8 +27,9 @@ namespace SnowBallGame
 
 		public Control FallTrought;
 
-		public PlayerMovement(int moveSpeed) :base(moveSpeed)
+		public PlayerMovement()
 		{
+			SetMoveSpeed(10);
 			ResetJumpForceCounter();
 			ResetPunchForceCounter();
 		}

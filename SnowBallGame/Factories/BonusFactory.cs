@@ -31,6 +31,8 @@ namespace SnowBallGame
 				e => new JumpForceBonus(e),
 				e => new ProtectionBonus(e),
 				e => new ExtraLiveBonus(e),
+				e => new GiantSizeBonus(e),
+				e => new DwarfSizeBonus(e),
 				e => new BallBonus<JellyBall>(e, ballFactory),
 				e => new BallBonus<SpeedBall>(e, ballFactory)
 			};

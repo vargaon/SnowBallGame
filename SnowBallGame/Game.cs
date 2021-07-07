@@ -22,7 +22,7 @@ namespace SnowBallGame
 		private List<Player> players = new List<Player>();
 		private List<Ball> balls = new List<Ball>();
 		private Bonus bonus;
-		private Random random = new Random(100);
+		private Random random = new Random(42);
 
 		private int bonusSpawnWaitCounter = 0;
 
@@ -60,7 +60,7 @@ namespace SnowBallGame
 
 			balls.ForEach(x => ballMovementEngine.Move(x));
 
-			if (bonusSpawnWaitCounter >= 350)
+			if (bonusSpawnWaitCounter >= 400)
 			{
 				if (bonus != null) gamePanelManager.UnRegister(bonus.Entity);
 				bonusSpawnWaitCounter = 0;
@@ -81,6 +81,13 @@ namespace SnowBallGame
 			if (throwment.CanThrow && pressedKeys[throwControler.Throw])
 			{	
 				balls.Add(throwment.ThrowBall());
+
+				if(throwment.DecreaseStackAmountCounter())
+				{
+					throwment.ResetStackAmountCounter();
+					p.ResetBonusThrowment();
+					p.Throwment.HoldAThrow();
+				}
 			}
 		}
 

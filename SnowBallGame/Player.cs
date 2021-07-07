@@ -41,7 +41,18 @@ namespace SnowBallGame
 			set { _throwment = value; }
 		}
 
-		public int EntitySize { get; private set; } = 25;
+		private int _size = 25;
+
+		private int? _bonusSize = null;
+
+		public int EntitySize {
+			get
+			{
+				if (_bonusSize != null) return _bonusSize.Value;
+				else return _size;
+			}
+			set { _size = value; }
+		} 
 
 		public int Lives { get; private set; } = 3;
 
@@ -53,7 +64,7 @@ namespace SnowBallGame
 
 			this.Profile.UpdateLives(this.Lives);
 
-			this.Movement = new PlayerMovement(10);
+			this.Movement = new PlayerMovement();
 			this.Throwment = new PlayerThrowment();
 
 			UpdateEntitySize();
@@ -75,6 +86,25 @@ namespace SnowBallGame
 			_bonusThrowment = throwment;
 		}
 
+		public void SetBonusSize(int? value)
+		{
+			_bonusSize = value;
+			UpdateEntitySize();
+		}
+
+		public void ResetBonusMovement()
+		{
+			SetBonusMovement(null);
+			SetBonusSize(null);
+			Profile.UpdateBonus(PlayerProfile.DEFAULT_BONUS);
+		}
+
+		public void ResetBonusThrowment()
+		{
+			SetBonusThrowment(null);
+			Profile.UpdateBall(PlayerProfile.DEFAUL_BALL);
+		}
+
 		private void UpdateEntitySize()
 		{
 			this.Entity.Width = EntitySize;
@@ -91,7 +121,6 @@ namespace SnowBallGame
 		public void AddLive()
 		{
 			this.Lives += 1;
-			Console.WriteLine(Lives);
 			Profile.UpdateLives(this.Lives);
 		}
 	}

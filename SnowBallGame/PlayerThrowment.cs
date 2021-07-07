@@ -8,9 +8,13 @@ namespace SnowBallGame
 {
 	class PlayerThrowment
 	{
-		private int throwWait = 10;
+		private int throwWait = 15;
 
 		private int throwWaitCounter;
+
+		private int stackAmount = 10;
+
+		private int stackAmountCounter;
 
 		private Func<Ball> thrownBall;
 
@@ -20,6 +24,7 @@ namespace SnowBallGame
 		{
 			this.CanThrow = true;
 			ResetThrowWaitCounter();
+			ResetStackAmountCounter();
 		}
 
 		public Ball ThrowBall()
@@ -37,17 +42,18 @@ namespace SnowBallGame
 		{
 			if (this.CanThrow) return;
 
-			DecreaseThrowWaitCounter();
-			if(throwWaitCounter <= 0)
+			;
+			if(DecreaseThrowWaitCounter())
 			{
 				this.CanThrow = true;
 				ResetThrowWaitCounter();
 			}
 		}
 
-		private void DecreaseThrowWaitCounter()
+		private bool DecreaseThrowWaitCounter()
 		{
 			throwWaitCounter -= 1;
+			return throwWaitCounter <= 0;
 		}
 
 		private void ResetThrowWaitCounter()
@@ -55,9 +61,26 @@ namespace SnowBallGame
 			throwWaitCounter = throwWait;
 		}
 
+		public bool DecreaseStackAmountCounter()
+		{
+			stackAmountCounter -= 1;
+			return stackAmountCounter <= 0;
+		}
+
+		public void ResetStackAmountCounter()
+		{
+			stackAmountCounter = stackAmount;
+		}
+
 		public void SetThrowWait(int value)
 		{
 			this.throwWait = value;
+		}
+
+		public void HoldAThrow()
+		{
+			CanThrow = false;
+			ResetThrowWaitCounter();
 		}
 	}
 }

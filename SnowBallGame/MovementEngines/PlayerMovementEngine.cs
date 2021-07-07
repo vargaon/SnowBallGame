@@ -63,8 +63,17 @@ namespace SnowBallGame
 
 			if(OutOfGamePanel(entity))
 			{
-				if(p.LoseLive()) gamePanel.UnRegister(entity);
-				SetSpawnPosition(entity);
+				if (p.LoseLive())
+				{
+					p.Profile.Hide();
+					gamePanel.UnRegister(entity);
+				}
+				else
+				{
+					p.ResetBonusMovement();
+					p.ResetBonusThrowment();
+					SetSpawnPosition(entity);
+				}
 			}
 		}
 
