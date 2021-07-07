@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace SnowBallGame
 	{
 		private static string PLATFORM_TAG = "platform";
 
-		protected Random random = new Random();
+		private Random random;
 
 		public List<Control> Platforms { get; }
 
@@ -19,9 +20,10 @@ namespace SnowBallGame
 
 		public int Margin { get; } = 100;
 
-		public GamePanelManager(Control gamePanelEntity)
+		public GamePanelManager(Control gamePanelEntity, Random random)
 		{
 			this.Platforms = new List<Control>();
+			this.random = random;
 			Entity = gamePanelEntity;
 			RegisterPlatforms();
 		}
@@ -43,6 +45,17 @@ namespace SnowBallGame
 			}
 
 			return 0;
+		}
+
+		public Point GetRandomPosition()
+		{
+			if (Platforms.Count > 0)
+			{
+				var platform = Platforms[random.Next(0, Platforms.Count)];
+				return new Point(random.Next(platform.Left, platform.Left + platform.Width), platform.Top);
+			}
+
+			return new Point(0,0);
 		}
 
 		public void Register(Control entity)

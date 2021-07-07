@@ -14,6 +14,8 @@ namespace SnowBallGame
 
 		public PlayerControler Controler { get; private set; }
 
+		public PlayerProfile Profile { get; }
+
 		private PlayerMovement _movement;
 
 		private PlayerMovement _bonusMovement;
@@ -43,10 +45,13 @@ namespace SnowBallGame
 
 		public int Lives { get; private set; } = 3;
 
-		public Player(Control entity, PlayerControler controler)
+		public Player(Control entity, PlayerProfile profile, PlayerControler controler)
 		{
 			this.Controler = controler;
 			this.Entity = entity;
+			this.Profile = profile;
+
+			this.Profile.UpdateLives(this.Lives);
 
 			this.Movement = new PlayerMovement(10);
 			this.Throwment = new PlayerThrowment();
@@ -78,9 +83,16 @@ namespace SnowBallGame
 
 		public bool LoseLive()
 		{
-			Lives -= 1;
-
+			this.Lives -= 1;
+			Profile.UpdateLives(this.Lives);
 			return Lives <= 0;
+		}
+
+		public void AddLive()
+		{
+			this.Lives += 1;
+			Console.WriteLine(Lives);
+			Profile.UpdateLives(this.Lives);
 		}
 	}
 }

@@ -63,9 +63,9 @@ namespace SnowBallGame.Properties {
         /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap platform2 {
+        internal static System.Drawing.Bitmap hearth {
             get {
-                object obj = ResourceManager.GetObject("platform2", resourceCulture);
+                object obj = ResourceManager.GetObject("hearth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SnowBallGame.Properties {
         /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snow_landscape {
+        internal static System.Drawing.Bitmap platform {
             get {
-                object obj = ResourceManager.GetObject("snow_landscape", resourceCulture);
+                object obj = ResourceManager.GetObject("platform", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

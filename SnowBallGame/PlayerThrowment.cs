@@ -14,16 +14,17 @@ namespace SnowBallGame
 
 		private Func<Ball> thrownBall;
 
-		public bool CanThrow { get; private set; } = true;
+		public bool CanThrow { get; private set; }
 
 		public PlayerThrowment()
 		{
-			ResetThrowSpeedCounter();
+			this.CanThrow = true;
+			ResetThrowWaitCounter();
 		}
 
 		public Ball ThrowBall()
 		{
-			CanThrow = false;
+			this.CanThrow = false;
 			return thrownBall();
 		}
 
@@ -34,24 +35,29 @@ namespace SnowBallGame
 
 		public void ThrowTick()
 		{
-			if (CanThrow) return;
+			if (this.CanThrow) return;
 
-			DecreaseThrowSpeedCounter();
-			if(throwWaitCounter < 0)
+			DecreaseThrowWaitCounter();
+			if(throwWaitCounter <= 0)
 			{
-				CanThrow = true;
-				ResetThrowSpeedCounter();
+				this.CanThrow = true;
+				ResetThrowWaitCounter();
 			}
 		}
 
-		private void DecreaseThrowSpeedCounter()
+		private void DecreaseThrowWaitCounter()
 		{
 			throwWaitCounter -= 1;
 		}
 
-		private void ResetThrowSpeedCounter()
+		private void ResetThrowWaitCounter()
 		{
 			throwWaitCounter = throwWait;
+		}
+
+		public void SetThrowWait(int value)
+		{
+			this.throwWait = value;
 		}
 	}
 }

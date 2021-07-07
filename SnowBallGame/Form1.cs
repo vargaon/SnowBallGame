@@ -22,7 +22,7 @@ namespace SnowBallGame
 		{
 			InitializeComponent();
 
-			this.game = new Game(game_panel);
+			this.game = new Game(game_panel, player_panel);
 			
 			InitializePlayers();
 		}
@@ -34,7 +34,7 @@ namespace SnowBallGame
 			player_1.PlayerColor = Color.Red;
 
 			var player_2 = new PlayerCreationRecord();
-			player_2.Controler = PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.M);
+			player_2.Controler = PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.NumPad3);
 			player_2.PlayerColor = Color.Blue;
 
 			prc.Add(player_1);
@@ -103,6 +103,11 @@ namespace SnowBallGame
 		}
 
 		private void label3_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void player_panel_Paint(object sender, PaintEventArgs e)
 		{
 
 		}

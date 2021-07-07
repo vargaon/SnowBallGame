@@ -74,6 +74,7 @@ namespace SnowBallGame
 		public void SetPunchForce(int value)
 		{
 			PunchForce = value;
+			PunchForceCounter = value;
 		}
 
 		private void DecreasePunchForceCounter()
