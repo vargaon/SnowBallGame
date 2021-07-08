@@ -9,7 +9,8 @@ namespace SnowBallGame
 {
 	class PlayerCreationRecord
 	{
-		public Color PlayerColor { get; set; }
+		public string Name { get; set; }
+		public Color Color { get; set; }
 		public PlayerControler Controler { get; set; }
 	}
 }

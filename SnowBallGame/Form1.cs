@@ -12,9 +12,9 @@ namespace SnowBallGame
 {
 	public partial class Form1 : Form
 	{
-		private Dictionary<Keys, bool> pressedKeys = new Dictionary<Keys, bool>();
+		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
-		private List<PlayerCreationRecord> prc = new List<PlayerCreationRecord>();
+		private List<PlayerCreationRecord> _playerRecordsList = new List<PlayerCreationRecord>();
 
 		private Game game;
 
@@ -22,52 +22,56 @@ namespace SnowBallGame
 		{
 			InitializeComponent();
 
-			this.game = new Game(game_panel, player_panel);
-			
+			this.game = new Game(game_panel, player_panel, _pressedKeys);
+
 			InitializePlayers();
+
+			RegisterPlayers(game);
 		}
 
 		private void InitializePlayers()
 		{
 			var player_1 = new PlayerCreationRecord();
+			player_1.Name = "Ondra";
 			player_1.Controler = PlayerControler.FromKeys(Keys.W, Keys.S, Keys.A, Keys.D, Keys.V);
-			player_1.PlayerColor = Color.Red;
+			player_1.Color = Color.Red;
 
 			var player_2 = new PlayerCreationRecord();
-			player_2.Controler = PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.NumPad3);
-			player_2.PlayerColor = Color.Blue;
+			player_2.Name = "Petr";
+			player_2.Controler = PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.M);
+			player_2.Color = Color.Blue;
 
-			prc.Add(player_1);
-			prc.Add(player_2);
+			var player_3 = new PlayerCreationRecord();
+			player_3.Name = "Terka";
+			player_3.Controler = PlayerControler.FromKeys(Keys.U, Keys.J, Keys.H, Keys.K, Keys.B);
+			player_3.Color = Color.Green;
 
-			RegisterPlayers();
+			_playerRecordsList.Add(player_1);
+			_playerRecordsList.Add(player_2);
+			_playerRecordsList.Add(player_3);
+
 			InitializePlayerKeysHooks();
 		}
 
-		private void RegisterPlayers()
+		private void RegisterPlayers(Game g)
 		{
-			prc.ForEach(x => game.RegisterPlayer(x));
+			_playerRecordsList.ForEach(x => g.RegisterPlayer(x));
 		}
 
 		private void InitializePlayerKeysHooks()
 		{
-			foreach (var player in prc)
+			foreach (var player in _playerRecordsList)
 			{
 				var movementControler = player.Controler.MovementContoler;
 				var throwControler = player.Controler.ThrowContoler;
 
-				pressedKeys.Add(movementControler.Jump, false);
-				pressedKeys.Add(movementControler.Down, false);
-				pressedKeys.Add(movementControler.Left, false);
-				pressedKeys.Add(movementControler.Right, false);
-				pressedKeys.Add(throwControler.Throw, false);
+				_pressedKeys.Add(movementControler.Jump, false);
+				_pressedKeys.Add(movementControler.Down, false);
+				_pressedKeys.Add(movementControler.Left, false);
+				_pressedKeys.Add(movementControler.Right, false);
+				_pressedKeys.Add(throwControler.Throw, false);
 			}
 		}
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-			return base.ProcessCmdKey(ref msg, keyData);
-        }
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
@@ -75,7 +79,7 @@ namespace SnowBallGame
 
 			Keys key = e.KeyData;
 
-			if(pressedKeys.ContainsKey(key)) pressedKeys[key] = true;
+			if(_pressedKeys.ContainsKey(key)) _pressedKeys[key] = true;
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -84,7 +88,7 @@ namespace SnowBallGame
 
 			Keys key = e.KeyData;
 
-			if (pressedKeys.ContainsKey(key)) pressedKeys[key] = false;
+			if (_pressedKeys.ContainsKey(key)) _pressedKeys[key] = false;
 		}
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -94,7 +98,7 @@ namespace SnowBallGame
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			this.game.TickAction(pressedKeys);
+			this.game.TickAction();
 		}
 
 		private void label2_Click(object sender, EventArgs e)

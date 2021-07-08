@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace SnowBallGame
 {
 	class PlayerFactory : Factory
 	{
-		public static string PLAYER_TAG = "player";
-
 		private PlayerPanelManager playerPanel;
 
 		public PlayerFactory(GamePanelManager gamePanel, PlayerPanelManager playerPanel) :base(gamePanel)
@@ -19,27 +12,27 @@ namespace SnowBallGame
 			this.playerPanel = playerPanel;
 		}
 
-		public Player CreatePlayer(Color c, PlayerControler controler)
+		public Player CreatePlayer(PlayerCreationRecord record)
 		{
 			var entity = CreatePlayerEntity();
 
-			entity.BackColor = c;
+			entity.BackColor = record.Color;
 
 			var playerProfile = CreatePlayerProfile();
 
-			playerProfile.SetColor(c);
-			playerProfile.SetName("player"); //TODO
+			playerProfile.SetColor(record.Color);
+			playerProfile.SetName(record.Name); 
 
 			playerPanel.PlayersProfiles.Add(playerProfile);
 
-			return new Player(entity, playerProfile, controler);
+			return new Player(entity, playerProfile, record.Controler);
 		}
 
 		private Control CreatePlayerEntity()
 		{
 			var entity = new PictureBox();
 			gamePanel.Register(entity);
-			entity.Tag = PLAYER_TAG;
+			entity.Tag = Config.PLAYER_TAG;
 			
 			return entity;
 		}
@@ -60,7 +53,7 @@ namespace SnowBallGame
 		private Label CreatePlayerNameLabel(Panel playerProfilePanel)
 		{
 			var entity = new Label();
-			entity.Tag = PlayerPanelManager.PLAYER_PROFILE__NAME_TAG;
+			entity.Tag = Config.PLAYER_PROFILE__NAME_TAG;
 			playerProfilePanel.Controls.Add(entity);
 			entity.Location = new Point(11, 23);
 			entity.Height = 30;
@@ -73,7 +66,7 @@ namespace SnowBallGame
 		private PictureBox CreatePlayerAvatarPictureBox(Panel playerProfilePanel)
 		{
 			var entity = new PictureBox();
-			entity.Tag = PlayerPanelManager.PLAYER_PROFILE__AVATAR_TAG;
+			entity.Tag = Config.PLAYER_PROFILE__AVATAR_TAG;
 			playerProfilePanel.Controls.Add(entity);
 			entity.Location = new Point(26, 69);
 			entity.Width = 45;
@@ -95,7 +88,7 @@ namespace SnowBallGame
 		private Label CreatePlayerLivesLabel(Panel playerProfilePanel)
 		{
 			var entity = new Label();
-			entity.Tag = PlayerPanelManager.PLAYER_PROFILE__LIVES_TAG;
+			entity.Tag = Config.PLAYER_PROFILE__LIVES_TAG;
 			playerProfilePanel.Controls.Add(entity);
 			entity.Location = new Point(77, 73);
 			entity.Height = 37;
@@ -108,7 +101,7 @@ namespace SnowBallGame
 		private Label CreatePlayerBallLabel(Panel playerProfilePanel)
 		{
 			var entity = new Label();
-			entity.Tag = PlayerPanelManager.PLAYER_PROFILE__BALL_TAG;
+			entity.Tag = Config.PLAYER_PROFILE__BALL_TAG;
 			playerProfilePanel.Controls.Add(entity);
 			entity.Location = new Point(11, 138);
 			entity.Size = new Size(150, 30);
@@ -120,7 +113,7 @@ namespace SnowBallGame
 		private Label CreatePlayerBonusLabel(Panel playerProfilePanel)
 		{
 			var entity = new Label();
-			entity.Tag = PlayerPanelManager.PLAYER_PROFILE__BONUS_TAG;
+			entity.Tag = Config.PLAYER_PROFILE__BONUS_TAG;
 			playerProfilePanel.Controls.Add(entity);
 			entity.Location = new Point(11, 172);
 			entity.Size = new Size(150, 30);
@@ -132,17 +125,15 @@ namespace SnowBallGame
 		private Panel CreatePlayerProfilePanel()
 		{
 			var entity = new Panel();
-			entity.Tag = PlayerPanelManager.PLAYER_PROFILE_TAG;
+			entity.Tag = Config.PLAYER_PROFILE_TAG;
 			playerPanel.Register(entity);
 			entity.Width = 170;
 			entity.Height = playerPanel.Entity.Height;
 			entity.BackColor = Color.Silver;
 
 			entity.Left = playerPanel.GetLeftPosition();
-			entity.Top = 0;
 
 			return entity;
 		}
-
 	}
 }

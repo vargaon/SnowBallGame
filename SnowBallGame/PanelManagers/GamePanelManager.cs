@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class GamePanelManager
+	class GamePanelManager : PanelManager
 	{
-		private static string PLATFORM_TAG = "platform";
+		
 
 		private Random random;
 
 		public List<Control> Platforms { get; }
 
-		public Control Entity { get; }
+		public int Margin { get; } = Config.GAME_PANEL_MARGIN;
 
-		public int Margin { get; } = 100;
-
-		public GamePanelManager(Control gamePanelEntity, Random random)
+		public GamePanelManager(Control gamePanelEntity, Random random) : base(gamePanelEntity)
 		{
 			this.Platforms = new List<Control>();
 			this.random = random;
-			Entity = gamePanelEntity;
 			RegisterPlatforms();
 		}
 
@@ -32,7 +26,7 @@ namespace SnowBallGame
 		{
 			foreach (Control x in Entity.Controls)
 			{
-				if (x.Tag != null && x.Tag.ToString() == PLATFORM_TAG) Platforms.Add(x);
+				if (x.Tag != null && x.Tag.ToString() == Config.PLATFORM_TAG) Platforms.Add(x);
 			}
 		}
 
@@ -56,16 +50,6 @@ namespace SnowBallGame
 			}
 
 			return new Point(0,0);
-		}
-
-		public void Register(Control entity)
-		{
-			Entity.Controls.Add(entity);
-		}
-
-		public void UnRegister(Control entity)
-		{
-			Entity.Controls.Remove(entity);
 		}
 	}
 }

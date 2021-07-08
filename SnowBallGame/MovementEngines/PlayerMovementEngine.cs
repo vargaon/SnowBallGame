@@ -1,60 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerMovementEngine : MovementEngine
+	class PlayerMovementEngine : MovementEngine<Player>
 	{
-		public PlayerMovementEngine(GamePanelManager gamePanel) :base(gamePanel) { }
+		private Dictionary<Keys, bool> pressedKeys = new Dictionary<Keys, bool>();
 
-		public void Move(Player p, Dictionary<Keys, bool> pressedKeys)
+		public PlayerMovementEngine(GamePanelManager gamePanel, Dictionary<Keys, bool> pressedKeys) :base(gamePanel) 
 		{
-			var entity = p.Entity;
+			this.pressedKeys = pressedKeys;
+		}
+
+		public override void Move(Player p)
+		{
 			var controler = p.Controler.MovementContoler;
+
+			ProcessPunch(p);
+
+			if (pressedKeys[controler.Left]) MoveLeft(p);
+
+			if (pressedKeys[controler.Right]) MoveRight(p);
+
+			if (pressedKeys[controler.Jump]) Jump(p);
+
+			ProcessJump(p);
+
+			if (pressedKeys[controler.Down]) 
+			{
+				if(p.Movement.StandOn != null) p.Movement.FallTrought = p.Movement.StandOn;
+			}
+
+			if (p.Movement.FallTrought != null) CheckFallingThroughtDone(p);
+
+			if (!CheckPlatformStand(p.Entity, p.Movement))
+			{
+				p.Entity.Top += p.Movement.JumpSpeed;
+				p.Movement.StandOn = null;
+			}
+
+			CheckGamePanelBorderOut(p);
+		}
+
+		private void Jump(Player p)
+		{
+			if (p.Movement.CanJump && p.Movement.StandOn != null) p.Movement.CanJump = false;
+		}
+
+		private void ProcessJump(Player p)
+		{
 			var movement = p.Movement;
 
-			entity.Left += movement.PunchSpeed;
-			movement.PunchTick();
-
-			if (pressedKeys[controler.Left])
-			{
-				entity.Left -= movement.MoveSpeed;
-				movement.SetDirectionLeft();
-			}
-			if (pressedKeys[controler.Right])
-			{
-				entity.Left += movement.MoveSpeed;
-				movement.SetDirectionRight();
-			}
-
-			if (pressedKeys[controler.Jump] && movement.CanJump && movement.StandOn != null) movement.CanJump = false;
-			if (pressedKeys[controler.Down] && movement.StandOn != null) movement.FallTrought = movement.StandOn;
-
-			if (movement.FallTrought != null && !entity.Bounds.IntersectsWith(movement.FallTrought.Bounds)) movement.FallTrought = null;
-
-
-			if (!movement.CanJump && movement.JumpForceCounter < 0)
+			if (!movement.CanJump && movement.DecreaseJumpForceCounter())
 			{
 				movement.CanJump = true;
 			}
 
 			if (!movement.CanJump)
 			{
-				if (movement.JumpSpeed > 0) movement.ReverseJumpSpeed();
-				movement.DecreaseJumpForceCounter();
+				if (!movement.Falling()) movement.ReverseJumpSpeed();
 			}
 			else
 			{
-				if (movement.JumpSpeed < 0) movement.ReverseJumpSpeed();
+				if (movement.Falling()) movement.ReverseJumpSpeed();
 			}
+		}
 
-			CheckPlatformStand(p.Entity, p.Movement);
-			CheckGamePanelBorderOut(p);
+		private void CheckFallingThroughtDone(Player p)
+		{
+			if(!p.Entity.Bounds.IntersectsWith(p.Movement.FallTrought.Bounds)) p.Movement.FallTrought = null;
+		}
+
+		private void ProcessPunch(Player p)
+		{
+			p.Entity.Left += p.Movement.PunchSpeed;
+			p.Movement.PunchTick();
+		}
+
+		private void MoveLeft(Player p)
+		{
+			p.Entity.Left -= p.Movement.MoveSpeed;
+			p.Movement.SetDirectionLeft();
+		}
+
+		private void MoveRight(Player p)
+		{
+			p.Entity.Left += p.Movement.MoveSpeed;
+			p.Movement.SetDirectionRight();
 		}
 
 		private void CheckGamePanelBorderOut(Player p)
@@ -72,12 +104,12 @@ namespace SnowBallGame
 				{
 					p.ResetBonusMovement();
 					p.ResetBonusThrowment();
-					SetSpawnPosition(entity);
+					SetSpawnPosition(p);
 				}
 			}
 		}
 
-		private void CheckPlatformStand(Control entity, PlayerMovement movement)
+		private bool CheckPlatformStand(Control entity, PlayerMovement movement)
 		{
 			foreach(var platform in gamePanel.Platforms)
 			{
@@ -86,12 +118,10 @@ namespace SnowBallGame
 					movement.ResetJumpForceCounter();
 					entity.Top = platform.Top - entity.Height + 1;
 					movement.StandOn = platform;
-					return;	
+					return true;	
 				}
 			}
-
-			entity.Top += movement.JumpSpeed;
-			movement.StandOn = null;
+			return false;
 		}
 
 		override protected bool OutOfGamePanel(Control entity)

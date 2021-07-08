@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SnowBallGame
 {
 	class PlayerThrowment
 	{
-		private int throwWait = 15;
+		private int throwWait = Config.PLAYER_THROW_WAIT;
 
 		private int throwWaitCounter;
 
-		private int stackAmount = 10;
+		private int stackAmount = Config.PLAYER_STACK_AMOUNT;
 
 		private int stackAmountCounter;
 
@@ -42,7 +38,6 @@ namespace SnowBallGame
 		{
 			if (this.CanThrow) return;
 
-			;
 			if(DecreaseThrowWaitCounter())
 			{
 				this.CanThrow = true;

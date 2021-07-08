@@ -47,10 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bonus.cs" />
-    <Compile Include="PlayerPanelManager.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="PanelManagers\PanelManager.cs" />
+    <Compile Include="PanelManagers\PlayerPanelManager.cs" />
     <Compile Include="PlayerProfile.cs" />
     <Compile Include="Factories\BonusFactory.cs" />
-    <Compile Include="GamePanelManager.cs" />
+    <Compile Include="PanelManagers\GamePanelManager.cs" />
     <Compile Include="Factories\Factory.cs" />
     <Compile Include="Balls\SnowBall.cs" />
     <Compile Include="Balls\SpeedBall.cs" />

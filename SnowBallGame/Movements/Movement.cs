@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SnowBallGame
+﻿namespace SnowBallGame
 {
 	abstract class Movement
 	{
 		public int MoveSpeed { get; private set; }
 
-		public int Direction { get; private set; } = 1;
+		public int Direction { get; private set; } = Config.DEFAULT_DIRECTION;
 
 		public Movement()
 		{

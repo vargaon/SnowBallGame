@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SnowBallGame
+﻿namespace SnowBallGame
 {
 	class SnowBall : Ball
 	{
 		public SnowBall()
 		{
-			EntitySize = 15;
-			PunchForce = 20;
-			BallColor = Color.White;
-			Movement = new BallMovement(15);
+			EntitySize = Config.SNOW_BALL_SIZE;
+			PunchForce = Config.SNOW_BALL_PUNCH_FORCE;
+			BallColor = Config.SNOW_BALL_COLOR;
+			Movement = new BallMovement(Config.SNOW_BALL_MOVE_SPEED);
 		}
 	}
 }

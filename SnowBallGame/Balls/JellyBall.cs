@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-
-namespace SnowBallGame
+﻿namespace SnowBallGame
 {
 	class JellyBall : Ball
 	{
 		public JellyBall()
 		{
-			EntitySize = 30;
-			PunchForce = 10;
-			BallColor = Color.HotPink;
-			Movement = new BallMovement(10);
+			EntitySize = Config.JELLY_BALL_SIZE;
+			PunchForce = Config.JELLY_BALL_PUNCH_FORCE;
+			BallColor = Config.JELLY_BALL_COLOR;
+			Movement = new BallMovement(Config.JELLY_BALL_MOVE_SPEED);
 		}
 	}
 }

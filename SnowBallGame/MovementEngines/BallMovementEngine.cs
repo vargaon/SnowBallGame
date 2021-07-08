@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class BallMovementEngine : MovementEngine
+	class BallMovementEngine : MovementEngine<Ball>
 	{
-		private List<Player> players;
+		protected List<Player> players;
 
 		public BallMovementEngine(GamePanelManager gamePanel, List<Player> players) :base(gamePanel)
 		{
 			this.players = players;
 		}
 
-		public void Move(Ball ball)
+		public override void Move(Ball ball)
 		{
 			var entity = ball.Entity;
 			var movement = ball.Movement;

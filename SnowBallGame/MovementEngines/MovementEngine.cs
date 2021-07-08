@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	abstract class MovementEngine
+	abstract class MovementEngine<T>
 	{
 		protected GamePanelManager gamePanel;
 
@@ -16,12 +11,14 @@ namespace SnowBallGame
 			this.gamePanel = gamePanel;
 		}
 
-		public void SetSpawnPosition(Control entity)
+		public void SetSpawnPosition(Player player)
 		{
-			entity.Top = -gamePanel.Margin;
+			var entity = player.Entity;
+			entity.Top = (-1) * gamePanel.Margin;
 			entity.Left = gamePanel.GetRandomLeftPosition();
 		}
 
+		abstract public void Move(T t);
 		abstract protected bool OutOfGamePanel(Control entity);
 	}
 }

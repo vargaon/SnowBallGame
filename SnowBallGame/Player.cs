@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SnowBallGame
 {
@@ -41,7 +35,7 @@ namespace SnowBallGame
 			set { _throwment = value; }
 		}
 
-		private int _size = 25;
+		private int _size = Config.PLAYER_SIZE;
 
 		private int? _bonusSize = null;
 
@@ -54,7 +48,11 @@ namespace SnowBallGame
 			set { _size = value; }
 		} 
 
-		public int Lives { get; private set; } = 3;
+		public int Lives { get; private set; } = Config.PLAYER_LIVES;
+
+		private int bonusDuration = Config.PLAYER_BONUS_DURATION;
+
+		private int bonusDurationCounter;
 
 		public Player(Control entity, PlayerProfile profile, PlayerControler controler)
 		{
@@ -79,17 +77,20 @@ namespace SnowBallGame
 		public void SetBonusMovement(PlayerMovement movement)
 		{
 			_bonusMovement = movement;
+			ResetBonusDurationCounter();
 		}
 
 		public void SetBonusThrowment(PlayerThrowment throwment)
 		{
 			_bonusThrowment = throwment;
+			ResetBonusDurationCounter();
 		}
 
 		public void SetBonusSize(int? value)
 		{
 			_bonusSize = value;
 			UpdateEntitySize();
+			ResetBonusDurationCounter();
 		}
 
 		public void ResetBonusMovement()
@@ -122,6 +123,17 @@ namespace SnowBallGame
 		{
 			this.Lives += 1;
 			Profile.UpdateLives(this.Lives);
+		}
+
+		public void ResetBonusDurationCounter()
+		{
+			bonusDurationCounter = bonusDuration;
+		}
+
+		public bool DecreaseBonusDurationCounter()
+		{
+			bonusDurationCounter -= 1;
+			return bonusDurationCounter <= 0;
 		}
 	}
 }

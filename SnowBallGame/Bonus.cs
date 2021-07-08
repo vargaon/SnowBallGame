@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SnowBallGame
 {
@@ -22,12 +16,28 @@ namespace SnowBallGame
 		abstract public void AplyBonus(Player p);
 	}
 
-	class ExtraLiveBonus : Bonus
+	abstract class MovementBonus : Bonus
+	{
+		public MovementBonus(Control entity) : base(entity)
+		{
+		}
+
+		protected PlayerMovement CreatePlayerMovement(Player p)
+		{
+			var movement = new PlayerMovement();
+			if (p.Movement.Direction < 0) movement.SetDirectionLeft();
+			else movement.SetDirectionRight();
+
+			return movement;
+		}
+	}
+
+	class ExtraLiveBonus : MovementBonus
 	{
 		public ExtraLiveBonus(Control entity) : base(entity) 
 		{ 
-			Name = "ExtraLive"; 
-			entity.BackColor = Color.Red; 
+			Name = Config.EXTRA_LIVE_NAME; 
+			entity.BackColor = Config.EXTRA_LIVE_COLOR; 
 		}
 
 		public override void AplyBonus(Player p)
@@ -36,87 +46,75 @@ namespace SnowBallGame
 		}
 	}
 
-	class GiantSizeBonus : Bonus
+	class GiantSizeBonus : MovementBonus
 	{
 		public GiantSizeBonus(Control entity) : base(entity)
 		{
-			Name = "GiantSize";
-			entity.BackColor = Color.Purple;
+			Name = Config.GIANT_SIZE_NAME;
+			entity.BackColor = Config.GIANT_SIZE_COLOR;
 		}
-
 		public override void AplyBonus(Player p)
 		{
 			p.ResetBonusMovement();
-			p.SetBonusSize(35);
+			p.SetBonusSize(Config.GIANT_SIZE_PLAYER_SIZE);
+			var movement = CreatePlayerMovement(p);
+			movement.SetMoveSpeed(Config.GIANT_SIZE_PLAYER_MOVE_SPEED);
+			p.SetBonusMovement(movement);
 			p.Profile.UpdateBonus(Name);
 		}
 	}
 
-	class DwarfSizeBonus : Bonus
+	class DwarfSizeBonus : MovementBonus
 	{
 		public DwarfSizeBonus(Control entity) : base(entity)
 		{
-			Name = "DwarfSize";
-			entity.BackColor = Color.Purple;
+			Name = Config.DWARF_SIZE_NAME;
+			entity.BackColor = Config.DWARF_SIZE_COLOR;
 		}
 
 		public override void AplyBonus(Player p)
 		{
 			p.ResetBonusMovement();
-			p.SetBonusSize(15);
-			p.Profile.UpdateBonus(Name);
-		}
-	}
-
-	class SpeedMovementBonus : Bonus
-	{
-		public SpeedMovementBonus(Control entity) :base(entity) 
-		{ 
-			Name = "SpeedBoost"; 
-			entity.BackColor = Color.Blue; 
-		}
-
-		public override void AplyBonus(Player p)
-		{
-			p.ResetBonusMovement();
-			var movement = new PlayerMovement();
-			movement.SetMoveSpeed(15);
+			p.SetBonusSize(Config.DWARF_SIZE_PLAYER_SIZE);
+			var movement = CreatePlayerMovement(p);
+			movement.SetMoveSpeed(Config.DWARF_SIZE_PLAYER_MOVE_SPEED);
 			p.SetBonusMovement(movement);
 			p.Profile.UpdateBonus(Name);
 		}
 	}
 
-	class JumpForceBonus : Bonus
+	class JumpBoostBonus : MovementBonus
 	{
-		public JumpForceBonus(Control entity) : base(entity) 
+		public JumpBoostBonus(Control entity) : base(entity) 
 		{ 
-			Name = "JumpBoost"; 
-			entity.BackColor = Color.White; 
+			Name = Config.JUMP_BOOST_NAME; 
+			entity.BackColor = Config.JUMP_BOOST_COLOR; 
 		}
 
 		public override void AplyBonus(Player p)
 		{
 			p.ResetBonusMovement();
-			var movement = new PlayerMovement();
-			movement.SetJumpForce(10);
+			var movement = CreatePlayerMovement(p);
+			movement.SetJumpForce(Config.JUMP_BOOST_JUMP_FORCE);
+			movement.SetJumpSpeed(Config.JUMP_BOOST_JUMP_SPEED);
 			p.SetBonusMovement(movement);
 			p.Profile.UpdateBonus(Name);
 		}
 	}
 
-	class ProtectionBonus : Bonus
+	class ProtectionBonus : MovementBonus
 	{
 		public ProtectionBonus(Control entity) : base(entity) 
 		{ 
-			Name = "Protection"; 
-			entity.BackColor = Color.Gray; 
+			Name = Config.PROTECTION_NAME; 
+			entity.BackColor = Config.PROTECTION_COLOR; 
 		}
 
 		public override void AplyBonus(Player p)
 		{
 			p.ResetBonusMovement();
-			var movement = new PlayerMovement();
-			movement.SetPunchForce(1);
+			var movement = CreatePlayerMovement(p);
+			movement.SetPunchForce(Config.PROTECTION_PUNCH_FORCE);
 			p.SetBonusMovement(movement);
 			p.Profile.UpdateBonus(Name);
 		}
@@ -135,7 +133,7 @@ namespace SnowBallGame
 		public BallBonus(Control entity, BallFactory factory) : base(entity, factory) 
 		{ 
 			Name = typeof(TBall).Name; 
-			entity.BackColor = Color.Gold; 
+			entity.BackColor = Config.BALL_BONUS_COLOR; 
 		}
 
 		public override void AplyBonus(Player p)

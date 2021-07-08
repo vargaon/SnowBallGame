@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SnowBallGame
 {
 	class Game
 	{
+		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
+
 		private PlayerMovementEngine playerMovementEngine;
 		private BallMovementEngine ballMovementEngine;
 
@@ -22,12 +21,16 @@ namespace SnowBallGame
 		private List<Player> players = new List<Player>();
 		private List<Ball> balls = new List<Ball>();
 		private Bonus bonus;
-		private Random random = new Random(42);
+		private Random random = new Random();
 
-		private int bonusSpawnWaitCounter = 0;
+		private int bonusSpawnDelayTime = Config.BONUS_SPAWN_DELAY_TIME;
 
-		public Game(Control gamePanelEntity, Control playerPanelEntity)
+		private int bonusSpawnDelayTimeCounter;
+
+		public Game(Control gamePanelEntity, Control playerPanelEntity, Dictionary<Keys, bool> pressedKeys)
 		{
+			this._pressedKeys = pressedKeys;
+
 			gamePanelManager = new GamePanelManager(gamePanelEntity, random);
 			playerPanelManager = new PlayerPanelManager(playerPanelEntity);
 
@@ -35,50 +38,58 @@ namespace SnowBallGame
 			ballFactory = new BallFactory(gamePanelManager);
 			bonusFactory = new BonusFactory(gamePanelManager, ballFactory, random);
 
-			playerMovementEngine = new PlayerMovementEngine(gamePanelManager);
+			playerMovementEngine = new PlayerMovementEngine(gamePanelManager, pressedKeys);
 			ballMovementEngine = new BallMovementEngine(gamePanelManager, players);
+
+			ResetBonusSpawnDelayTimeCounter();
 		}
 
-		public void RegisterPlayer(PlayerCreationRecord pcr)
+		public void RegisterPlayer(PlayerCreationRecord playerRecord)
 		{
-			var player = playerFactory.CreatePlayer(pcr.PlayerColor, pcr.Controler);
-			playerMovementEngine.SetSpawnPosition(player.Entity);
+			var player = playerFactory.CreatePlayer(playerRecord);
+			playerMovementEngine.SetSpawnPosition(player);
 			player.Throwment.SetThrownBall(() => ballFactory.CreateBall<SnowBall>(player));
 			players.Add(player);
 		}
 
-		public void TickAction(Dictionary<Keys, bool> pressedKeys)
+		public void TickAction()
 		{
-			bonusSpawnWaitCounter++;
-
 			players.ForEach(x => {
-				playerMovementEngine.Move(x, pressedKeys);
-				CheckForPlayerThrow(x, pressedKeys);
+				playerMovementEngine.Move(x);
+				CheckPlayerThrow(x);
+				if(x.DecreaseBonusDurationCounter())
+				{
+					x.ResetBonusDurationCounter();
+					x.ResetBonusMovement();
+				}
 			});
-
-			if (bonus != null) CheckBonusCollect();
 
 			balls.ForEach(x => ballMovementEngine.Move(x));
 
-			if (bonusSpawnWaitCounter >= 400)
+			if (this.bonus != null)
 			{
-				if (bonus != null) gamePanelManager.UnRegister(bonus.Entity);
-				bonusSpawnWaitCounter = 0;
-				bonus = bonusFactory.CreateRandomBonus();
+				if(CheckBonusCollect()) this.bonus = null;
+			}
+
+			if (DecreaseBonusSpawnDelayTimeCounter())
+			{
+				if (this.bonus != null) gamePanelManager.UnRegister(this.bonus.Entity);
+				this.bonus = bonusFactory.CreateRandomBonus();
+				ResetBonusSpawnDelayTimeCounter();
 			}
 
 			RemoveDeadPlayers();
 			RemoveUnactiveSnowBalls();
 		}
 
-		private void CheckForPlayerThrow(Player p, Dictionary<Keys, bool> pressedKeys)
+		private void CheckPlayerThrow(Player p)
 		{
 			var throwControler = p.Controler.ThrowContoler;
 			var throwment = p.Throwment;
 
 			throwment.ThrowTick();
 
-			if (throwment.CanThrow && pressedKeys[throwControler.Throw])
+			if (throwment.CanThrow && _pressedKeys[throwControler.Throw])
 			{	
 				balls.Add(throwment.ThrowBall());
 
@@ -100,7 +111,6 @@ namespace SnowBallGame
 				{
 					gamePanelManager.UnRegister(entity);
 					bonus.AplyBonus(p);
-					bonus = null;
 					return true;
 				}
 			}
@@ -115,6 +125,17 @@ namespace SnowBallGame
 		private void RemoveDeadPlayers()
 		{
 			players.RemoveAll(x => x.Lives <= 0);
+		}
+
+		private void ResetBonusSpawnDelayTimeCounter()
+		{
+			bonusSpawnDelayTimeCounter = bonusSpawnDelayTime;
+		}
+
+		private bool DecreaseBonusSpawnDelayTimeCounter()
+		{
+			bonusSpawnDelayTimeCounter -= 1;
+			return bonusSpawnDelayTimeCounter <= 0;
 		}
 	}
 }

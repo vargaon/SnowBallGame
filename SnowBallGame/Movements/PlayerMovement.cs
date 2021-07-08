@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SnowBallGame
 {
 	class PlayerMovement : Movement
 	{
-		public int JumpSpeed { get; private set; } = 12;
+		public int JumpSpeed { get; private set; } = Config.PLAYER_JUMP_SPEED;
 
-		public int JumpForce { get; private set; } = 6;
+		public int JumpForce { get; private set; } = Config.PLAYER_JUMP_FORCE;
+
+		public int PunchForce { get; private set; } = Config.PLAYER_PUNCH_FORCE;
 
 		public int JumpForceCounter { get; private set; }
+		public int PunchForceCounter { get; private set; }
 
 		public bool CanJump { get; set; } = true;
 
 		public int PunchSpeed { get; private set; }
-
-		public int PunchForce { get; private set; } = 4;
-
-		public int PunchForceCounter { get; private set; }
 
 		public Control StandOn;
 
@@ -29,7 +23,7 @@ namespace SnowBallGame
 
 		public PlayerMovement()
 		{
-			SetMoveSpeed(10);
+			SetMoveSpeed(Config.PLAYER_MOVE_SPEED);
 			ResetJumpForceCounter();
 			ResetPunchForceCounter();
 		}
@@ -49,9 +43,15 @@ namespace SnowBallGame
 			JumpSpeed *= -1;
 		}
 
-		public void DecreaseJumpForceCounter()
+		public bool Falling()
+		{
+			return JumpSpeed < 0;
+		}
+
+		public bool DecreaseJumpForceCounter()
 		{
 			JumpForceCounter -= 1;
+			return JumpForceCounter <= 0;
 		}
 
 		public void ResetJumpForceCounter()
@@ -72,6 +72,11 @@ namespace SnowBallGame
 			}
 		}
 
+		public void SetPunchSpeed(int value)
+		{
+			PunchSpeed = value;
+		}
+
 		public void SetPunchForce(int value)
 		{
 			PunchForce = value;
@@ -88,15 +93,9 @@ namespace SnowBallGame
 			PunchForceCounter = PunchForce;
 		}
 
-		public void SetPunchSpeed(int value)
-		{
-			PunchSpeed = value;
-		}
-
 		private void ResetPunchSpeed()
 		{
 			PunchSpeed = 0;
 		}
-
 	}
 }
