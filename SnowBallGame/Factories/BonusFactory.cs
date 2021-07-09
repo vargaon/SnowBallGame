@@ -27,6 +27,7 @@ namespace SnowBallGame
 
 		public Bonus CreateRandomBonus()
 		{
+			if (bonuses.Count <= 0) return null;
 			var entity = CreateBonusEntity();
 			var getBonus = bonuses[random.Next(0, bonuses.Count)];
 			return getBonus(entity);
