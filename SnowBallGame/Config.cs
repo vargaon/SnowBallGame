@@ -14,6 +14,9 @@ namespace SnowBallGame
 		public static int PLAYER_LIVES = 3;
 		public static int PLAYER_SIZE = 25;
 		public static int PLAYER_BONUS_DURATION = 300;
+		public static int HIT_SCORE = 5;
+		public static int BONUS_COLECT_SCORE = 2;
+		public static int LOSE_LIVE_SCORE = 4;
 
 		//bonus
 		public static int BONUS_SIZE = 10;
@@ -94,6 +97,10 @@ namespace SnowBallGame
 
 		//ball bonus
 		public static Color BALL_BONUS_COLOR = Color.Gold;
+
+		//balls names
+		public static string JELLYBALL_NAME = "JellyBall";
+		public static string SPEEDBALL_NAME = "SpeedBall";
 
 	}
 }

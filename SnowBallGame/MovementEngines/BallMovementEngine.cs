@@ -39,6 +39,7 @@ namespace SnowBallGame
 					if (entity.Bounds.IntersectsWith(playerEntity.Bounds) && ball.Owner != p)
 					{
 						p.Movement.SetPunchSpeed(movement.Direction * ball.PunchForce);
+						ball.Owner.HitScore();
 						ball.IsActive = false;
 						gamePanel.UnRegister(entity);
 						return;

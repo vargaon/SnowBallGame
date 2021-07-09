@@ -113,6 +113,16 @@ namespace SnowBallGame
 			this.textBox22 = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
+			this.end_panel = new System.Windows.Forms.Panel();
+			this.new_game_btn = new System.Windows.Forms.Button();
+			this.panel5 = new System.Windows.Forms.Panel();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.label23 = new System.Windows.Forms.Label();
+			this.win_player_name = new System.Windows.Forms.Label();
+			this.win_player_avatar = new System.Windows.Forms.PictureBox();
+			this.label25 = new System.Windows.Forms.Label();
+			this.win_player_score = new System.Windows.Forms.Label();
+			this.checkBox7 = new System.Windows.Forms.CheckBox();
 			this.game_panel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -135,6 +145,10 @@ namespace SnowBallGame
 			this.panel3.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
+			this.end_panel.SuspendLayout();
+			this.panel5.SuspendLayout();
+			this.panel6.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// game_panel
@@ -641,6 +655,7 @@ namespace SnowBallGame
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.Silver;
+			this.panel3.Controls.Add(this.checkBox7);
 			this.panel3.Controls.Add(this.checkBox6);
 			this.panel3.Controls.Add(this.checkBox5);
 			this.panel3.Controls.Add(this.checkBox4);
@@ -648,9 +663,9 @@ namespace SnowBallGame
 			this.panel3.Controls.Add(this.checkBox2);
 			this.panel3.Controls.Add(this.label2);
 			this.panel3.Controls.Add(this.checkBox1);
-			this.panel3.Location = new System.Drawing.Point(41, 21);
+			this.panel3.Location = new System.Drawing.Point(41, 15);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(202, 208);
+			this.panel3.Size = new System.Drawing.Size(202, 221);
 			this.panel3.TabIndex = 5;
 			// 
 			// checkBox6
@@ -658,67 +673,77 @@ namespace SnowBallGame
 			this.checkBox6.Checked = true;
 			this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox6.Location = new System.Drawing.Point(27, 177);
+			this.checkBox6.Location = new System.Drawing.Point(23, 166);
 			this.checkBox6.Name = "checkBox6";
 			this.checkBox6.Size = new System.Drawing.Size(139, 28);
 			this.checkBox6.TabIndex = 10;
-			this.checkBox6.Text = "checkBox6";
+			this.checkBox6.Tag = "JellyBall";
+			this.checkBox6.Text = "JellyBall";
 			this.checkBox6.UseVisualStyleBackColor = true;
+			this.checkBox6.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// checkBox5
 			// 
 			this.checkBox5.Checked = true;
 			this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox5.Location = new System.Drawing.Point(27, 153);
+			this.checkBox5.Location = new System.Drawing.Point(23, 142);
 			this.checkBox5.Name = "checkBox5";
 			this.checkBox5.Size = new System.Drawing.Size(139, 28);
 			this.checkBox5.TabIndex = 9;
-			this.checkBox5.Text = "checkBox5";
+			this.checkBox5.Tag = "Protection";
+			this.checkBox5.Text = "Protection";
 			this.checkBox5.UseVisualStyleBackColor = true;
+			this.checkBox5.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// checkBox4
 			// 
 			this.checkBox4.Checked = true;
 			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox4.Location = new System.Drawing.Point(27, 127);
+			this.checkBox4.Location = new System.Drawing.Point(23, 116);
 			this.checkBox4.Name = "checkBox4";
 			this.checkBox4.Size = new System.Drawing.Size(139, 28);
 			this.checkBox4.TabIndex = 8;
-			this.checkBox4.Text = "checkBox4";
+			this.checkBox4.Tag = "JumpBoost";
+			this.checkBox4.Text = "JumpBoost";
 			this.checkBox4.UseVisualStyleBackColor = true;
+			this.checkBox4.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// checkBox3
 			// 
 			this.checkBox3.Checked = true;
 			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox3.Location = new System.Drawing.Point(27, 101);
+			this.checkBox3.Location = new System.Drawing.Point(23, 90);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(139, 28);
 			this.checkBox3.TabIndex = 7;
-			this.checkBox3.Text = "checkBox3";
+			this.checkBox3.Tag = "DwarfSize";
+			this.checkBox3.Text = "DwarfSize";
 			this.checkBox3.UseVisualStyleBackColor = true;
+			this.checkBox3.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// checkBox2
 			// 
 			this.checkBox2.Checked = true;
 			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox2.Location = new System.Drawing.Point(27, 79);
+			this.checkBox2.Location = new System.Drawing.Point(23, 68);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(139, 28);
 			this.checkBox2.TabIndex = 6;
-			this.checkBox2.Text = "checkBox2";
+			this.checkBox2.Tag = "GiantSize";
+			this.checkBox2.Text = "GiantSize";
 			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.label2.ForeColor = System.Drawing.Color.Black;
-			this.label2.Location = new System.Drawing.Point(16, 14);
+			this.label2.Location = new System.Drawing.Point(14, 6);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(150, 39);
 			this.label2.TabIndex = 5;
@@ -729,12 +754,14 @@ namespace SnowBallGame
 			this.checkBox1.Checked = true;
 			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox1.Location = new System.Drawing.Point(27, 55);
+			this.checkBox1.Location = new System.Drawing.Point(23, 44);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(139, 28);
 			this.checkBox1.TabIndex = 4;
-			this.checkBox1.Text = "checkBox1";
+			this.checkBox1.Tag = "ExtraLive";
+			this.checkBox1.Text = "ExtraLive";
 			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// start_game_btn
 			// 
@@ -752,7 +779,7 @@ namespace SnowBallGame
 			// game_timer
 			// 
 			this.game_timer.Interval = 20;
-			this.game_timer.Tick += new System.EventHandler(this.game_timer_Tick);
+			this.game_timer.Tick += new System.EventHandler(this.GameTimerTick);
 			// 
 			// color_dialog
 			// 
@@ -930,6 +957,7 @@ namespace SnowBallGame
 			this.textBox12.ReadOnly = true;
 			this.textBox12.Size = new System.Drawing.Size(108, 26);
 			this.textBox12.TabIndex = 29;
+			this.textBox12.Text = "K";
 			this.textBox12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyRight);
 			// 
 			// textBox13
@@ -941,6 +969,7 @@ namespace SnowBallGame
 			this.textBox13.ReadOnly = true;
 			this.textBox13.Size = new System.Drawing.Size(108, 26);
 			this.textBox13.TabIndex = 28;
+			this.textBox13.Text = "J";
 			this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyDown);
 			// 
 			// textBox14
@@ -952,6 +981,7 @@ namespace SnowBallGame
 			this.textBox14.ReadOnly = true;
 			this.textBox14.Size = new System.Drawing.Size(108, 26);
 			this.textBox14.TabIndex = 27;
+			this.textBox14.Text = "B";
 			this.textBox14.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyThrow);
 			// 
 			// textBox15
@@ -963,6 +993,7 @@ namespace SnowBallGame
 			this.textBox15.ReadOnly = true;
 			this.textBox15.Size = new System.Drawing.Size(108, 26);
 			this.textBox15.TabIndex = 26;
+			this.textBox15.Text = "H";
 			this.textBox15.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyLeft);
 			// 
 			// textBox16
@@ -974,6 +1005,7 @@ namespace SnowBallGame
 			this.textBox16.ReadOnly = true;
 			this.textBox16.Size = new System.Drawing.Size(108, 26);
 			this.textBox16.TabIndex = 25;
+			this.textBox16.Text = "U";
 			this.textBox16.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyJump);
 			// 
 			// label18
@@ -1035,6 +1067,7 @@ namespace SnowBallGame
 			this.textBox18.ReadOnly = true;
 			this.textBox18.Size = new System.Drawing.Size(108, 26);
 			this.textBox18.TabIndex = 39;
+			this.textBox18.Text = "NumPad6";
 			this.textBox18.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyRight);
 			// 
 			// textBox19
@@ -1046,6 +1079,7 @@ namespace SnowBallGame
 			this.textBox19.ReadOnly = true;
 			this.textBox19.Size = new System.Drawing.Size(108, 26);
 			this.textBox19.TabIndex = 38;
+			this.textBox19.Text = "NumPad5";
 			this.textBox19.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyDown);
 			// 
 			// textBox20
@@ -1057,6 +1091,7 @@ namespace SnowBallGame
 			this.textBox20.ReadOnly = true;
 			this.textBox20.Size = new System.Drawing.Size(108, 26);
 			this.textBox20.TabIndex = 37;
+			this.textBox20.Text = "NumPad0";
 			this.textBox20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyThrow);
 			// 
 			// textBox21
@@ -1068,6 +1103,7 @@ namespace SnowBallGame
 			this.textBox21.ReadOnly = true;
 			this.textBox21.Size = new System.Drawing.Size(108, 26);
 			this.textBox21.TabIndex = 36;
+			this.textBox21.Text = "NumPad4";
 			this.textBox21.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyLeft);
 			// 
 			// textBox22
@@ -1079,6 +1115,7 @@ namespace SnowBallGame
 			this.textBox22.ReadOnly = true;
 			this.textBox22.Size = new System.Drawing.Size(108, 26);
 			this.textBox22.TabIndex = 35;
+			this.textBox22.Text = "NumPad8";
 			this.textBox22.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyJump);
 			// 
 			// panel1
@@ -1100,12 +1137,125 @@ namespace SnowBallGame
 			this.panel4.Size = new System.Drawing.Size(1040, 250);
 			this.panel4.TabIndex = 9;
 			// 
+			// end_panel
+			// 
+			this.end_panel.Controls.Add(this.panel6);
+			this.end_panel.Controls.Add(this.panel5);
+			this.end_panel.Location = new System.Drawing.Point(15, 7);
+			this.end_panel.Name = "end_panel";
+			this.end_panel.Size = new System.Drawing.Size(1142, 816);
+			this.end_panel.TabIndex = 10;
+			this.end_panel.Visible = false;
+			// 
+			// new_game_btn
+			// 
+			this.new_game_btn.BackColor = System.Drawing.Color.Gray;
+			this.new_game_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.new_game_btn.ForeColor = System.Drawing.Color.Snow;
+			this.new_game_btn.Location = new System.Drawing.Point(249, 76);
+			this.new_game_btn.Name = "new_game_btn";
+			this.new_game_btn.Size = new System.Drawing.Size(533, 113);
+			this.new_game_btn.TabIndex = 1;
+			this.new_game_btn.Text = "New Game";
+			this.new_game_btn.UseVisualStyleBackColor = false;
+			this.new_game_btn.Click += new System.EventHandler(this.BtnClickNewGame);
+			// 
+			// panel5
+			// 
+			this.panel5.BackColor = System.Drawing.Color.Gray;
+			this.panel5.Controls.Add(this.new_game_btn);
+			this.panel5.Location = new System.Drawing.Point(51, 550);
+			this.panel5.Name = "panel5";
+			this.panel5.Size = new System.Drawing.Size(1040, 261);
+			this.panel5.TabIndex = 2;
+			// 
+			// panel6
+			// 
+			this.panel6.BackColor = System.Drawing.Color.Gray;
+			this.panel6.Controls.Add(this.win_player_score);
+			this.panel6.Controls.Add(this.label25);
+			this.panel6.Controls.Add(this.win_player_avatar);
+			this.panel6.Controls.Add(this.win_player_name);
+			this.panel6.Controls.Add(this.label23);
+			this.panel6.Location = new System.Drawing.Point(51, 30);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(1040, 474);
+			this.panel6.TabIndex = 3;
+			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label23.ForeColor = System.Drawing.Color.Snow;
+			this.label23.Location = new System.Drawing.Point(187, 58);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(711, 120);
+			this.label23.TabIndex = 0;
+			this.label23.Text = "Game Winner";
+			// 
+			// win_player_name
+			// 
+			this.win_player_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.win_player_name.ForeColor = System.Drawing.Color.Snow;
+			this.win_player_name.Location = new System.Drawing.Point(349, 224);
+			this.win_player_name.Name = "win_player_name";
+			this.win_player_name.Size = new System.Drawing.Size(346, 77);
+			this.win_player_name.TabIndex = 1;
+			this.win_player_name.Text = "Player Name";
+			this.win_player_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// win_player_avatar
+			// 
+			this.win_player_avatar.BackColor = System.Drawing.Color.Red;
+			this.win_player_avatar.Location = new System.Drawing.Point(382, 311);
+			this.win_player_avatar.Name = "win_player_avatar";
+			this.win_player_avatar.Size = new System.Drawing.Size(110, 110);
+			this.win_player_avatar.TabIndex = 2;
+			this.win_player_avatar.TabStop = false;
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label25.ForeColor = System.Drawing.Color.Snow;
+			this.label25.Location = new System.Drawing.Point(508, 348);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(93, 31);
+			this.label25.TabIndex = 3;
+			this.label25.Text = "Score:";
+			// 
+			// win_player_score
+			// 
+			this.win_player_score.AutoSize = true;
+			this.win_player_score.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.win_player_score.ForeColor = System.Drawing.Color.Snow;
+			this.win_player_score.Location = new System.Drawing.Point(595, 348);
+			this.win_player_score.Name = "win_player_score";
+			this.win_player_score.Size = new System.Drawing.Size(59, 31);
+			this.win_player_score.TabIndex = 4;
+			this.win_player_score.Text = "105";
+			// 
+			// checkBox7
+			// 
+			this.checkBox7.Checked = true;
+			this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.checkBox7.Location = new System.Drawing.Point(23, 190);
+			this.checkBox7.Name = "checkBox7";
+			this.checkBox7.Size = new System.Drawing.Size(139, 28);
+			this.checkBox7.TabIndex = 11;
+			this.checkBox7.Tag = "SpeedBall";
+			this.checkBox7.Text = "SpeedBall";
+			this.checkBox7.UseVisualStyleBackColor = true;
+			this.checkBox7.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.DimGray;
 			this.ClientSize = new System.Drawing.Size(1167, 838);
+			this.Controls.Add(this.end_panel);
 			this.Controls.Add(this.start_panel);
 			this.Controls.Add(this.player_panel);
 			this.Controls.Add(this.game_panel);
@@ -1143,6 +1293,11 @@ namespace SnowBallGame
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel4.ResumeLayout(false);
+			this.end_panel.ResumeLayout(false);
+			this.panel5.ResumeLayout(false);
+			this.panel6.ResumeLayout(false);
+			this.panel6.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1231,6 +1386,16 @@ namespace SnowBallGame
 		private System.Windows.Forms.TextBox textBox7;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Panel end_panel;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Label win_player_score;
+		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.PictureBox win_player_avatar;
+		private System.Windows.Forms.Label win_player_name;
+		private System.Windows.Forms.Label label23;
+		private System.Windows.Forms.Panel panel5;
+		private System.Windows.Forms.Button new_game_btn;
+		private System.Windows.Forms.CheckBox checkBox7;
 	}
 }
 

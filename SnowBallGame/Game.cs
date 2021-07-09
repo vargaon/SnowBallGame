@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace SnowBallGame
 {
@@ -25,11 +26,13 @@ namespace SnowBallGame
 		private Bonus bonus;
 		private Random random = new Random();
 
+		public Player GameWinner { get; private set; }
+
 		private int _bonusSpawnDelayTime = Config.BONUS_SPAWN_DELAY_TIME;
 
 		private int _bonusSpawnDelayTimeCounter;
 
-		public Game(Control gamePanelEntity, Control playerPanelEntity, Dictionary<Keys, bool> pressedKeys)
+		public Game(Control gamePanelEntity, Control playerPanelEntity, Dictionary<Keys, bool> pressedKeys, Dictionary<string, bool> bonusesSettings)
 		{
 			this._pressedKeys = pressedKeys;
 
@@ -38,7 +41,7 @@ namespace SnowBallGame
 
 			playerFactory = new PlayerFactory(gamePanelManager, playerPanelManager);
 			ballFactory = new BallFactory(gamePanelManager);
-			bonusFactory = new BonusFactory(gamePanelManager, ballFactory, random);
+			bonusFactory = new BonusFactory(gamePanelManager, ballFactory, bonusesSettings, random);
 
 			playerMovementEngine = new PlayerMovementEngine(gamePanelManager, pressedKeys);
 			ballMovementEngine = new BallMovementEngine(gamePanelManager, players);
@@ -120,6 +123,7 @@ namespace SnowBallGame
 				if(entity.Bounds.IntersectsWith(p.Entity.Bounds))
 				{
 					gamePanelManager.UnRegister(entity);
+					p.ColectBonusScore();
 					bonus.AplyBonus(p);
 					return true;
 				}
@@ -135,6 +139,26 @@ namespace SnowBallGame
 		private void RemoveDeadPlayers()
 		{
 			players.RemoveAll(x => x.Lives <= 0);
+			if (players.Count <= 1) Stop();
+		}
+
+		private void Stop()
+		{
+			State = GameState.END;
+
+			if (bonus != null) gamePanelManager.UnRegister(bonus.Entity);
+
+			players.ForEach(p => {
+				p.Profile.UnRegister();
+				gamePanelManager.UnRegister(p.Entity); 
+			});
+
+			GameWinner = players[0];
+
+			balls.ForEach(b => gamePanelManager.UnRegister(b.Entity));
+
+			gamePanelManager.Hide();
+			playerPanelManager.Hide();
 		}
 
 		private void ResetBonusSpawnDelayTimeCounter()

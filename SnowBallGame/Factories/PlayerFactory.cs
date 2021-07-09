@@ -25,7 +25,7 @@ namespace SnowBallGame
 
 			playerPanel.PlayersProfiles.Add(playerProfile);
 
-			return new Player(entity, playerProfile, record.Controler);
+			return new Player(entity, playerProfile, record.Controler, record.Name);
 		}
 
 		private Control CreatePlayerEntity()
@@ -41,13 +41,14 @@ namespace SnowBallGame
 		{
 			var playerProfilePanel = CreatePlayerProfilePanel();
 			CreateHearthPictureBox(playerProfilePanel);
+			var scoreLabel = CreatePlayerScoreLabel(playerProfilePanel);
 			var avatar = CreatePlayerAvatarPictureBox(playerProfilePanel);
 			var nameLabel = CreatePlayerNameLabel(playerProfilePanel);
 			var livesLabel = CreatePlayerLivesLabel(playerProfilePanel);
 			var bonusLabel = CreatePlayerBonusLabel(playerProfilePanel);
 			var ballLabel = CreatePlayerBallLabel(playerProfilePanel);
 
-			return new PlayerProfile(playerProfilePanel, nameLabel, avatar, livesLabel, ballLabel, bonusLabel);
+			return new PlayerProfile(playerPanel, playerProfilePanel, nameLabel, scoreLabel, avatar, livesLabel, ballLabel, bonusLabel);
 		}
 
 		private Label CreatePlayerNameLabel(Panel playerProfilePanel)
@@ -55,10 +56,22 @@ namespace SnowBallGame
 			var entity = new Label();
 			entity.Tag = Config.PLAYER_PROFILE__NAME_TAG;
 			playerProfilePanel.Controls.Add(entity);
-			entity.Location = new Point(11, 23);
+			entity.Location = new Point(11, 11);
 			entity.Height = 30;
 			entity.Width = playerProfilePanel.Width;
 			entity.Font = new Font(entity.Font.FontFamily, 18);
+
+			return entity;
+		}
+
+		private Label CreatePlayerScoreLabel(Panel playerProfilePanel)
+		{
+			var entity = new Label();
+			entity.Tag = Config.PLAYER_PROFILE__BONUS_TAG;
+			playerProfilePanel.Controls.Add(entity);
+			entity.Location = new Point(11, 45);
+			entity.Size = new Size(150, 30);
+			entity.Font = new Font(entity.Font.FontFamily, 10);
 
 			return entity;
 		}
@@ -68,7 +81,7 @@ namespace SnowBallGame
 			var entity = new PictureBox();
 			entity.Tag = Config.PLAYER_PROFILE__AVATAR_TAG;
 			playerProfilePanel.Controls.Add(entity);
-			entity.Location = new Point(26, 69);
+			entity.Location = new Point(11, 69);
 			entity.Width = 45;
 			entity.Height = 45;
 

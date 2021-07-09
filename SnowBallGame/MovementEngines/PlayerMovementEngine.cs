@@ -97,7 +97,7 @@ namespace SnowBallGame
 			{
 				if (p.LoseLive())
 				{
-					p.Profile.Hide();
+					p.Profile.UnRegister();
 					gamePanel.UnRegister(entity);
 				}
 				else

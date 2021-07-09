@@ -12,6 +12,8 @@ namespace SnowBallGame
 
 		private Dictionary<string,PlayerCreationRecord> _playerRecordsList;
 
+		private Dictionary<string, bool> _bonusesSettings;
+
 		private static string PLAYER1_RECORD_TAG = "player1_record";
 		private static string PLAYER2_RECORD_TAG = "player2_record";
 		private static string PLAYER3_RECORD_TAG = "player3_record";
@@ -30,10 +32,26 @@ namespace SnowBallGame
 			player3_record.Tag = PLAYER3_RECORD_TAG;
 			player4_record.Tag = PLAYER4_RECORD_TAG;
 
+			RegisterDefaultBonusesSetings();
+			RegisterDefaultPlayersSettings();
+		}
+
+		private void RegisterDefaultBonusesSetings()
+		{
+			this._bonusesSettings = new Dictionary<string, bool>();
+
+			this._bonusesSettings.Add(Config.GIANT_SIZE_NAME, true);
+			this._bonusesSettings.Add(Config.DWARF_SIZE_NAME, true);
+			this._bonusesSettings.Add(Config.EXTRA_LIVE_NAME, true);
+			this._bonusesSettings.Add(Config.JUMP_BOOST_NAME, true);
+			this._bonusesSettings.Add(Config.SPEEDBALL_NAME, true);
+			this._bonusesSettings.Add(Config.JELLYBALL_NAME, true);
+			this._bonusesSettings.Add(Config.PROTECTION_NAME, true);
+		}
+
+		private void RegisterDefaultPlayersSettings()
+		{
 			this._pressedKeys = new Dictionary<Keys, bool>();
-
-			this.game = new Game(game_panel, player_panel, this._pressedKeys);
-
 			this._playerRecordsList = new Dictionary<string, PlayerCreationRecord>();
 
 			var player1 = new PlayerCreationRecord(true);
@@ -58,10 +76,32 @@ namespace SnowBallGame
 
 			RegisterPlayerDefaultHooks(player2.Controler);
 
+			var player3 = new PlayerCreationRecord(false);
+			player3.Color = Color.LimeGreen;
+			player3.Name = "Player Name";
+			player3.Controler.MovementContoler.Jump = Keys.U;
+			player3.Controler.MovementContoler.Down = Keys.J;
+			player3.Controler.MovementContoler.Left = Keys.H;
+			player3.Controler.MovementContoler.Right = Keys.K;
+			player3.Controler.ThrowContoler.Throw = Keys.B;
+
+			RegisterPlayerDefaultHooks(player3.Controler);
+
+			var player4 = new PlayerCreationRecord(false);
+			player4.Color = Color.Yellow;
+			player4.Name = "Player Name";
+			player4.Controler.MovementContoler.Jump = Keys.NumPad8;
+			player4.Controler.MovementContoler.Down = Keys.NumPad5;
+			player4.Controler.MovementContoler.Left = Keys.NumPad4;
+			player4.Controler.MovementContoler.Right = Keys.NumPad6;
+			player4.Controler.ThrowContoler.Throw = Keys.NumPad0;
+
+			RegisterPlayerDefaultHooks(player4.Controler);
+
 			this._playerRecordsList.Add(PLAYER1_RECORD_TAG, player1);
 			this._playerRecordsList.Add(PLAYER2_RECORD_TAG, player2);
-			this._playerRecordsList.Add(PLAYER3_RECORD_TAG, new PlayerCreationRecord(false));
-			this._playerRecordsList.Add(PLAYER4_RECORD_TAG, new PlayerCreationRecord(false));
+			this._playerRecordsList.Add(PLAYER3_RECORD_TAG, player3);
+			this._playerRecordsList.Add(PLAYER4_RECORD_TAG, player4);
 		}
 
 		private void RegisterPlayerDefaultHooks(PlayerControler controler)
@@ -83,7 +123,47 @@ namespace SnowBallGame
 			}
 		}
 
-        protected override void OnKeyDown(KeyEventArgs e)
+		private void BtnClickNewGame(object sender, EventArgs e)
+		{
+			end_panel.Visible = false;
+			start_panel.Visible = true;
+		}
+
+		private void BtnClickStartGame(object sender, EventArgs e)
+		{
+			start_panel.Visible = false;
+			this.ActiveControl = game_panel;
+
+			this.game = new Game(game_panel, player_panel, this._pressedKeys, _bonusesSettings);
+
+			RegisterPlayersToGame();
+			game.Start();
+			game_timer.Start();
+		}
+
+		private void GameTimerTick(object sender, EventArgs e)
+		{
+			switch(this.game.State)
+			{
+				case GameState.RUN:
+					this.game.TickAction();
+					break;
+				case GameState.END:
+					game_timer.Stop();
+					end_panel.Visible = true;
+					if (game.GameWinner != null)
+					{
+						win_player_name.Text = game.GameWinner.Name;
+						win_player_score.Text = game.GameWinner.Score.ToString();
+						win_player_avatar.BackColor = game.GameWinner.Entity.BackColor;
+					}
+					break;
+				default:
+					throw new Exception("Not Allowed Game State");
+			}
+		}
+
+		protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
 
@@ -99,20 +179,6 @@ namespace SnowBallGame
 			Keys key = e.KeyData;
 
 			if (_pressedKeys.ContainsKey(key)) _pressedKeys[key] = false;
-		}
-
-		private void BtnClickStartGame(object sender, EventArgs e)
-		{
-			start_panel.Visible = false;
-
-			RegisterPlayersToGame();
-			game.Start();
-			game_timer.Start();
-		}
-
-		private void game_timer_Tick(object sender, EventArgs e)
-		{
-			if (this.game.State == GameState.RUN) this.game.TickAction();
 		}
 
 		private void ColorChange(object sender, EventArgs e)
@@ -266,6 +332,15 @@ namespace SnowBallGame
 			player4_record.Visible = false;
 			AddPlayer4.Visible = true;
 			_playerRecordsList["player4_record"].Active = false;
+		}
+
+		private void ChangeBonusSetting(object sender, EventArgs e)
+		{
+			var entity = (CheckBox)sender;
+			if(_bonusesSettings.ContainsKey(entity.Tag.ToString()))
+			{
+				_bonusesSettings[entity.Tag.ToString()] = entity.Checked;
+			}
 		}
 	}
 }

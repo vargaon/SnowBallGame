@@ -50,15 +50,20 @@ namespace SnowBallGame
 
 		public int Lives { get; private set; } = Config.PLAYER_LIVES;
 
+		public int Score { get; private set; }
+
+		public string Name { get; }
+
 		private int _bonusDuration = Config.PLAYER_BONUS_DURATION;
 
 		private int _bonusDurationCounter;
 
-		public Player(Control entity, PlayerProfile profile, PlayerControler controler)
+		public Player(Control entity, PlayerProfile profile, PlayerControler controler, string playerName)
 		{
 			this.Controler = controler;
 			this.Entity = entity;
 			this.Profile = profile;
+			this.Name = playerName;
 
 			this.Profile.UpdateLives(this.Lives);
 
@@ -114,6 +119,10 @@ namespace SnowBallGame
 		public bool LoseLive()
 		{
 			this.Lives -= 1;
+			if (Score - Config.LOSE_LIVE_SCORE > 0) Score -= Config.LOSE_LIVE_SCORE;
+			else Score = 0;
+
+			Profile.UpdateScore(Score);
 			Profile.UpdateLives(this.Lives);
 			return Lives <= 0;
 		}
@@ -133,6 +142,18 @@ namespace SnowBallGame
 		{
 			_bonusDurationCounter -= 1;
 			return _bonusDurationCounter <= 0;
+		}
+
+		public void HitScore()
+		{
+			Score += Config.HIT_SCORE;
+			Profile.UpdateScore(Score);
+		}
+
+		public void ColectBonusScore()
+		{
+			Score += Config.BONUS_COLECT_SCORE;
+			Profile.UpdateScore(Score);
 		}
 	}
 }

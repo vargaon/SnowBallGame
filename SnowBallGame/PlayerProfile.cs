@@ -1,32 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace SnowBallGame
 {
 	class PlayerProfile
 	{
-		Panel _playerProfileContainer;
-		Label _nameLabel;
-		PictureBox _avatar;
-		Label _livesLabel;
-		Label _ballLabel;
-		Label _bonusLabel;
+		private PlayerPanelManager _playerPanel;
+		private Panel _playerProfileContainer;
+		private Label _nameLabel;
+		private Label _scoreLabel;
+		private PictureBox _avatar;
+		private Label _livesLabel;
+		private Label _ballLabel;
+		private Label _bonusLabel;
 
 		public static string BALL_PREFIX = "Ball: ";
 		public static string BONUS_PREFIX = "Bonus: ";
+		public static string SCORE_PREFIX = "Score: ";
 
 		public static string DEFAUL_BALL = "SnowBall";
 		public static string DEFAULT_BONUS = "None";
+		public static int DEFAULT_SCORE = 0;
 
-		public PlayerProfile(Panel playerProfileContainer, Label nameLabel, PictureBox avatar, Label livesLabel, Label ballLabel, Label bonusLabel)
+		public PlayerProfile(PlayerPanelManager playerPanel, Panel playerProfileContainer, Label nameLabel, Label scoreLabel,
+			PictureBox avatar, Label livesLabel, Label ballLabel, Label bonusLabel)
 		{
+			this._playerPanel = playerPanel;
 			this._playerProfileContainer = playerProfileContainer;
 			this._nameLabel = nameLabel;
+			this._scoreLabel = scoreLabel;
 			this._avatar = avatar;
 			this._livesLabel = livesLabel;
 			this._ballLabel = ballLabel;
@@ -34,6 +36,7 @@ namespace SnowBallGame
 
 			UpdateBall(DEFAUL_BALL);
 			UpdateBonus(DEFAULT_BONUS);
+			UpdateScore(DEFAULT_SCORE);
 		}
 
 		public void SetName(string value)
@@ -56,14 +59,20 @@ namespace SnowBallGame
 			_bonusLabel.Text = BONUS_PREFIX + value;
 		}
 
+		public void UpdateScore(int value)
+		{
+			_scoreLabel.Text = SCORE_PREFIX + value.ToString();
+		}
+
 		public void UpdateBall(string value)
 		{
 			_ballLabel.Text = BALL_PREFIX + value;
 		}
 
-		public void Hide()
+		public void UnRegister()
 		{
-			_playerProfileContainer.Visible = false;
+			_playerPanel.UnRegister(_playerProfileContainer);
 		}
+
 	}
 }
