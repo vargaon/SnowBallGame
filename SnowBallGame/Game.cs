@@ -8,6 +8,8 @@ namespace SnowBallGame
 	{
 		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
+		public GameState State { get; private set; }
+
 		private PlayerMovementEngine playerMovementEngine;
 		private BallMovementEngine ballMovementEngine;
 
@@ -23,9 +25,9 @@ namespace SnowBallGame
 		private Bonus bonus;
 		private Random random = new Random();
 
-		private int bonusSpawnDelayTime = Config.BONUS_SPAWN_DELAY_TIME;
+		private int _bonusSpawnDelayTime = Config.BONUS_SPAWN_DELAY_TIME;
 
-		private int bonusSpawnDelayTimeCounter;
+		private int _bonusSpawnDelayTimeCounter;
 
 		public Game(Control gamePanelEntity, Control playerPanelEntity, Dictionary<Keys, bool> pressedKeys)
 		{
@@ -50,6 +52,14 @@ namespace SnowBallGame
 			playerMovementEngine.SetSpawnPosition(player);
 			player.Throwment.SetThrownBall(() => ballFactory.CreateBall<SnowBall>(player));
 			players.Add(player);
+		}
+
+		public void Start()
+		{
+			gamePanelManager.Show();
+			playerPanelManager.Show();
+
+			State = GameState.RUN;
 		}
 
 		public void TickAction()
@@ -129,13 +139,13 @@ namespace SnowBallGame
 
 		private void ResetBonusSpawnDelayTimeCounter()
 		{
-			bonusSpawnDelayTimeCounter = bonusSpawnDelayTime;
+			_bonusSpawnDelayTimeCounter = _bonusSpawnDelayTime;
 		}
 
 		private bool DecreaseBonusSpawnDelayTimeCounter()
 		{
-			bonusSpawnDelayTimeCounter -= 1;
-			return bonusSpawnDelayTimeCounter <= 0;
+			_bonusSpawnDelayTimeCounter -= 1;
+			return _bonusSpawnDelayTimeCounter <= 0;
 		}
 	}
 }

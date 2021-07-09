@@ -11,6 +11,16 @@ namespace SnowBallGame
 			this.Entity = entity;
 		}
 
+		public void Hide() 
+		{
+			this.Entity.Visible = false;
+		}
+
+		public void Show()
+		{
+			this.Entity.Visible = true;
+		}
+
 		public void Register(Control entity)
 		{
 			Entity.Controls.Add(entity);

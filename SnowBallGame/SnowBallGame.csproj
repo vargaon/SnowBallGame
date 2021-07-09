@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bonus.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="PanelManagers\PanelManager.cs" />
     <Compile Include="PanelManagers\PlayerPanelManager.cs" />

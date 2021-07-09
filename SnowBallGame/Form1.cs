@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
+using System.Linq;
 
 namespace SnowBallGame
 {
@@ -14,7 +10,12 @@ namespace SnowBallGame
 	{
 		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
-		private List<PlayerCreationRecord> _playerRecordsList = new List<PlayerCreationRecord>();
+		private Dictionary<string,PlayerCreationRecord> _playerRecordsList;
+
+		private static string PLAYER1_RECORD_TAG = "player1_record";
+		private static string PLAYER2_RECORD_TAG = "player2_record";
+		private static string PLAYER3_RECORD_TAG = "player3_record";
+		private static string PLAYER4_RECORD_TAG = "player4_record";
 
 		private Game game;
 
@@ -22,54 +23,63 @@ namespace SnowBallGame
 		{
 			InitializeComponent();
 
-			this.game = new Game(game_panel, player_panel, _pressedKeys);
+			this.ActiveControl = start_game_btn;
 
-			InitializePlayers();
+			player1_record.Tag = PLAYER1_RECORD_TAG;
+			player2_record.Tag = PLAYER2_RECORD_TAG;
+			player3_record.Tag = PLAYER3_RECORD_TAG;
+			player4_record.Tag = PLAYER4_RECORD_TAG;
 
-			RegisterPlayers(game);
+			this._pressedKeys = new Dictionary<Keys, bool>();
+
+			this.game = new Game(game_panel, player_panel, this._pressedKeys);
+
+			this._playerRecordsList = new Dictionary<string, PlayerCreationRecord>();
+
+			var player1 = new PlayerCreationRecord(true);
+			player1.Color = Color.Red;
+			player1.Name = "Player Name";
+			player1.Controler.MovementContoler.Jump = Keys.W;
+			player1.Controler.MovementContoler.Down = Keys.S;
+			player1.Controler.MovementContoler.Left = Keys.A;
+			player1.Controler.MovementContoler.Right = Keys.D;
+			player1.Controler.ThrowContoler.Throw = Keys.V;
+
+			RegisterPlayerDefaultHooks(player1.Controler);
+
+			var player2 = new PlayerCreationRecord(true);
+			player2.Color = Color.Blue;
+			player2.Name = "Player Name";
+			player2.Controler.MovementContoler.Jump = Keys.Up;
+			player2.Controler.MovementContoler.Down = Keys.Down;
+			player2.Controler.MovementContoler.Left = Keys.Left;
+			player2.Controler.MovementContoler.Right = Keys.Right;
+			player2.Controler.ThrowContoler.Throw = Keys.M;
+
+			RegisterPlayerDefaultHooks(player2.Controler);
+
+			this._playerRecordsList.Add(PLAYER1_RECORD_TAG, player1);
+			this._playerRecordsList.Add(PLAYER2_RECORD_TAG, player2);
+			this._playerRecordsList.Add(PLAYER3_RECORD_TAG, new PlayerCreationRecord(false));
+			this._playerRecordsList.Add(PLAYER4_RECORD_TAG, new PlayerCreationRecord(false));
 		}
 
-		private void InitializePlayers()
+		private void RegisterPlayerDefaultHooks(PlayerControler controler)
 		{
-			var player_1 = new PlayerCreationRecord();
-			player_1.Name = "Ondra";
-			player_1.Controler = PlayerControler.FromKeys(Keys.W, Keys.S, Keys.A, Keys.D, Keys.V);
-			player_1.Color = Color.Red;
-
-			var player_2 = new PlayerCreationRecord();
-			player_2.Name = "Petr";
-			player_2.Controler = PlayerControler.FromKeys(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.M);
-			player_2.Color = Color.Blue;
-
-			var player_3 = new PlayerCreationRecord();
-			player_3.Name = "Terka";
-			player_3.Controler = PlayerControler.FromKeys(Keys.U, Keys.J, Keys.H, Keys.K, Keys.B);
-			player_3.Color = Color.Green;
-
-			_playerRecordsList.Add(player_1);
-			_playerRecordsList.Add(player_2);
-			_playerRecordsList.Add(player_3);
-
-			InitializePlayerKeysHooks();
+			_pressedKeys.Add(controler.MovementContoler.Jump, false);
+			_pressedKeys.Add(controler.MovementContoler.Down, false);
+			_pressedKeys.Add(controler.MovementContoler.Left, false);
+			_pressedKeys.Add(controler.MovementContoler.Right, false);
+			_pressedKeys.Add(controler.ThrowContoler.Throw, false);
 		}
 
-		private void RegisterPlayers(Game g)
+		private void RegisterPlayersToGame()
 		{
-			_playerRecordsList.ForEach(x => g.RegisterPlayer(x));
-		}
+			var players = from p in _playerRecordsList.Values where p.Active select p;
 
-		private void InitializePlayerKeysHooks()
-		{
-			foreach (var player in _playerRecordsList)
+			foreach (var x in players)
 			{
-				var movementControler = player.Controler.MovementContoler;
-				var throwControler = player.Controler.ThrowContoler;
-
-				_pressedKeys.Add(movementControler.Jump, false);
-				_pressedKeys.Add(movementControler.Down, false);
-				_pressedKeys.Add(movementControler.Left, false);
-				_pressedKeys.Add(movementControler.Right, false);
-				_pressedKeys.Add(throwControler.Throw, false);
+				this.game.RegisterPlayer(x);
 			}
 		}
 
@@ -91,29 +101,171 @@ namespace SnowBallGame
 			if (_pressedKeys.ContainsKey(key)) _pressedKeys[key] = false;
 		}
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+		private void BtnClickStartGame(object sender, EventArgs e)
 		{
+			start_panel.Visible = false;
 
+			RegisterPlayersToGame();
+			game.Start();
+			game_timer.Start();
 		}
 
-		private void timer1_Tick(object sender, EventArgs e)
+		private void game_timer_Tick(object sender, EventArgs e)
 		{
-			this.game.TickAction();
+			if (this.game.State == GameState.RUN) this.game.TickAction();
 		}
 
-		private void label2_Click(object sender, EventArgs e)
+		private void ColorChange(object sender, EventArgs e)
 		{
+			var colorResult = color_dialog.ShowDialog();
 
+			if(colorResult == DialogResult.OK && color_dialog.Color != Color.Black)
+			{
+				var entity = (Control)sender;
+				
+				if(_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
+				{
+					entity.BackColor = color_dialog.Color;
+					record.Color = color_dialog.Color;
+				}
+			}
 		}
 
-		private void label3_Click(object sender, EventArgs e)
+		private void PlayerNameChange(object sender, EventArgs e)
 		{
+			var entity = (Control)sender;
 
+			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
+			{
+				record.Name = entity.Text;
+			}
 		}
 
-		private void player_panel_Paint(object sender, PaintEventArgs e)
+		private bool RegisterKeyHook(Keys newHook, Keys oldHook)
 		{
+			if (oldHook != newHook)
+			{
+				if (_pressedKeys.ContainsKey(newHook)) return false;
+				if (oldHook != Keys.None) _pressedKeys.Remove(oldHook);
+				_pressedKeys.Add(newHook, false);
+				return true;
+			}
 
+			return false;
+		}
+
+		private void SelectKeyJump(object sender, KeyEventArgs e)
+		{
+			var entity = (TextBox)sender;
+
+			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
+			{
+				var key = record.Controler.MovementContoler.Jump;
+
+				if(RegisterKeyHook(e.KeyData, key))
+				{
+					entity.Text = e.KeyData.ToString();
+					record.Controler.MovementContoler.Jump = e.KeyData;
+				}
+			}
+		}
+
+		private void SelectKeyDown(object sender, KeyEventArgs e)
+		{
+			var entity = (TextBox)sender;
+			entity.Text = e.KeyData.ToString();
+
+			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
+			{
+				var key = record.Controler.MovementContoler.Down;
+
+				if (RegisterKeyHook(e.KeyData, key))
+				{
+					entity.Text = e.KeyData.ToString();
+					record.Controler.MovementContoler.Down = e.KeyData;
+				}
+			}
+		}
+
+		private void SelectKeyLeft(object sender, KeyEventArgs e)
+		{
+			var entity = (TextBox)sender;
+			entity.Text = e.KeyData.ToString();
+
+			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
+			{
+				var key = record.Controler.MovementContoler.Left;
+
+				if (RegisterKeyHook(e.KeyData, key))
+				{
+					entity.Text = e.KeyData.ToString();
+					record.Controler.MovementContoler.Left = e.KeyData;
+				}
+			}
+		}
+
+		private void SelectKeyRight(object sender, KeyEventArgs e)
+		{
+			var entity = (TextBox)sender;
+			entity.Text = e.KeyData.ToString();
+
+			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
+			{
+				var key = record.Controler.MovementContoler.Right;
+
+				if (RegisterKeyHook(e.KeyData, key))
+				{
+					entity.Text = e.KeyData.ToString();
+					record.Controler.MovementContoler.Right = e.KeyData;
+				}
+			}
+		}
+
+		private void SelectKeyThrow(object sender, KeyEventArgs e)
+		{
+			var entity = (TextBox)sender;
+			entity.Text = e.KeyData.ToString();
+
+			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
+			{
+				var key = record.Controler.ThrowContoler.Throw;
+
+				if (RegisterKeyHook(e.KeyData, key))
+				{
+					entity.Text = e.KeyData.ToString();
+					record.Controler.ThrowContoler.Throw = e.KeyData;
+				}
+			}
+		}
+
+		private void BtnClickAddPlayer3(object sender, EventArgs e)
+		{
+			var entity = (Button)sender;
+			entity.Visible = false;
+			player3_record.Visible = true;
+			_playerRecordsList["player3_record"].Active = true;
+		}
+
+		private void BtnClickAddPlayer4(object sender, EventArgs e)
+		{
+			var entity = (Button)sender;
+			entity.Visible = false;
+			player4_record.Visible = true;
+			_playerRecordsList["player4_record"].Active = true;
+		}
+
+		private void BtnClickRemovePlayer3(object sender, EventArgs e)
+		{
+			player3_record.Visible = false;
+			AddPlayer3.Visible = true;
+			_playerRecordsList["player3_record"].Active = false;
+		}
+
+		private void BtnClickRemovePlayer4(object sender, EventArgs e)
+		{
+			player4_record.Visible = false;
+			AddPlayer4.Visible = true;
+			_playerRecordsList["player4_record"].Active = false;
 		}
 	}
 }

@@ -11,6 +11,13 @@ namespace SnowBallGame
 	{
 		public string Name { get; set; }
 		public Color Color { get; set; }
-		public PlayerControler Controler { get; set; }
+		public bool Active { get; set; }
+		public PlayerControler Controler { get; }
+
+		public PlayerCreationRecord(bool active)
+		{
+			Active = active;
+			Controler = new PlayerControler();
+		}
 	}
 }

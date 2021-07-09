@@ -50,9 +50,9 @@ namespace SnowBallGame
 
 		public int Lives { get; private set; } = Config.PLAYER_LIVES;
 
-		private int bonusDuration = Config.PLAYER_BONUS_DURATION;
+		private int _bonusDuration = Config.PLAYER_BONUS_DURATION;
 
-		private int bonusDurationCounter;
+		private int _bonusDurationCounter;
 
 		public Player(Control entity, PlayerProfile profile, PlayerControler controler)
 		{
@@ -83,7 +83,6 @@ namespace SnowBallGame
 		public void SetBonusThrowment(PlayerThrowment throwment)
 		{
 			_bonusThrowment = throwment;
-			ResetBonusDurationCounter();
 		}
 
 		public void SetBonusSize(int? value)
@@ -127,13 +126,13 @@ namespace SnowBallGame
 
 		public void ResetBonusDurationCounter()
 		{
-			bonusDurationCounter = bonusDuration;
+			_bonusDurationCounter = _bonusDuration;
 		}
 
 		public bool DecreaseBonusDurationCounter()
 		{
-			bonusDurationCounter -= 1;
-			return bonusDurationCounter <= 0;
+			_bonusDurationCounter -= 1;
+			return _bonusDurationCounter <= 0;
 		}
 	}
 }

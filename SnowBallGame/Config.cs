@@ -29,7 +29,7 @@ namespace SnowBallGame
 
 		//player throwment
 		public static int PLAYER_STACK_AMOUNT = 8;
-		public static int PLAYER_THROW_WAIT = 14;
+		public static int PLAYER_THROW_WAIT = 10;
 
 
 		//controls tags

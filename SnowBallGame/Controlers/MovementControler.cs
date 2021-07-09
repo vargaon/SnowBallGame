@@ -4,23 +4,9 @@ namespace SnowBallGame
 {
 	class MovementControler
 	{
-		public Keys Jump { get; private set; }
-		public Keys Down { get; private set; }
-		public Keys Left { get; private set; }
-		public Keys Right { get; private set; }
-
-		private MovementControler() { }
-
-		public static MovementControler FromKeys(Keys Jump, Keys Down, Keys Left, Keys Right)
-		{
-			var controler = new MovementControler();
-
-			controler.Jump = Jump;
-			controler.Down = Down;
-			controler.Left = Left;
-			controler.Right = Right;
-
-			return controler;
-		}
+		public Keys Jump { get; set; }
+		public Keys Down { get; set; }
+		public Keys Left { get; set; }
+		public Keys Right { get; set; }
 	}
 }

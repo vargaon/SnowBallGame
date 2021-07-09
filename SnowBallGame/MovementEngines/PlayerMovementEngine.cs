@@ -5,11 +5,11 @@ namespace SnowBallGame
 {
 	class PlayerMovementEngine : MovementEngine<Player>
 	{
-		private Dictionary<Keys, bool> pressedKeys = new Dictionary<Keys, bool>();
+		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
 		public PlayerMovementEngine(GamePanelManager gamePanel, Dictionary<Keys, bool> pressedKeys) :base(gamePanel) 
 		{
-			this.pressedKeys = pressedKeys;
+			this._pressedKeys = pressedKeys;
 		}
 
 		public override void Move(Player p)
@@ -18,15 +18,15 @@ namespace SnowBallGame
 
 			ProcessPunch(p);
 
-			if (pressedKeys[controler.Left]) MoveLeft(p);
+			if (_pressedKeys[controler.Left]) MoveLeft(p);
 
-			if (pressedKeys[controler.Right]) MoveRight(p);
+			if (_pressedKeys[controler.Right]) MoveRight(p);
 
-			if (pressedKeys[controler.Jump]) Jump(p);
+			if (_pressedKeys[controler.Jump]) Jump(p);
 
 			ProcessJump(p);
 
-			if (pressedKeys[controler.Down]) 
+			if (_pressedKeys[controler.Down]) 
 			{
 				if(p.Movement.StandOn != null) p.Movement.FallTrought = p.Movement.StandOn;
 			}
