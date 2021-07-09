@@ -2,7 +2,7 @@
 
 namespace SnowBallGame
 {
-	class MovementControler
+	sealed class MovementControler
 	{
 		public Keys Jump { get; set; }
 		public Keys Down { get; set; }

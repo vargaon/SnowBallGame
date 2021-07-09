@@ -6,10 +6,6 @@
 
 		public int Direction { get; private set; } = Config.DEFAULT_DIRECTION;
 
-		public Movement()
-		{
-		}
-
 		public void SetMoveSpeed(int value)
 		{
 			MoveSpeed = value;

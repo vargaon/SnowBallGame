@@ -32,7 +32,7 @@ namespace SnowBallGame
 		}
 	}
 
-	class ExtraLiveBonus : MovementBonus
+	sealed class ExtraLiveBonus : MovementBonus
 	{
 		public ExtraLiveBonus(Control entity) : base(entity) 
 		{ 
@@ -46,7 +46,7 @@ namespace SnowBallGame
 		}
 	}
 
-	class GiantSizeBonus : MovementBonus
+	sealed class GiantSizeBonus : MovementBonus
 	{
 		public GiantSizeBonus(Control entity) : base(entity)
 		{
@@ -64,7 +64,7 @@ namespace SnowBallGame
 		}
 	}
 
-	class DwarfSizeBonus : MovementBonus
+	sealed class DwarfSizeBonus : MovementBonus
 	{
 		public DwarfSizeBonus(Control entity) : base(entity)
 		{
@@ -83,7 +83,7 @@ namespace SnowBallGame
 		}
 	}
 
-	class JumpBoostBonus : MovementBonus
+	sealed class JumpBoostBonus : MovementBonus
 	{
 		public JumpBoostBonus(Control entity) : base(entity) 
 		{ 
@@ -102,7 +102,7 @@ namespace SnowBallGame
 		}
 	}
 
-	class ProtectionBonus : MovementBonus
+	sealed class ProtectionBonus : MovementBonus
 	{
 		public ProtectionBonus(Control entity) : base(entity) 
 		{ 
@@ -128,7 +128,7 @@ namespace SnowBallGame
 		}
 	}
 
-	class BallBonus<TBall> : BallBonus where TBall : Ball, new()
+	sealed class BallBonus<TBall> : BallBonus where TBall : Ball, new()
 	{
 		public BallBonus(Control entity, BallFactory factory) : base(entity, factory) 
 		{ 

@@ -5,10 +5,8 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class GamePanelManager : PanelManager
+	sealed class GamePanelManager : PanelManager
 	{
-		
-
 		private Random random;
 
 		public List<Control> Platforms { get; }

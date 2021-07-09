@@ -2,17 +2,17 @@
 
 namespace SnowBallGame
 {
-	class PlayerThrowment
+	sealed class PlayerThrowment
 	{
-		private int throwWait = Config.PLAYER_THROW_WAIT;
+		private int _throwWait = Config.PLAYER_THROW_WAIT;
 
-		private int throwWaitCounter;
+		private int _throwWaitCounter;
 
-		private int stackAmount = Config.PLAYER_STACK_AMOUNT;
+		private int _stackAmount = Config.PLAYER_STACK_AMOUNT;
 
-		private int stackAmountCounter;
+		private int _stackAmountCounter;
 
-		private Func<Ball> thrownBall;
+		private Func<Ball> _thrownBall;
 
 		public bool CanThrow { get; private set; }
 
@@ -26,12 +26,12 @@ namespace SnowBallGame
 		public Ball ThrowBall()
 		{
 			this.CanThrow = false;
-			return thrownBall();
+			return _thrownBall();
 		}
 
 		public void SetThrownBall(Func<Ball> thrownBall)
 		{
-			this.thrownBall = thrownBall;
+			this._thrownBall = thrownBall;
 		}
 
 		public void ThrowTick()
@@ -47,29 +47,29 @@ namespace SnowBallGame
 
 		private bool DecreaseThrowWaitCounter()
 		{
-			throwWaitCounter -= 1;
-			return throwWaitCounter <= 0;
+			_throwWaitCounter -= 1;
+			return _throwWaitCounter <= 0;
 		}
 
 		private void ResetThrowWaitCounter()
 		{
-			throwWaitCounter = throwWait;
+			_throwWaitCounter = _throwWait;
 		}
 
 		public bool DecreaseStackAmountCounter()
 		{
-			stackAmountCounter -= 1;
-			return stackAmountCounter <= 0;
+			_stackAmountCounter -= 1;
+			return _stackAmountCounter <= 0;
 		}
 
 		public void ResetStackAmountCounter()
 		{
-			stackAmountCounter = stackAmount;
+			_stackAmountCounter = _stackAmount;
 		}
 
 		public void SetThrowWait(int value)
 		{
-			this.throwWait = value;
+			this._throwWait = value;
 		}
 
 		public void HoldAThrow()

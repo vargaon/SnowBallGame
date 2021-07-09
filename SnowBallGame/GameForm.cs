@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace SnowBallGame
 {
-	public partial class Form1 : Form
+	public partial class GameForm : Form
 	{
 		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
@@ -21,7 +21,7 @@ namespace SnowBallGame
 
 		private Game game;
 
-		public Form1()
+		public GameForm()
 		{
 			InitializeComponent();
 
@@ -145,10 +145,10 @@ namespace SnowBallGame
 		{
 			switch(this.game.State)
 			{
-				case GameState.RUN:
+				case Game.GameState.RUN:
 					this.game.TickAction();
 					break;
-				case GameState.END:
+				case Game.GameState.END:
 					game_timer.Stop();
 					end_panel.Visible = true;
 					if (game.GameWinner != null)

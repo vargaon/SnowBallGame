@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerMovementEngine : MovementEngine<Player>
+	sealed class PlayerMovementEngine : MovementEngine<Player>
 	{
 		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
@@ -111,16 +111,16 @@ namespace SnowBallGame
 
 		private bool CheckPlatformStand(Control entity, PlayerMovement movement)
 		{
-			foreach(var platform in gamePanel.Platforms)
+			var platform = gamePanel.Platforms.Find(p => entity.Bounds.IntersectsWith(p.Bounds));
+
+			if (platform != null && movement.CanJump && platform != movement.FallTrought)
 			{
-				if (entity.Bounds.IntersectsWith(platform.Bounds) && movement.CanJump && platform != movement.FallTrought)
-				{
-					movement.ResetJumpForceCounter();
-					entity.Top = platform.Top - entity.Height + 1;
-					movement.StandOn = platform;
-					return true;	
-				}
+				movement.ResetJumpForceCounter();
+				entity.Top = platform.Top - entity.Height + 1;
+				movement.StandOn = platform;
+				return true;	
 			}
+			
 			return false;
 		}
 

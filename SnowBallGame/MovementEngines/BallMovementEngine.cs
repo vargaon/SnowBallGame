@@ -3,13 +3,13 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class BallMovementEngine : MovementEngine<Ball>
+	sealed class BallMovementEngine : MovementEngine<Ball>
 	{
-		protected List<Player> players;
+		private List<Player> _players;
 
 		public BallMovementEngine(GamePanelManager gamePanel, List<Player> players) :base(gamePanel)
 		{
-			this.players = players;
+			this._players = players;
 		}
 
 		public override void Move(Ball ball)
@@ -24,7 +24,7 @@ namespace SnowBallGame
 		private void CheckSnowBallExpiration(Ball ball)
 		{
 			var entity = ball.Entity;
-			var movement = ball.Movement;
+			var ballMovement = ball.Movement;
 
 			if (OutOfGamePanel(entity))
 			{
@@ -33,17 +33,14 @@ namespace SnowBallGame
 			}
 			else
 			{
-				foreach (var p in players)
+				var player = _players.Find(p => entity.Bounds.IntersectsWith(p.Entity.Bounds) && ball.Owner != p);
+
+				if(player != null)
 				{
-					var playerEntity = p.Entity;
-					if (entity.Bounds.IntersectsWith(playerEntity.Bounds) && ball.Owner != p)
-					{
-						p.Movement.SetPunchSpeed(movement.Direction * ball.PunchForce);
-						ball.Owner.HitScore();
-						ball.IsActive = false;
-						gamePanel.UnRegister(entity);
-						return;
-					}
+					player.Movement.SetPunchSpeed(ballMovement.Direction * ball.PunchForce);
+					ball.Owner.HitScore();
+					ball.IsActive = false;
+					gamePanel.UnRegister(entity);
 				}
 			}
 		}

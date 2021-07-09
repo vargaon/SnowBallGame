@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerProfile
+	sealed class PlayerProfile
 	{
 		private PlayerPanelManager _playerPanel;
 		private Panel _playerProfileContainer;

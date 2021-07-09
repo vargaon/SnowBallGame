@@ -1,6 +1,6 @@
 ﻿namespace SnowBallGame
 {
-	class JellyBall : Ball
+	sealed class JellyBall : Ball
 	{
 		public JellyBall()
 		{

@@ -2,7 +2,7 @@
 
 namespace SnowBallGame
 {
-	class PanelManager
+	abstract class PanelManager
 	{
 		public Control Entity { get; }
 

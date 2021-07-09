@@ -3,10 +3,10 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerPanelManager : PanelManager
+	sealed class PlayerPanelManager : PanelManager
 	{
 		public static int PLAYER_PANEL_WIDTH = 170;
-		public static int PLAYER_PROFILE_MARGINE = 25;
+		public static int PLAYER_PROFILE_MARGINE = 40;
 
 		public List<PlayerProfile> PlayersProfiles { get; } 
 

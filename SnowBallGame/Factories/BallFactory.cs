@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class BallFactory : Factory
+	sealed class BallFactory : Factory
 	{
 		public static string SNOWBALL_TAG = "snowball";
 

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace SnowBallGame
 {
-	class PlayerCreationRecord
+	sealed class PlayerCreationRecord
 	{
 		public string Name { get; set; }
 		public Color Color { get; set; }

@@ -119,6 +119,7 @@ namespace SnowBallGame
 		public bool LoseLive()
 		{
 			this.Lives -= 1;
+
 			if (Score - Config.LOSE_LIVE_SCORE > 0) Score -= Config.LOSE_LIVE_SCORE;
 			else Score = 0;
 

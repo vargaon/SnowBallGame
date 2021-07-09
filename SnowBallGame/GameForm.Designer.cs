@@ -1,7 +1,7 @@
 ﻿
 namespace SnowBallGame
 {
-	partial class Form1
+	partial class GameForm
 	{
 		/// <summary>
 		/// Vyžaduje se proměnná návrháře.

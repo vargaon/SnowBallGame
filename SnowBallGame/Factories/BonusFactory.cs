@@ -4,21 +4,21 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class BonusFactory
+	sealed class BonusFactory
 	{
-		GamePanelManager gamePanel;
+		private GamePanelManager _gamePanel;
 
-		private int entitySize = Config.BONUS_SIZE;
+		private int _entitySize = Config.BONUS_SIZE;
 
 		private Dictionary<string, bool> _bonusesSettings;
 
-		List<Func<Control, Bonus>> bonuses;
+		private List<Func<Control, Bonus>> _bonuses;
 
-		Random random;
+		private Random random;
 
 		public BonusFactory(GamePanelManager gamePanel, BallFactory ballFactory, Dictionary<string, bool> bonusSettings, Random random)
 		{
-			this.gamePanel = gamePanel;
+			this._gamePanel = gamePanel;
 			this._bonusesSettings = bonusSettings;
 			this.random = random;
 
@@ -27,9 +27,9 @@ namespace SnowBallGame
 
 		public Bonus CreateRandomBonus()
 		{
-			if (bonuses.Count <= 0) return null;
+			if (_bonuses.Count <= 0) return null;
 			var entity = CreateBonusEntity();
-			var getBonus = bonuses[random.Next(0, bonuses.Count)];
+			var getBonus = _bonuses[random.Next(0, _bonuses.Count)];
 			return getBonus(entity);
 		}
 
@@ -37,27 +37,27 @@ namespace SnowBallGame
 		{
 			var entity = new Label();
 			entity.Tag = Config.BONUS_TAG;
-			entity.Location = gamePanel.GetRandomPosition();
-			entity.Top -= entitySize + 10;
-			entity.Height = entitySize;
-			entity.Width = entitySize;
+			entity.Location = _gamePanel.GetRandomPosition();
+			entity.Top -= _entitySize + 10;
+			entity.Height = _entitySize;
+			entity.Width = _entitySize;
 
-			gamePanel.Register(entity);
+			_gamePanel.Register(entity);
 
 			return entity;
 		}
 
 		private void InitializeAvailableBonuses(BallFactory ballFactory)
 		{
-			this.bonuses = new List<Func<Control, Bonus>>();
+			this._bonuses = new List<Func<Control, Bonus>>();
 
-			if (_bonusesSettings[Config.GIANT_SIZE_NAME]) bonuses.Add(e => new GiantSizeBonus(e));
-			if (_bonusesSettings[Config.DWARF_SIZE_NAME]) bonuses.Add(e => new DwarfSizeBonus(e));
-			if (_bonusesSettings[Config.EXTRA_LIVE_NAME]) bonuses.Add(e => new ExtraLiveBonus(e));
-			if (_bonusesSettings[Config.JUMP_BOOST_NAME]) bonuses.Add(e => new JumpBoostBonus(e));
-			if (_bonusesSettings[Config.PROTECTION_NAME]) bonuses.Add(e => new ProtectionBonus(e));
-			if (_bonusesSettings[Config.JELLYBALL_NAME]) bonuses.Add(e => new BallBonus<JellyBall>(e, ballFactory));
-			if (_bonusesSettings[Config.SPEEDBALL_NAME]) bonuses.Add(e => new BallBonus<SpeedBall>(e, ballFactory));
+			if (_bonusesSettings[Config.GIANT_SIZE_NAME]) _bonuses.Add(e => new GiantSizeBonus(e));
+			if (_bonusesSettings[Config.DWARF_SIZE_NAME]) _bonuses.Add(e => new DwarfSizeBonus(e));
+			if (_bonusesSettings[Config.EXTRA_LIVE_NAME]) _bonuses.Add(e => new ExtraLiveBonus(e));
+			if (_bonusesSettings[Config.JUMP_BOOST_NAME]) _bonuses.Add(e => new JumpBoostBonus(e));
+			if (_bonusesSettings[Config.PROTECTION_NAME]) _bonuses.Add(e => new ProtectionBonus(e));
+			if (_bonusesSettings[Config.JELLYBALL_NAME]) _bonuses.Add(e => new BallBonus<JellyBall>(e, ballFactory));
+			if (_bonusesSettings[Config.SPEEDBALL_NAME]) _bonuses.Add(e => new BallBonus<SpeedBall>(e, ballFactory));
 		}
 	}
 }

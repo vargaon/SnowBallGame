@@ -2,7 +2,7 @@
 
 namespace SnowBallGame
 {
-	class PlayerMovement : Movement
+	sealed class PlayerMovement : Movement
 	{
 		public int JumpSpeed { get; private set; } = Config.PLAYER_JUMP_SPEED;
 

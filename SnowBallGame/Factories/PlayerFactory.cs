@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class PlayerFactory : Factory
+	sealed class PlayerFactory : Factory
 	{
 		private PlayerPanelManager playerPanel;
 
@@ -140,7 +140,7 @@ namespace SnowBallGame
 			var entity = new Panel();
 			entity.Tag = Config.PLAYER_PROFILE_TAG;
 			playerPanel.Register(entity);
-			entity.Width = 170;
+			entity.Width = PlayerPanelManager.PLAYER_PANEL_WIDTH;
 			entity.Height = playerPanel.Entity.Height;
 			entity.BackColor = Color.Silver;
 

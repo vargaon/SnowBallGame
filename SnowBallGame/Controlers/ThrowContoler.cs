@@ -2,7 +2,7 @@
 
 namespace SnowBallGame
 {
-	class ThrowContoler
+	sealed class ThrowContoler
 	{
 		public Keys Throw { get; set; }
 	}

@@ -4,8 +4,10 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
-	class Game
+	sealed class Game
 	{
+		public enum GameState { RUN, END }
+
 		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
 		public GameState State { get; private set; }
@@ -117,16 +119,16 @@ namespace SnowBallGame
 		private bool CheckBonusCollect()
 		{
 			var entity = bonus.Entity;
-			foreach(var p in players)
+			var player = players.Find(p => entity.Bounds.IntersectsWith(p.Entity.Bounds));
+			
+			if(player != null)
 			{
-				if(entity.Bounds.IntersectsWith(p.Entity.Bounds))
-				{
-					gamePanelManager.UnRegister(entity);
-					p.ColectBonusScore();
-					bonus.AplyBonus(p);
-					return true;
-				}
+				gamePanelManager.UnRegister(entity);
+				player.ColectBonusScore();
+				bonus.AplyBonus(player);
+				return true;
 			}
+			
 			return false;
 		}
 
