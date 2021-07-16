@@ -41,24 +41,33 @@ A poté ještě klávesa pro házení koulí (`Throw`).
 **Jméno** hráče si lze zvolit opět v textovém poli v horní části karty hráče.
 
 ### Pravidla
+Hráči se na platformách pohybují pomocí zvolených kláves. Ve hře působí gravitace a pokud hráč pod sebou nemá pevnou platformu tak padá. Hráči se mezi platformami pohybují pomocí skoků. Skočit lze pouze jednou a další skok je možný až když hráč stojí na nějaké z platforem. Skoku není nijak bráněno, je možné provést skok pod platformou a dostat se tak výše.
 
-### Bonusy
+Každý hráč začíná hru se třemi životy a základní koulí nazvanou `snowball`.
 
-#### GiantSize
+Hráči během hry mohou sbírat bonusy, které se vždy objevují náhodně na nějaké platformě. Bonusy hráči umožňují například házet jinými typy koulí, pohybovat se rychleji nebo skákat rychleji. Bonusy se dělí na dva typy `PlayerBonus` a `BallBonus`. BallBonus je omezen počtem koulí které hráč hodí, po **8** hozených koulích lepšího typu se hráči nastaví opět základní koule snowball. PlayerBonus je omezen časem **6 sekund**. Pokud hráč ztratí život, přijde o všechny bonusy. Když má hráč aktivní bonus a sebere bonus stejného typu, bonus se přepíše na nový a obnoví se trvání bonusu.
 
-#### DwarfSize
+Hráči během hry sbírají body za trefení proti hráče **(+5)** nebo sebrání bonusu **(+2)**. Body ztrácejí, pokud spadnou z platforem a ztratí život **(-4)**. 
 
-#### JumpBoost
+Počet životů, bodů a informace o sebraných bonusech je možné vidět ve spodní části herního panelu. Každý hráč zde má svůj profil, který zmizí, pokud již hráč nemá životy.
 
-#### Protection
+## Bonusy
 
-#### ExtraLive
+### GiantSize
 
-#### ReverseGravity
+### DwarfSize
 
-#### JellyBall
+### JumpBoost
 
-#### SpeedBall
+### Protection
+
+### ExtraLive
+
+### ReverseGravity
+
+### JellyBall
+
+### SpeedBall
 
 ## Průběh práce
 
