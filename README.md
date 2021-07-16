@@ -54,37 +54,58 @@ Počet životů, bodů a informace o sebraných bonusech je možné vidět ve sp
 ## Bonusy
 ### GiantSize
 Barva: fialová.
+
 Zvětší velikost hráče a zmeší jeho rychlost pohybu.
 
 ### DwarfSize
 Barva: fialová.
+
 Zmenší velikost hráče a zvětší jeho rychlost pohybu.
 
 ### JumpBoost
 Barva: modrá.
+
 Zvětší výšku a rychlost hráčova skoku.
 
 ### Protection
 Barva: zelená.
+
 Zvětší hráčovu obranu vůči protihráčovým koulím. Odražení je menší.
 
 ### ExtraLive
 Barva: červená.
+
 Přidá hráči jeden život.
 
 ### ReverseGravity
 Barva: bílá.
+
 Obrátí hráčovu gravitaci. Ovládání zůstane stejné. Hráč padá směrem nahoru a skáče směrem dolů. Pokud se hráč dostane mimo hrací plochu jinak než pádem přes dolní okraj, bonus je odebrát a hráčovi se navrátí původní gravitace.
 
 ### JellyBall
 Barva: žlutá.
+
 Hráč hází vetší a pomalejší koule, které mají sníženou odrazovost.
 
 ### SpeedBall
 Barva: žlutá.
+
 Hráč hazí menší a rychlejší koule, které mají zvetšenou odrazovost.
 
 ## Průběh práce
+Na začátku jsem si sepsal základní osnovu toho, co budu dělat. Vytvořil jsem si jednoduchý herní panel s pár platformami a jedním hráčem v návrháři formulářové aplikace.
+ 
+Poté jsem začal řešit způsob ovládání hráčů. Vytvořil jsem si slovník kláves ovládání s hodnotou `true` nebo `false` pokud byla klávesa zmáčknutá. Slovník se aktualizuje pomocí vhodně přepsaných metod formuláře. Dále jsem si vytvořil základní třídu `Game`, která má odkaz na tento slovník a třídu `Player`, která představuje hráče. 
+
+Třída game pracuje s instancí třídy `PlayerMovementEngine` která pohybuje s hráčem. Pohyby jsou prováděny sekvenčně pomocí interního timeru, který má nastavený interval na 20ms. Engine udává způsob pohybu hráče, avšak vlastnosti pohybu má u sebe uložený hráč. Dlouho jsem přemýšlel, jakým způsobem udělat pohyb hráče a gravitaci ve hře, nakonec využívám pomocné čítače, kteří mění svoji hodnotu podle délky trvání daného pohybu.
+
+Další na řadě bylo házení koulí. Koule mají svůj vlastní `BallMovementEngine` který jimi pohybuje. Koule jsou opět prvky formuláře, jenž mění svojí pozici v závislosti na čase. Pro identifikaci, jestli koule narazila do hráče používám vhodnou metodu na prvku formuláře.
+
+Po vyřešení základní fyziky hry jsem konečně začal přidávat zábavnější prvky. Více hráčů, komplikovanější hrací pole a bonusy. Poté jsem začal pracovat na začátečním nastavení hráče. Navrhl jsem vhodný design a umístil všechny potřebné ovládací prvky ve formulářovém návrháři. Myslím si, že nastavení hráče je snadné a funguje dobře.
+
+Kompozici mého kódu jsem v průběhu práce několikrát změnil, tak aby byla co nejintuitivnější a aby byly splněny všechny požadavky. Snažil jsem se co nejvíce využít principu delegátů a lambda funkcí pro zpřehlednění a zefektivnění kódu. Využil jsem i princip generických metod a typů při práci s pohyblivými prvky nebo vytváření různých typů koulí. Vzhledem k členitosti mého kódu jsem využil i abstraktních tříd pro to abych se v kódu moc neopakoval a také `factory design patern`, který mi pomáhá s tvoření různorodých instancí koulí, hráčů nebo bonusů.
+
+Nakonec jsem zdokumentoval veškeré veřejné metody a vlastnosti a vytvořil finální design hry.
 
 ## Co nebylo doděláno
 
