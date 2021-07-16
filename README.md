@@ -108,5 +108,10 @@ Kompozici mého kódu jsem v průběhu práce několikrát změnil, tak aby byla
 Nakonec jsem zdokumentoval veškeré veřejné metody a vlastnosti a vytvořil finální design hry.
 
 ## Co nebylo doděláno
+Během vytváření této hry mě napadlo spoustu nápadů, jak hru udělat ještě zábavnější a hratelnější. Mezi ty hlavní určitě patří online komunikace, aby hráči mohli hrát proti sobě na různých počítačích a nemuseli se dělit o jednu klávesnici a také jednoduchá umělá inteligence, která by hrála proti vám a snažila se vás shodit.
+
+Co se týče větší různorodosti ve hře. Nestihl jsem přidat více typů koulí nebo jejich speciální způsob pohybu. Například že by hozené koule podléhali také gravitaci. Dále jsem chtěl přidat bonus s dvojitým skokem a také ukazatele počtu hozených koulí a dobu trvání bonusu v profilu hráče. 
+
+S některými nedostatky jsem se však nemohl smířit a důkazem toho je i bonus změny gravitace, který jsem přidal v průběhu psaní dokumentace a hru to velice ozvláštnilo.
 
 ## Závěr
