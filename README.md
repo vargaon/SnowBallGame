@@ -52,22 +52,37 @@ Hráči během hry sbírají body za trefení proti hráče **(+5)** nebo sebrá
 Počet životů, bodů a informace o sebraných bonusech je možné vidět ve spodní části herního panelu. Každý hráč zde má svůj profil, který zmizí, pokud již hráč nemá životy.
 
 ## Bonusy
-
 ### GiantSize
+Barva: fialová.
+Zvětší velikost hráče a zmeší jeho rychlost pohybu.
 
 ### DwarfSize
+Barva: fialová.
+Zmenší velikost hráče a zvětší jeho rychlost pohybu.
 
 ### JumpBoost
+Barva: modrá.
+Zvětší výšku a rychlost hráčova skoku.
 
 ### Protection
+Barva: zelená.
+Zvětší hráčovu obranu vůči protihráčovým koulím. Odražení je menší.
 
 ### ExtraLive
+Barva: červená.
+Přidá hráči jeden život.
 
 ### ReverseGravity
+Barva: bílá.
+Obrátí hráčovu gravitaci. Ovládání zůstane stejné. Hráč padá směrem nahoru a skáče směrem dolů. Pokud se hráč dostane mimo hrací plochu jinak než pádem přes dolní okraj, bonus je odebrát a hráčovi se navrátí původní gravitace.
 
 ### JellyBall
+Barva: žlutá.
+Hráč hází vetší a pomalejší koule, které mají sníženou odrazovost.
 
 ### SpeedBall
+Barva: žlutá.
+Hráč hazí menší a rychlejší koule, které mají zvetšenou odrazovost.
 
 ## Průběh práce
 
