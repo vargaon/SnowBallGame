@@ -30,28 +30,15 @@ namespace SnowBallGame
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
 			this.game_panel = new System.Windows.Forms.Panel();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.pictureBox7 = new System.Windows.Forms.PictureBox();
-			this.pictureBox6 = new System.Windows.Forms.PictureBox();
-			this.pictureBox5 = new System.Windows.Forms.PictureBox();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.pictureBox8 = new System.Windows.Forms.PictureBox();
 			this.player_panel = new System.Windows.Forms.Panel();
 			this.start_panel = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.speedBallColor = new System.Windows.Forms.PictureBox();
-			this.jellyBallColor = new System.Windows.Forms.PictureBox();
-			this.protectionColor = new System.Windows.Forms.PictureBox();
-			this.jumpBoostColor = new System.Windows.Forms.PictureBox();
-			this.dwarfSizeColor = new System.Windows.Forms.PictureBox();
-			this.giantSizeColor = new System.Windows.Forms.PictureBox();
-			this.extraLiveColor = new System.Windows.Forms.PictureBox();
+			this.gravityReverse = new System.Windows.Forms.CheckBox();
 			this.speedBall = new System.Windows.Forms.CheckBox();
 			this.jellyBall = new System.Windows.Forms.CheckBox();
 			this.protection = new System.Windows.Forms.CheckBox();
@@ -71,7 +58,6 @@ namespace SnowBallGame
 			this.label19 = new System.Windows.Forms.Label();
 			this.button3 = new System.Windows.Forms.Button();
 			this.label20 = new System.Windows.Forms.Label();
-			this.pictureBox11 = new System.Windows.Forms.PictureBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.textBox23 = new System.Windows.Forms.TextBox();
 			this.label22 = new System.Windows.Forms.Label();
@@ -88,7 +74,6 @@ namespace SnowBallGame
 			this.label13 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
 			this.label14 = new System.Windows.Forms.Label();
-			this.pictureBox10 = new System.Windows.Forms.PictureBox();
 			this.label15 = new System.Windows.Forms.Label();
 			this.textBox17 = new System.Windows.Forms.TextBox();
 			this.label16 = new System.Windows.Forms.Label();
@@ -110,12 +95,10 @@ namespace SnowBallGame
 			this.textBox3 = new System.Windows.Forms.TextBox();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.player_color = new System.Windows.Forms.PictureBox();
 			this.player1_name = new System.Windows.Forms.TextBox();
 			this.panel10 = new System.Windows.Forms.Panel();
 			this.player2_record = new System.Windows.Forms.Panel();
 			this.label8 = new System.Windows.Forms.Label();
-			this.pictureBox9 = new System.Windows.Forms.PictureBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.textBox11 = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
@@ -135,13 +118,65 @@ namespace SnowBallGame
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.win_player_name = new System.Windows.Forms.Label();
 			this.win_player_score = new System.Windows.Forms.Label();
-			this.win_player_avatar = new System.Windows.Forms.PictureBox();
 			this.label25 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.new_game_btn = new System.Windows.Forms.Button();
+			this.win_player_avatar = new System.Windows.Forms.PictureBox();
 			this.gravityReverseColor = new System.Windows.Forms.PictureBox();
-			this.gravityReverse = new System.Windows.Forms.CheckBox();
+			this.speedBallColor = new System.Windows.Forms.PictureBox();
+			this.jellyBallColor = new System.Windows.Forms.PictureBox();
+			this.protectionColor = new System.Windows.Forms.PictureBox();
+			this.jumpBoostColor = new System.Windows.Forms.PictureBox();
+			this.dwarfSizeColor = new System.Windows.Forms.PictureBox();
+			this.giantSizeColor = new System.Windows.Forms.PictureBox();
+			this.extraLiveColor = new System.Windows.Forms.PictureBox();
+			this.pictureBox11 = new System.Windows.Forms.PictureBox();
+			this.pictureBox10 = new System.Windows.Forms.PictureBox();
+			this.player_color = new System.Windows.Forms.PictureBox();
+			this.pictureBox9 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pictureBox7 = new System.Windows.Forms.PictureBox();
+			this.pictureBox6 = new System.Windows.Forms.PictureBox();
+			this.pictureBox5 = new System.Windows.Forms.PictureBox();
+			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox8 = new System.Windows.Forms.PictureBox();
 			this.game_panel.SuspendLayout();
+			this.start_panel.SuspendLayout();
+			this.panel4.SuspendLayout();
+			this.panel7.SuspendLayout();
+			this.panel3.SuspendLayout();
+			this.panel1.SuspendLayout();
+			this.players_creation_records.SuspendLayout();
+			this.panel11.SuspendLayout();
+			this.panel14.SuspendLayout();
+			this.player4_record.SuspendLayout();
+			this.panel12.SuspendLayout();
+			this.panel13.SuspendLayout();
+			this.player3_record.SuspendLayout();
+			this.panel9.SuspendLayout();
+			this.player1_record.SuspendLayout();
+			this.panel10.SuspendLayout();
+			this.player2_record.SuspendLayout();
+			this.end_panel.SuspendLayout();
+			this.panel15.SuspendLayout();
+			this.panel6.SuspendLayout();
+			this.panel8.SuspendLayout();
+			this.panel5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.jellyBallColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.protectionColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.jumpBoostColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dwarfSizeColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.giantSizeColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.extraLiveColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.player_color)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -150,40 +185,6 @@ namespace SnowBallGame
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-			this.start_panel.SuspendLayout();
-			this.panel4.SuspendLayout();
-			this.panel7.SuspendLayout();
-			this.panel3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.jellyBallColor)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.protectionColor)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.jumpBoostColor)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dwarfSizeColor)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.giantSizeColor)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.extraLiveColor)).BeginInit();
-			this.panel1.SuspendLayout();
-			this.players_creation_records.SuspendLayout();
-			this.panel11.SuspendLayout();
-			this.panel14.SuspendLayout();
-			this.player4_record.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-			this.panel12.SuspendLayout();
-			this.panel13.SuspendLayout();
-			this.player3_record.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-			this.panel9.SuspendLayout();
-			this.player1_record.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.player_color)).BeginInit();
-			this.panel10.SuspendLayout();
-			this.player2_record.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-			this.end_panel.SuspendLayout();
-			this.panel15.SuspendLayout();
-			this.panel6.SuspendLayout();
-			this.panel8.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).BeginInit();
-			this.panel5.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// game_panel
@@ -204,50 +205,6 @@ namespace SnowBallGame
 			this.game_panel.TabIndex = 0;
 			this.game_panel.Visible = false;
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox1.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox1.Location = new System.Drawing.Point(57, 394);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox1.TabIndex = 23;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Tag = "platform";
-			// 
-			// pictureBox7
-			// 
-			this.pictureBox7.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox7.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox7.Location = new System.Drawing.Point(836, 394);
-			this.pictureBox7.Name = "pictureBox7";
-			this.pictureBox7.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox7.TabIndex = 22;
-			this.pictureBox7.TabStop = false;
-			this.pictureBox7.Tag = "platform";
-			// 
-			// pictureBox6
-			// 
-			this.pictureBox6.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox6.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox6.Location = new System.Drawing.Point(216, 481);
-			this.pictureBox6.Name = "pictureBox6";
-			this.pictureBox6.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox6.TabIndex = 21;
-			this.pictureBox6.TabStop = false;
-			this.pictureBox6.Tag = "platform";
-			// 
-			// pictureBox5
-			// 
-			this.pictureBox5.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox5.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox5.Location = new System.Drawing.Point(445, 228);
-			this.pictureBox5.Name = "pictureBox5";
-			this.pictureBox5.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox5.TabIndex = 20;
-			this.pictureBox5.TabStop = false;
-			this.pictureBox5.Tag = "platform";
-			// 
 			// panel2
 			// 
 			this.panel2.BackColor = System.Drawing.Color.White;
@@ -255,50 +212,6 @@ namespace SnowBallGame
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(1142, 166);
 			this.panel2.TabIndex = 3;
-			// 
-			// pictureBox4
-			// 
-			this.pictureBox4.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox4.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox4.Location = new System.Drawing.Point(631, 307);
-			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox4.TabIndex = 19;
-			this.pictureBox4.TabStop = false;
-			this.pictureBox4.Tag = "platform";
-			// 
-			// pictureBox3
-			// 
-			this.pictureBox3.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox3.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox3.Location = new System.Drawing.Point(179, 158);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox3.TabIndex = 18;
-			this.pictureBox3.TabStop = false;
-			this.pictureBox3.Tag = "platform";
-			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox2.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox2.Location = new System.Drawing.Point(698, 158);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox2.TabIndex = 17;
-			this.pictureBox2.TabStop = false;
-			this.pictureBox2.Tag = "platform";
-			// 
-			// pictureBox8
-			// 
-			this.pictureBox8.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox8.Image = global::SnowBallGame.Properties.Resources.platform;
-			this.pictureBox8.Location = new System.Drawing.Point(431, 394);
-			this.pictureBox8.Name = "pictureBox8";
-			this.pictureBox8.Size = new System.Drawing.Size(220, 10);
-			this.pictureBox8.TabIndex = 15;
-			this.pictureBox8.TabStop = false;
-			this.pictureBox8.Tag = "platform";
 			// 
 			// player_panel
 			// 
@@ -365,61 +278,20 @@ namespace SnowBallGame
 			this.panel3.Size = new System.Drawing.Size(202, 221);
 			this.panel3.TabIndex = 5;
 			// 
-			// speedBallColor
+			// gravityReverse
 			// 
-			this.speedBallColor.Location = new System.Drawing.Point(164, 200);
-			this.speedBallColor.Name = "speedBallColor";
-			this.speedBallColor.Size = new System.Drawing.Size(12, 12);
-			this.speedBallColor.TabIndex = 18;
-			this.speedBallColor.TabStop = false;
-			// 
-			// jellyBallColor
-			// 
-			this.jellyBallColor.Location = new System.Drawing.Point(165, 178);
-			this.jellyBallColor.Name = "jellyBallColor";
-			this.jellyBallColor.Size = new System.Drawing.Size(12, 12);
-			this.jellyBallColor.TabIndex = 17;
-			this.jellyBallColor.TabStop = false;
-			// 
-			// protectionColor
-			// 
-			this.protectionColor.Location = new System.Drawing.Point(165, 130);
-			this.protectionColor.Name = "protectionColor";
-			this.protectionColor.Size = new System.Drawing.Size(12, 12);
-			this.protectionColor.TabIndex = 16;
-			this.protectionColor.TabStop = false;
-			// 
-			// jumpBoostColor
-			// 
-			this.jumpBoostColor.Location = new System.Drawing.Point(165, 106);
-			this.jumpBoostColor.Name = "jumpBoostColor";
-			this.jumpBoostColor.Size = new System.Drawing.Size(12, 12);
-			this.jumpBoostColor.TabIndex = 15;
-			this.jumpBoostColor.TabStop = false;
-			// 
-			// dwarfSizeColor
-			// 
-			this.dwarfSizeColor.Location = new System.Drawing.Point(165, 83);
-			this.dwarfSizeColor.Name = "dwarfSizeColor";
-			this.dwarfSizeColor.Size = new System.Drawing.Size(12, 12);
-			this.dwarfSizeColor.TabIndex = 14;
-			this.dwarfSizeColor.TabStop = false;
-			// 
-			// giantSizeColor
-			// 
-			this.giantSizeColor.Location = new System.Drawing.Point(166, 60);
-			this.giantSizeColor.Name = "giantSizeColor";
-			this.giantSizeColor.Size = new System.Drawing.Size(12, 12);
-			this.giantSizeColor.TabIndex = 13;
-			this.giantSizeColor.TabStop = false;
-			// 
-			// extraLiveColor
-			// 
-			this.extraLiveColor.Location = new System.Drawing.Point(166, 35);
-			this.extraLiveColor.Name = "extraLiveColor";
-			this.extraLiveColor.Size = new System.Drawing.Size(12, 12);
-			this.extraLiveColor.TabIndex = 12;
-			this.extraLiveColor.TabStop = false;
+			this.gravityReverse.Checked = true;
+			this.gravityReverse.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.gravityReverse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.gravityReverse.ForeColor = System.Drawing.Color.Snow;
+			this.gravityReverse.Location = new System.Drawing.Point(23, 148);
+			this.gravityReverse.Name = "gravityReverse";
+			this.gravityReverse.Size = new System.Drawing.Size(139, 28);
+			this.gravityReverse.TabIndex = 19;
+			this.gravityReverse.Tag = "GravityReverse";
+			this.gravityReverse.Text = "GravityReverse";
+			this.gravityReverse.UseVisualStyleBackColor = true;
+			this.gravityReverse.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// speedBall
 			// 
@@ -669,17 +541,6 @@ namespace SnowBallGame
 			this.label20.TabIndex = 42;
 			this.label20.Text = "Throw:";
 			// 
-			// pictureBox11
-			// 
-			this.pictureBox11.BackColor = System.Drawing.Color.Yellow;
-			this.pictureBox11.Location = new System.Drawing.Point(21, 64);
-			this.pictureBox11.Name = "pictureBox11";
-			this.pictureBox11.Size = new System.Drawing.Size(68, 63);
-			this.pictureBox11.TabIndex = 4;
-			this.pictureBox11.TabStop = false;
-			this.pictureBox11.Tag = "player_color";
-			this.pictureBox11.Click += new System.EventHandler(this.ColorChange);
-			// 
 			// label21
 			// 
 			this.label21.AutoSize = true;
@@ -875,17 +736,6 @@ namespace SnowBallGame
 			this.label14.Size = new System.Drawing.Size(47, 17);
 			this.label14.TabIndex = 33;
 			this.label14.Text = "Down:";
-			// 
-			// pictureBox10
-			// 
-			this.pictureBox10.BackColor = System.Drawing.Color.LimeGreen;
-			this.pictureBox10.Location = new System.Drawing.Point(21, 64);
-			this.pictureBox10.Name = "pictureBox10";
-			this.pictureBox10.Size = new System.Drawing.Size(68, 63);
-			this.pictureBox10.TabIndex = 4;
-			this.pictureBox10.TabStop = false;
-			this.pictureBox10.Tag = "player_color";
-			this.pictureBox10.Click += new System.EventHandler(this.ColorChange);
 			// 
 			// label15
 			// 
@@ -1138,17 +988,6 @@ namespace SnowBallGame
 			this.textBox1.Text = "W";
 			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyJump);
 			// 
-			// player_color
-			// 
-			this.player_color.BackColor = System.Drawing.Color.Red;
-			this.player_color.Location = new System.Drawing.Point(21, 64);
-			this.player_color.Name = "player_color";
-			this.player_color.Size = new System.Drawing.Size(68, 63);
-			this.player_color.TabIndex = 4;
-			this.player_color.TabStop = false;
-			this.player_color.Tag = "player_color";
-			this.player_color.Click += new System.EventHandler(this.ColorChange);
-			// 
 			// player1_name
 			// 
 			this.player1_name.BackColor = System.Drawing.Color.Snow;
@@ -1201,17 +1040,6 @@ namespace SnowBallGame
 			this.label8.Size = new System.Drawing.Size(45, 17);
 			this.label8.TabIndex = 24;
 			this.label8.Text = "Right:";
-			// 
-			// pictureBox9
-			// 
-			this.pictureBox9.BackColor = System.Drawing.Color.Blue;
-			this.pictureBox9.Location = new System.Drawing.Point(21, 64);
-			this.pictureBox9.Name = "pictureBox9";
-			this.pictureBox9.Size = new System.Drawing.Size(68, 63);
-			this.pictureBox9.TabIndex = 4;
-			this.pictureBox9.TabStop = false;
-			this.pictureBox9.Tag = "player_color";
-			this.pictureBox9.Click += new System.EventHandler(this.ColorChange);
 			// 
 			// label9
 			// 
@@ -1415,15 +1243,6 @@ namespace SnowBallGame
 			this.win_player_score.TabIndex = 4;
 			this.win_player_score.Text = "0";
 			// 
-			// win_player_avatar
-			// 
-			this.win_player_avatar.BackColor = System.Drawing.Color.Black;
-			this.win_player_avatar.Location = new System.Drawing.Point(106, 133);
-			this.win_player_avatar.Name = "win_player_avatar";
-			this.win_player_avatar.Size = new System.Drawing.Size(80, 80);
-			this.win_player_avatar.TabIndex = 2;
-			this.win_player_avatar.TabStop = false;
-			// 
 			// label25
 			// 
 			this.label25.AutoSize = true;
@@ -1457,6 +1276,15 @@ namespace SnowBallGame
 			this.new_game_btn.UseVisualStyleBackColor = false;
 			this.new_game_btn.Click += new System.EventHandler(this.BtnClickNewGame);
 			// 
+			// win_player_avatar
+			// 
+			this.win_player_avatar.BackColor = System.Drawing.Color.Black;
+			this.win_player_avatar.Location = new System.Drawing.Point(106, 133);
+			this.win_player_avatar.Name = "win_player_avatar";
+			this.win_player_avatar.Size = new System.Drawing.Size(80, 80);
+			this.win_player_avatar.TabIndex = 2;
+			this.win_player_avatar.TabStop = false;
+			// 
 			// gravityReverseColor
 			// 
 			this.gravityReverseColor.Location = new System.Drawing.Point(165, 154);
@@ -1465,20 +1293,193 @@ namespace SnowBallGame
 			this.gravityReverseColor.TabIndex = 20;
 			this.gravityReverseColor.TabStop = false;
 			// 
-			// gravityReverse
+			// speedBallColor
 			// 
-			this.gravityReverse.Checked = true;
-			this.gravityReverse.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.gravityReverse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.gravityReverse.ForeColor = System.Drawing.Color.Snow;
-			this.gravityReverse.Location = new System.Drawing.Point(23, 148);
-			this.gravityReverse.Name = "gravityReverse";
-			this.gravityReverse.Size = new System.Drawing.Size(139, 28);
-			this.gravityReverse.TabIndex = 19;
-			this.gravityReverse.Tag = "GravityReverse";
-			this.gravityReverse.Text = "GravityReverse";
-			this.gravityReverse.UseVisualStyleBackColor = true;
-			this.gravityReverse.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.speedBallColor.Location = new System.Drawing.Point(164, 200);
+			this.speedBallColor.Name = "speedBallColor";
+			this.speedBallColor.Size = new System.Drawing.Size(12, 12);
+			this.speedBallColor.TabIndex = 18;
+			this.speedBallColor.TabStop = false;
+			// 
+			// jellyBallColor
+			// 
+			this.jellyBallColor.Location = new System.Drawing.Point(165, 178);
+			this.jellyBallColor.Name = "jellyBallColor";
+			this.jellyBallColor.Size = new System.Drawing.Size(12, 12);
+			this.jellyBallColor.TabIndex = 17;
+			this.jellyBallColor.TabStop = false;
+			// 
+			// protectionColor
+			// 
+			this.protectionColor.Location = new System.Drawing.Point(165, 130);
+			this.protectionColor.Name = "protectionColor";
+			this.protectionColor.Size = new System.Drawing.Size(12, 12);
+			this.protectionColor.TabIndex = 16;
+			this.protectionColor.TabStop = false;
+			// 
+			// jumpBoostColor
+			// 
+			this.jumpBoostColor.Location = new System.Drawing.Point(165, 106);
+			this.jumpBoostColor.Name = "jumpBoostColor";
+			this.jumpBoostColor.Size = new System.Drawing.Size(12, 12);
+			this.jumpBoostColor.TabIndex = 15;
+			this.jumpBoostColor.TabStop = false;
+			// 
+			// dwarfSizeColor
+			// 
+			this.dwarfSizeColor.Location = new System.Drawing.Point(165, 83);
+			this.dwarfSizeColor.Name = "dwarfSizeColor";
+			this.dwarfSizeColor.Size = new System.Drawing.Size(12, 12);
+			this.dwarfSizeColor.TabIndex = 14;
+			this.dwarfSizeColor.TabStop = false;
+			// 
+			// giantSizeColor
+			// 
+			this.giantSizeColor.Location = new System.Drawing.Point(166, 60);
+			this.giantSizeColor.Name = "giantSizeColor";
+			this.giantSizeColor.Size = new System.Drawing.Size(12, 12);
+			this.giantSizeColor.TabIndex = 13;
+			this.giantSizeColor.TabStop = false;
+			// 
+			// extraLiveColor
+			// 
+			this.extraLiveColor.Location = new System.Drawing.Point(166, 35);
+			this.extraLiveColor.Name = "extraLiveColor";
+			this.extraLiveColor.Size = new System.Drawing.Size(12, 12);
+			this.extraLiveColor.TabIndex = 12;
+			this.extraLiveColor.TabStop = false;
+			// 
+			// pictureBox11
+			// 
+			this.pictureBox11.BackColor = System.Drawing.Color.Yellow;
+			this.pictureBox11.Location = new System.Drawing.Point(21, 64);
+			this.pictureBox11.Name = "pictureBox11";
+			this.pictureBox11.Size = new System.Drawing.Size(68, 63);
+			this.pictureBox11.TabIndex = 4;
+			this.pictureBox11.TabStop = false;
+			this.pictureBox11.Tag = "player_color";
+			this.pictureBox11.Click += new System.EventHandler(this.ColorChange);
+			// 
+			// pictureBox10
+			// 
+			this.pictureBox10.BackColor = System.Drawing.Color.LimeGreen;
+			this.pictureBox10.Location = new System.Drawing.Point(21, 64);
+			this.pictureBox10.Name = "pictureBox10";
+			this.pictureBox10.Size = new System.Drawing.Size(68, 63);
+			this.pictureBox10.TabIndex = 4;
+			this.pictureBox10.TabStop = false;
+			this.pictureBox10.Tag = "player_color";
+			this.pictureBox10.Click += new System.EventHandler(this.ColorChange);
+			// 
+			// player_color
+			// 
+			this.player_color.BackColor = System.Drawing.Color.Red;
+			this.player_color.Location = new System.Drawing.Point(21, 64);
+			this.player_color.Name = "player_color";
+			this.player_color.Size = new System.Drawing.Size(68, 63);
+			this.player_color.TabIndex = 4;
+			this.player_color.TabStop = false;
+			this.player_color.Tag = "player_color";
+			this.player_color.Click += new System.EventHandler(this.ColorChange);
+			// 
+			// pictureBox9
+			// 
+			this.pictureBox9.BackColor = System.Drawing.Color.Blue;
+			this.pictureBox9.Location = new System.Drawing.Point(21, 64);
+			this.pictureBox9.Name = "pictureBox9";
+			this.pictureBox9.Size = new System.Drawing.Size(68, 63);
+			this.pictureBox9.TabIndex = 4;
+			this.pictureBox9.TabStop = false;
+			this.pictureBox9.Tag = "player_color";
+			this.pictureBox9.Click += new System.EventHandler(this.ColorChange);
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox1.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox1.Location = new System.Drawing.Point(57, 394);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox1.TabIndex = 23;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Tag = "platform";
+			// 
+			// pictureBox7
+			// 
+			this.pictureBox7.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox7.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox7.Location = new System.Drawing.Point(836, 394);
+			this.pictureBox7.Name = "pictureBox7";
+			this.pictureBox7.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox7.TabIndex = 22;
+			this.pictureBox7.TabStop = false;
+			this.pictureBox7.Tag = "platform";
+			// 
+			// pictureBox6
+			// 
+			this.pictureBox6.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox6.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox6.Location = new System.Drawing.Point(216, 481);
+			this.pictureBox6.Name = "pictureBox6";
+			this.pictureBox6.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox6.TabIndex = 21;
+			this.pictureBox6.TabStop = false;
+			this.pictureBox6.Tag = "platform";
+			// 
+			// pictureBox5
+			// 
+			this.pictureBox5.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox5.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox5.Location = new System.Drawing.Point(445, 228);
+			this.pictureBox5.Name = "pictureBox5";
+			this.pictureBox5.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox5.TabIndex = 20;
+			this.pictureBox5.TabStop = false;
+			this.pictureBox5.Tag = "platform";
+			// 
+			// pictureBox4
+			// 
+			this.pictureBox4.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox4.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox4.Location = new System.Drawing.Point(631, 307);
+			this.pictureBox4.Name = "pictureBox4";
+			this.pictureBox4.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox4.TabIndex = 19;
+			this.pictureBox4.TabStop = false;
+			this.pictureBox4.Tag = "platform";
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox3.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox3.Location = new System.Drawing.Point(179, 158);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox3.TabIndex = 18;
+			this.pictureBox3.TabStop = false;
+			this.pictureBox3.Tag = "platform";
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox2.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox2.Location = new System.Drawing.Point(698, 158);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox2.TabIndex = 17;
+			this.pictureBox2.TabStop = false;
+			this.pictureBox2.Tag = "platform";
+			// 
+			// pictureBox8
+			// 
+			this.pictureBox8.BackColor = System.Drawing.Color.Sienna;
+			this.pictureBox8.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox8.Location = new System.Drawing.Point(431, 394);
+			this.pictureBox8.Name = "pictureBox8";
+			this.pictureBox8.Size = new System.Drawing.Size(220, 10);
+			this.pictureBox8.TabIndex = 15;
+			this.pictureBox8.TabStop = false;
+			this.pictureBox8.Tag = "platform";
 			// 
 			// GameForm
 			// 
@@ -1491,12 +1492,55 @@ namespace SnowBallGame
 			this.Controls.Add(this.player_panel);
 			this.Controls.Add(this.game_panel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.MaximizeBox = false;
 			this.Name = "GameForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "SnowBallGame";
 			this.game_panel.ResumeLayout(false);
+			this.start_panel.ResumeLayout(false);
+			this.panel4.ResumeLayout(false);
+			this.panel7.ResumeLayout(false);
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			this.players_creation_records.ResumeLayout(false);
+			this.panel11.ResumeLayout(false);
+			this.panel14.ResumeLayout(false);
+			this.player4_record.ResumeLayout(false);
+			this.player4_record.PerformLayout();
+			this.panel12.ResumeLayout(false);
+			this.panel13.ResumeLayout(false);
+			this.player3_record.ResumeLayout(false);
+			this.player3_record.PerformLayout();
+			this.panel9.ResumeLayout(false);
+			this.player1_record.ResumeLayout(false);
+			this.player1_record.PerformLayout();
+			this.panel10.ResumeLayout(false);
+			this.player2_record.ResumeLayout(false);
+			this.player2_record.PerformLayout();
+			this.end_panel.ResumeLayout(false);
+			this.panel15.ResumeLayout(false);
+			this.panel15.PerformLayout();
+			this.panel6.ResumeLayout(false);
+			this.panel8.ResumeLayout(false);
+			this.panel8.PerformLayout();
+			this.panel5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.jellyBallColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.protectionColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.jumpBoostColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dwarfSizeColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.giantSizeColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.extraLiveColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.player_color)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -1505,48 +1549,6 @@ namespace SnowBallGame
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-			this.start_panel.ResumeLayout(false);
-			this.panel4.ResumeLayout(false);
-			this.panel7.ResumeLayout(false);
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.jellyBallColor)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.protectionColor)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.jumpBoostColor)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dwarfSizeColor)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.giantSizeColor)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.extraLiveColor)).EndInit();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
-			this.players_creation_records.ResumeLayout(false);
-			this.panel11.ResumeLayout(false);
-			this.panel14.ResumeLayout(false);
-			this.player4_record.ResumeLayout(false);
-			this.player4_record.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-			this.panel12.ResumeLayout(false);
-			this.panel13.ResumeLayout(false);
-			this.player3_record.ResumeLayout(false);
-			this.player3_record.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-			this.panel9.ResumeLayout(false);
-			this.player1_record.ResumeLayout(false);
-			this.player1_record.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.player_color)).EndInit();
-			this.panel10.ResumeLayout(false);
-			this.player2_record.ResumeLayout(false);
-			this.player2_record.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-			this.end_panel.ResumeLayout(false);
-			this.panel15.ResumeLayout(false);
-			this.panel15.PerformLayout();
-			this.panel6.ResumeLayout(false);
-			this.panel8.ResumeLayout(false);
-			this.panel8.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).EndInit();
-			this.panel5.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).EndInit();
 			this.ResumeLayout(false);
 
 		}
