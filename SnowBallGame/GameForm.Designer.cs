@@ -35,6 +35,16 @@ namespace SnowBallGame
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.player_panel = new System.Windows.Forms.Panel();
 			this.start_panel = new System.Windows.Forms.Panel();
+			this.end_panel = new System.Windows.Forms.Panel();
+			this.panel15 = new System.Windows.Forms.Panel();
+			this.label23 = new System.Windows.Forms.Label();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.panel8 = new System.Windows.Forms.Panel();
+			this.win_player_name = new System.Windows.Forms.Label();
+			this.win_player_score = new System.Windows.Forms.Label();
+			this.label25 = new System.Windows.Forms.Label();
+			this.panel5 = new System.Windows.Forms.Panel();
+			this.new_game_btn = new System.Windows.Forms.Button();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
@@ -111,16 +121,6 @@ namespace SnowBallGame
 			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.game_timer = new System.Windows.Forms.Timer(this.components);
 			this.color_dialog = new System.Windows.Forms.ColorDialog();
-			this.end_panel = new System.Windows.Forms.Panel();
-			this.panel15 = new System.Windows.Forms.Panel();
-			this.label23 = new System.Windows.Forms.Label();
-			this.panel6 = new System.Windows.Forms.Panel();
-			this.panel8 = new System.Windows.Forms.Panel();
-			this.win_player_name = new System.Windows.Forms.Label();
-			this.win_player_score = new System.Windows.Forms.Label();
-			this.label25 = new System.Windows.Forms.Label();
-			this.panel5 = new System.Windows.Forms.Panel();
-			this.new_game_btn = new System.Windows.Forms.Button();
 			this.win_player_avatar = new System.Windows.Forms.PictureBox();
 			this.gravityReverseColor = new System.Windows.Forms.PictureBox();
 			this.speedBallColor = new System.Windows.Forms.PictureBox();
@@ -144,6 +144,11 @@ namespace SnowBallGame
 			this.pictureBox8 = new System.Windows.Forms.PictureBox();
 			this.game_panel.SuspendLayout();
 			this.start_panel.SuspendLayout();
+			this.end_panel.SuspendLayout();
+			this.panel15.SuspendLayout();
+			this.panel6.SuspendLayout();
+			this.panel8.SuspendLayout();
+			this.panel5.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel7.SuspendLayout();
 			this.panel3.SuspendLayout();
@@ -159,11 +164,6 @@ namespace SnowBallGame
 			this.player1_record.SuspendLayout();
 			this.panel10.SuspendLayout();
 			this.player2_record.SuspendLayout();
-			this.end_panel.SuspendLayout();
-			this.panel15.SuspendLayout();
-			this.panel6.SuspendLayout();
-			this.panel8.SuspendLayout();
-			this.panel5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).BeginInit();
@@ -233,6 +233,112 @@ namespace SnowBallGame
 			this.start_panel.Padding = new System.Windows.Forms.Padding(5);
 			this.start_panel.Size = new System.Drawing.Size(1142, 814);
 			this.start_panel.TabIndex = 24;
+			// 
+			// end_panel
+			// 
+			this.end_panel.Controls.Add(this.panel15);
+			this.end_panel.Controls.Add(this.panel6);
+			this.end_panel.Controls.Add(this.panel5);
+			this.end_panel.Location = new System.Drawing.Point(12, 7);
+			this.end_panel.Name = "end_panel";
+			this.end_panel.Size = new System.Drawing.Size(1142, 816);
+			this.end_panel.TabIndex = 10;
+			this.end_panel.Visible = false;
+			// 
+			// panel15
+			// 
+			this.panel15.BackColor = System.Drawing.Color.Gray;
+			this.panel15.Controls.Add(this.label23);
+			this.panel15.Location = new System.Drawing.Point(54, 31);
+			this.panel15.Name = "panel15";
+			this.panel15.Size = new System.Drawing.Size(1040, 154);
+			this.panel15.TabIndex = 6;
+			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label23.ForeColor = System.Drawing.Color.Snow;
+			this.label23.Location = new System.Drawing.Point(162, 23);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(711, 120);
+			this.label23.TabIndex = 0;
+			this.label23.Text = "Game Winner";
+			// 
+			// panel6
+			// 
+			this.panel6.BackColor = System.Drawing.Color.Gray;
+			this.panel6.Controls.Add(this.panel8);
+			this.panel6.Location = new System.Drawing.Point(51, 213);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(1040, 338);
+			this.panel6.TabIndex = 3;
+			// 
+			// panel8
+			// 
+			this.panel8.Controls.Add(this.win_player_name);
+			this.panel8.Controls.Add(this.win_player_score);
+			this.panel8.Controls.Add(this.win_player_avatar);
+			this.panel8.Controls.Add(this.label25);
+			this.panel8.Location = new System.Drawing.Point(252, 37);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(533, 277);
+			this.panel8.TabIndex = 5;
+			// 
+			// win_player_name
+			// 
+			this.win_player_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.win_player_name.ForeColor = System.Drawing.Color.Snow;
+			this.win_player_name.Location = new System.Drawing.Point(7, 4);
+			this.win_player_name.Name = "win_player_name";
+			this.win_player_name.Size = new System.Drawing.Size(518, 122);
+			this.win_player_name.TabIndex = 1;
+			this.win_player_name.Text = "No one!";
+			this.win_player_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// win_player_score
+			// 
+			this.win_player_score.AutoSize = true;
+			this.win_player_score.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.win_player_score.ForeColor = System.Drawing.Color.Snow;
+			this.win_player_score.Location = new System.Drawing.Point(355, 147);
+			this.win_player_score.Name = "win_player_score";
+			this.win_player_score.Size = new System.Drawing.Size(42, 46);
+			this.win_player_score.TabIndex = 4;
+			this.win_player_score.Text = "0";
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label25.ForeColor = System.Drawing.Color.Snow;
+			this.label25.Location = new System.Drawing.Point(230, 146);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(137, 46);
+			this.label25.TabIndex = 3;
+			this.label25.Text = "Score:";
+			// 
+			// panel5
+			// 
+			this.panel5.BackColor = System.Drawing.Color.Gray;
+			this.panel5.Controls.Add(this.new_game_btn);
+			this.panel5.Location = new System.Drawing.Point(51, 579);
+			this.panel5.Name = "panel5";
+			this.panel5.Size = new System.Drawing.Size(1040, 196);
+			this.panel5.TabIndex = 2;
+			// 
+			// new_game_btn
+			// 
+			this.new_game_btn.BackColor = System.Drawing.Color.Gray;
+			this.new_game_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.new_game_btn.ForeColor = System.Drawing.Color.Snow;
+			this.new_game_btn.Location = new System.Drawing.Point(252, 41);
+			this.new_game_btn.Name = "new_game_btn";
+			this.new_game_btn.Size = new System.Drawing.Size(533, 113);
+			this.new_game_btn.TabIndex = 1;
+			this.new_game_btn.Text = "New Game";
+			this.new_game_btn.UseVisualStyleBackColor = false;
+			this.new_game_btn.Click += new System.EventHandler(this.BtnClickNewGame);
 			// 
 			// panel4
 			// 
@@ -1170,112 +1276,6 @@ namespace SnowBallGame
 			this.color_dialog.ShowHelp = true;
 			this.color_dialog.SolidColorOnly = true;
 			// 
-			// end_panel
-			// 
-			this.end_panel.Controls.Add(this.panel15);
-			this.end_panel.Controls.Add(this.panel6);
-			this.end_panel.Controls.Add(this.panel5);
-			this.end_panel.Location = new System.Drawing.Point(12, 7);
-			this.end_panel.Name = "end_panel";
-			this.end_panel.Size = new System.Drawing.Size(1142, 816);
-			this.end_panel.TabIndex = 10;
-			this.end_panel.Visible = false;
-			// 
-			// panel15
-			// 
-			this.panel15.BackColor = System.Drawing.Color.Gray;
-			this.panel15.Controls.Add(this.label23);
-			this.panel15.Location = new System.Drawing.Point(54, 31);
-			this.panel15.Name = "panel15";
-			this.panel15.Size = new System.Drawing.Size(1040, 154);
-			this.panel15.TabIndex = 6;
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label23.ForeColor = System.Drawing.Color.Snow;
-			this.label23.Location = new System.Drawing.Point(162, 23);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(711, 120);
-			this.label23.TabIndex = 0;
-			this.label23.Text = "Game Winner";
-			// 
-			// panel6
-			// 
-			this.panel6.BackColor = System.Drawing.Color.Gray;
-			this.panel6.Controls.Add(this.panel8);
-			this.panel6.Location = new System.Drawing.Point(51, 213);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(1040, 338);
-			this.panel6.TabIndex = 3;
-			// 
-			// panel8
-			// 
-			this.panel8.Controls.Add(this.win_player_name);
-			this.panel8.Controls.Add(this.win_player_score);
-			this.panel8.Controls.Add(this.win_player_avatar);
-			this.panel8.Controls.Add(this.label25);
-			this.panel8.Location = new System.Drawing.Point(252, 37);
-			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(533, 277);
-			this.panel8.TabIndex = 5;
-			// 
-			// win_player_name
-			// 
-			this.win_player_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.win_player_name.ForeColor = System.Drawing.Color.Snow;
-			this.win_player_name.Location = new System.Drawing.Point(7, 4);
-			this.win_player_name.Name = "win_player_name";
-			this.win_player_name.Size = new System.Drawing.Size(518, 122);
-			this.win_player_name.TabIndex = 1;
-			this.win_player_name.Text = "No one!";
-			this.win_player_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// win_player_score
-			// 
-			this.win_player_score.AutoSize = true;
-			this.win_player_score.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.win_player_score.ForeColor = System.Drawing.Color.Snow;
-			this.win_player_score.Location = new System.Drawing.Point(355, 147);
-			this.win_player_score.Name = "win_player_score";
-			this.win_player_score.Size = new System.Drawing.Size(42, 46);
-			this.win_player_score.TabIndex = 4;
-			this.win_player_score.Text = "0";
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label25.ForeColor = System.Drawing.Color.Snow;
-			this.label25.Location = new System.Drawing.Point(230, 146);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(137, 46);
-			this.label25.TabIndex = 3;
-			this.label25.Text = "Score:";
-			// 
-			// panel5
-			// 
-			this.panel5.BackColor = System.Drawing.Color.Gray;
-			this.panel5.Controls.Add(this.new_game_btn);
-			this.panel5.Location = new System.Drawing.Point(51, 579);
-			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(1040, 196);
-			this.panel5.TabIndex = 2;
-			// 
-			// new_game_btn
-			// 
-			this.new_game_btn.BackColor = System.Drawing.Color.Gray;
-			this.new_game_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.new_game_btn.ForeColor = System.Drawing.Color.Snow;
-			this.new_game_btn.Location = new System.Drawing.Point(252, 41);
-			this.new_game_btn.Name = "new_game_btn";
-			this.new_game_btn.Size = new System.Drawing.Size(533, 113);
-			this.new_game_btn.TabIndex = 1;
-			this.new_game_btn.Text = "New Game";
-			this.new_game_btn.UseVisualStyleBackColor = false;
-			this.new_game_btn.Click += new System.EventHandler(this.BtnClickNewGame);
-			// 
 			// win_player_avatar
 			// 
 			this.win_player_avatar.BackColor = System.Drawing.Color.Black;
@@ -1396,7 +1396,7 @@ namespace SnowBallGame
 			// pictureBox1
 			// 
 			this.pictureBox1.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox1.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox1.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox1.Location = new System.Drawing.Point(57, 394);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(220, 10);
@@ -1407,7 +1407,7 @@ namespace SnowBallGame
 			// pictureBox7
 			// 
 			this.pictureBox7.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox7.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox7.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox7.Location = new System.Drawing.Point(836, 394);
 			this.pictureBox7.Name = "pictureBox7";
 			this.pictureBox7.Size = new System.Drawing.Size(220, 10);
@@ -1418,7 +1418,7 @@ namespace SnowBallGame
 			// pictureBox6
 			// 
 			this.pictureBox6.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox6.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox6.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox6.Location = new System.Drawing.Point(216, 481);
 			this.pictureBox6.Name = "pictureBox6";
 			this.pictureBox6.Size = new System.Drawing.Size(220, 10);
@@ -1429,7 +1429,7 @@ namespace SnowBallGame
 			// pictureBox5
 			// 
 			this.pictureBox5.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox5.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox5.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox5.Location = new System.Drawing.Point(445, 228);
 			this.pictureBox5.Name = "pictureBox5";
 			this.pictureBox5.Size = new System.Drawing.Size(220, 10);
@@ -1440,7 +1440,7 @@ namespace SnowBallGame
 			// pictureBox4
 			// 
 			this.pictureBox4.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox4.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox4.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox4.Location = new System.Drawing.Point(631, 307);
 			this.pictureBox4.Name = "pictureBox4";
 			this.pictureBox4.Size = new System.Drawing.Size(220, 10);
@@ -1451,7 +1451,7 @@ namespace SnowBallGame
 			// pictureBox3
 			// 
 			this.pictureBox3.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox3.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox3.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox3.Location = new System.Drawing.Point(179, 158);
 			this.pictureBox3.Name = "pictureBox3";
 			this.pictureBox3.Size = new System.Drawing.Size(220, 10);
@@ -1462,7 +1462,7 @@ namespace SnowBallGame
 			// pictureBox2
 			// 
 			this.pictureBox2.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox2.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox2.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox2.Location = new System.Drawing.Point(698, 158);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(220, 10);
@@ -1473,7 +1473,7 @@ namespace SnowBallGame
 			// pictureBox8
 			// 
 			this.pictureBox8.BackColor = System.Drawing.Color.Sienna;
-			this.pictureBox8.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size;
+			this.pictureBox8.Image = global::SnowBallGame.Properties.Resources.ice_platform_normal_size1;
 			this.pictureBox8.Location = new System.Drawing.Point(431, 394);
 			this.pictureBox8.Name = "pictureBox8";
 			this.pictureBox8.Size = new System.Drawing.Size(220, 10);
@@ -1500,6 +1500,13 @@ namespace SnowBallGame
 			this.Text = "SnowBallGame";
 			this.game_panel.ResumeLayout(false);
 			this.start_panel.ResumeLayout(false);
+			this.end_panel.ResumeLayout(false);
+			this.panel15.ResumeLayout(false);
+			this.panel15.PerformLayout();
+			this.panel6.ResumeLayout(false);
+			this.panel8.ResumeLayout(false);
+			this.panel8.PerformLayout();
+			this.panel5.ResumeLayout(false);
 			this.panel4.ResumeLayout(false);
 			this.panel7.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
@@ -1521,13 +1528,6 @@ namespace SnowBallGame
 			this.panel10.ResumeLayout(false);
 			this.player2_record.ResumeLayout(false);
 			this.player2_record.PerformLayout();
-			this.end_panel.ResumeLayout(false);
-			this.panel15.ResumeLayout(false);
-			this.panel15.PerformLayout();
-			this.panel6.ResumeLayout(false);
-			this.panel8.ResumeLayout(false);
-			this.panel8.PerformLayout();
-			this.panel5.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).EndInit();

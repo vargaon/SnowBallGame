@@ -126,9 +126,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\snow_landscape.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="bin\Debug\platform2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="images\ice_platform_normal_size.png" />
+    <None Include="images\hearth.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

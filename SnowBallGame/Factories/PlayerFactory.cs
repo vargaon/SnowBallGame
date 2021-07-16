@@ -109,7 +109,7 @@ namespace SnowBallGame
 			var entity = new PictureBox();
 			playerProfilePanel.Controls.Add(entity);
 			entity.Location = new Point(110, 82);
-			entity.Image = Properties.Resources.hearth;
+			entity.Image = Properties.Resources.hearth1;
 			entity.Width = 40;
 			entity.Height = 33;
 		}
