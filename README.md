@@ -115,3 +115,4 @@ Co se týče větší různorodosti ve hře. Nestihl jsem přidat více typů ko
 S některými nedostatky jsem se však nemohl smířit a důkazem toho je i bonus změny gravitace, který jsem přidal v průběhu psaní dokumentace a hru to velice ozvláštnilo.
 
 ## Závěr
+Práce na hře mě velice bavila a díky tomuto projektu jsem si mohl vyzkoušet spoustu nových věcí a více si osvojit jazyk C#.  Doufám, že budu mít v budoucnu ještě příležitost se k projektu vrátit a dodělat věci které jsem nestihl.
