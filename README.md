@@ -31,7 +31,8 @@ Hráči si na začátku hry nastaví své ovládací klávesy, jméno a barvu sv
 Možné pohyby jsou :
 - skok (`Jump`) 
 - doleva (`Left`)
-- doprava (`Right`) 
+- doprava (`Right`)
+- dolů (`Down`) 
 
 A poté ještě klávesa pro házení koulí (`Throw`). 
 
@@ -40,6 +41,24 @@ A poté ještě klávesa pro házení koulí (`Throw`).
 **Jméno** hráče si lze zvolit opět v textovém poli v horní části karty hráče.
 
 ### Pravidla
+
+### Bonusy
+
+#### GiantSize
+
+#### DwarfSize
+
+#### JumpBoost
+
+#### Protection
+
+#### ExtraLive
+
+#### ReverseGravity
+
+#### JellyBall
+
+#### SpeedBall
 
 ## Průběh práce
 
