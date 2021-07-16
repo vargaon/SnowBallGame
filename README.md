@@ -40,6 +40,8 @@ A poté ještě klávesa pro házení koulí (`Throw`).
 
 **Jméno** hráče si lze zvolit opět v textovém poli v horní části karty hráče.
 
+Hráči si také v dolní části panelu nastavení mohou zvolit, které bonusy chtějí ve hře mít a které ne.
+
 ### Pravidla
 Hráči se na platformách pohybují pomocí zvolených kláves. Ve hře působí gravitace a pokud hráč pod sebou nemá pevnou platformu tak padá. Hráči se mezi platformami pohybují pomocí skoků. Skočit lze pouze jednou a další skok je možný až když hráč stojí na nějaké z platforem. Skoku není nijak bráněno, je možné provést skok pod platformou a dostat se tak výše.
 
