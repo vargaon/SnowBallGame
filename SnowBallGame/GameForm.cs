@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace SnowBallGame
 {
+	/// <summary>
+	/// Class representing game form.
+	/// </summary>
 	public partial class GameForm : Form
 	{
 		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
@@ -21,16 +24,52 @@ namespace SnowBallGame
 
 		private Game game;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="GameForm"/>.
+		/// </summary>
 		public GameForm()
 		{
 			InitializeComponent();
 
+			//Default controls settings
 			this.ActiveControl = start_game_btn;
 
 			player1_record.Tag = PLAYER1_RECORD_TAG;
 			player2_record.Tag = PLAYER2_RECORD_TAG;
 			player3_record.Tag = PLAYER3_RECORD_TAG;
 			player4_record.Tag = PLAYER4_RECORD_TAG;
+
+			extraLive.Text = Config.EXTRA_LIVE_NAME;
+			extraLive.Tag = Config.EXTRA_LIVE_NAME;
+			extraLiveColor.BackColor = Config.EXTRA_LIVE_COLOR;
+
+			giantSize.Text = Config.GIANT_SIZE_NAME;
+			giantSize.Tag = Config.GIANT_SIZE_NAME;
+			giantSizeColor.BackColor = Config.GIANT_SIZE_COLOR;
+
+			dwarfSize.Text = Config.DWARF_SIZE_NAME;
+			dwarfSize.Tag = Config.DWARF_SIZE_NAME;
+			dwarfSizeColor.BackColor = Config.DWARF_SIZE_COLOR;
+
+			jumpBoost.Text = Config.JUMP_BOOST_NAME;
+			jumpBoost.Tag = Config.JUMP_BOOST_NAME;
+			jumpBoostColor.BackColor = Config.JUMP_BOOST_COLOR;
+
+			protection.Text = Config.PROTECTION_NAME;
+			protection.Tag = Config.PROTECTION_NAME;
+			protectionColor.BackColor = Config.PROTECTION_COLOR;
+
+			gravityReverse.Text = Config.REVERSE_GRAVITY_NAME;
+			gravityReverse.Tag = Config.REVERSE_GRAVITY_NAME;
+			gravityReverseColor.BackColor = Config.REVERSE_GRAVITY_COLOR;
+
+			jellyBall.Text = Config.JELLYBALL_NAME;
+			jellyBall.Tag = Config.JELLYBALL_NAME;
+			jellyBallColor.BackColor = Config.BALL_BONUS_COLOR;
+
+			speedBall.Text = Config.SPEEDBALL_NAME;
+			speedBall.Tag = Config.SPEEDBALL_NAME;
+			speedBallColor.BackColor = Config.BALL_BONUS_COLOR;
 
 			RegisterDefaultBonusesSetings();
 			RegisterDefaultPlayersSettings();
@@ -47,6 +86,7 @@ namespace SnowBallGame
 			this._bonusesSettings.Add(Config.SPEEDBALL_NAME, true);
 			this._bonusesSettings.Add(Config.JELLYBALL_NAME, true);
 			this._bonusesSettings.Add(Config.PROTECTION_NAME, true);
+			this._bonusesSettings.Add(Config.REVERSE_GRAVITY_NAME, true);
 		}
 
 		private void RegisterDefaultPlayersSettings()
@@ -57,46 +97,46 @@ namespace SnowBallGame
 			var player1 = new PlayerCreationRecord(true);
 			player1.Color = Color.Red;
 			player1.Name = "Player Name";
-			player1.Controler.MovementContoler.Jump = Keys.W;
-			player1.Controler.MovementContoler.Down = Keys.S;
-			player1.Controler.MovementContoler.Left = Keys.A;
-			player1.Controler.MovementContoler.Right = Keys.D;
-			player1.Controler.ThrowContoler.Throw = Keys.V;
+			player1.Controller.MovementContoller.Jump = Keys.W;
+			player1.Controller.MovementContoller.Down = Keys.S;
+			player1.Controller.MovementContoller.Left = Keys.A;
+			player1.Controller.MovementContoller.Right = Keys.D;
+			player1.Controller.ThrowContoler.Throw = Keys.V;
 
-			RegisterPlayerDefaultHooks(player1.Controler);
+			RegisterPlayerDefaultHooks(player1.Controller);
 
 			var player2 = new PlayerCreationRecord(true);
 			player2.Color = Color.Blue;
 			player2.Name = "Player Name";
-			player2.Controler.MovementContoler.Jump = Keys.Up;
-			player2.Controler.MovementContoler.Down = Keys.Down;
-			player2.Controler.MovementContoler.Left = Keys.Left;
-			player2.Controler.MovementContoler.Right = Keys.Right;
-			player2.Controler.ThrowContoler.Throw = Keys.M;
+			player2.Controller.MovementContoller.Jump = Keys.Up;
+			player2.Controller.MovementContoller.Down = Keys.Down;
+			player2.Controller.MovementContoller.Left = Keys.Left;
+			player2.Controller.MovementContoller.Right = Keys.Right;
+			player2.Controller.ThrowContoler.Throw = Keys.M;
 
-			RegisterPlayerDefaultHooks(player2.Controler);
+			RegisterPlayerDefaultHooks(player2.Controller);
 
 			var player3 = new PlayerCreationRecord(false);
 			player3.Color = Color.LimeGreen;
 			player3.Name = "Player Name";
-			player3.Controler.MovementContoler.Jump = Keys.U;
-			player3.Controler.MovementContoler.Down = Keys.J;
-			player3.Controler.MovementContoler.Left = Keys.H;
-			player3.Controler.MovementContoler.Right = Keys.K;
-			player3.Controler.ThrowContoler.Throw = Keys.B;
+			player3.Controller.MovementContoller.Jump = Keys.U;
+			player3.Controller.MovementContoller.Down = Keys.J;
+			player3.Controller.MovementContoller.Left = Keys.H;
+			player3.Controller.MovementContoller.Right = Keys.K;
+			player3.Controller.ThrowContoler.Throw = Keys.B;
 
-			RegisterPlayerDefaultHooks(player3.Controler);
+			RegisterPlayerDefaultHooks(player3.Controller);
 
 			var player4 = new PlayerCreationRecord(false);
 			player4.Color = Color.Yellow;
 			player4.Name = "Player Name";
-			player4.Controler.MovementContoler.Jump = Keys.NumPad8;
-			player4.Controler.MovementContoler.Down = Keys.NumPad5;
-			player4.Controler.MovementContoler.Left = Keys.NumPad4;
-			player4.Controler.MovementContoler.Right = Keys.NumPad6;
-			player4.Controler.ThrowContoler.Throw = Keys.NumPad0;
+			player4.Controller.MovementContoller.Jump = Keys.NumPad8;
+			player4.Controller.MovementContoller.Down = Keys.NumPad5;
+			player4.Controller.MovementContoller.Left = Keys.NumPad4;
+			player4.Controller.MovementContoller.Right = Keys.NumPad6;
+			player4.Controller.ThrowContoler.Throw = Keys.NumPad0;
 
-			RegisterPlayerDefaultHooks(player4.Controler);
+			RegisterPlayerDefaultHooks(player4.Controller);
 
 			this._playerRecordsList.Add(PLAYER1_RECORD_TAG, player1);
 			this._playerRecordsList.Add(PLAYER2_RECORD_TAG, player2);
@@ -104,12 +144,12 @@ namespace SnowBallGame
 			this._playerRecordsList.Add(PLAYER4_RECORD_TAG, player4);
 		}
 
-		private void RegisterPlayerDefaultHooks(PlayerControler controler)
+		private void RegisterPlayerDefaultHooks(PlayerController controler)
 		{
-			_pressedKeys.Add(controler.MovementContoler.Jump, false);
-			_pressedKeys.Add(controler.MovementContoler.Down, false);
-			_pressedKeys.Add(controler.MovementContoler.Left, false);
-			_pressedKeys.Add(controler.MovementContoler.Right, false);
+			_pressedKeys.Add(controler.MovementContoller.Jump, false);
+			_pressedKeys.Add(controler.MovementContoller.Down, false);
+			_pressedKeys.Add(controler.MovementContoller.Left, false);
+			_pressedKeys.Add(controler.MovementContoller.Right, false);
 			_pressedKeys.Add(controler.ThrowContoler.Throw, false);
 		}
 
@@ -226,12 +266,12 @@ namespace SnowBallGame
 
 			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
 			{
-				var key = record.Controler.MovementContoler.Jump;
+				var key = record.Controller.MovementContoller.Jump;
 
 				if(RegisterKeyHook(e.KeyData, key))
 				{
 					entity.Text = e.KeyData.ToString();
-					record.Controler.MovementContoler.Jump = e.KeyData;
+					record.Controller.MovementContoller.Jump = e.KeyData;
 				}
 			}
 		}
@@ -243,12 +283,12 @@ namespace SnowBallGame
 
 			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
 			{
-				var key = record.Controler.MovementContoler.Down;
+				var key = record.Controller.MovementContoller.Down;
 
 				if (RegisterKeyHook(e.KeyData, key))
 				{
 					entity.Text = e.KeyData.ToString();
-					record.Controler.MovementContoler.Down = e.KeyData;
+					record.Controller.MovementContoller.Down = e.KeyData;
 				}
 			}
 		}
@@ -260,12 +300,12 @@ namespace SnowBallGame
 
 			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
 			{
-				var key = record.Controler.MovementContoler.Left;
+				var key = record.Controller.MovementContoller.Left;
 
 				if (RegisterKeyHook(e.KeyData, key))
 				{
 					entity.Text = e.KeyData.ToString();
-					record.Controler.MovementContoler.Left = e.KeyData;
+					record.Controller.MovementContoller.Left = e.KeyData;
 				}
 			}
 		}
@@ -277,12 +317,12 @@ namespace SnowBallGame
 
 			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
 			{
-				var key = record.Controler.MovementContoler.Right;
+				var key = record.Controller.MovementContoller.Right;
 
 				if (RegisterKeyHook(e.KeyData, key))
 				{
 					entity.Text = e.KeyData.ToString();
-					record.Controler.MovementContoler.Right = e.KeyData;
+					record.Controller.MovementContoller.Right = e.KeyData;
 				}
 			}
 		}
@@ -294,12 +334,12 @@ namespace SnowBallGame
 
 			if (_playerRecordsList.TryGetValue((string)entity.Parent.Tag, out PlayerCreationRecord record))
 			{
-				var key = record.Controler.ThrowContoler.Throw;
+				var key = record.Controller.ThrowContoler.Throw;
 
 				if (RegisterKeyHook(e.KeyData, key))
 				{
 					entity.Text = e.KeyData.ToString();
-					record.Controler.ThrowContoler.Throw = e.KeyData;
+					record.Controller.ThrowContoler.Throw = e.KeyData;
 				}
 			}
 		}

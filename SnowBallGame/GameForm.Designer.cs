@@ -45,18 +45,27 @@ namespace SnowBallGame
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.checkBox7 = new System.Windows.Forms.CheckBox();
-			this.checkBox6 = new System.Windows.Forms.CheckBox();
-			this.checkBox5 = new System.Windows.Forms.CheckBox();
-			this.checkBox4 = new System.Windows.Forms.CheckBox();
-			this.checkBox3 = new System.Windows.Forms.CheckBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.speedBallColor = new System.Windows.Forms.PictureBox();
+			this.jellyBallColor = new System.Windows.Forms.PictureBox();
+			this.protectionColor = new System.Windows.Forms.PictureBox();
+			this.jumpBoostColor = new System.Windows.Forms.PictureBox();
+			this.dwarfSizeColor = new System.Windows.Forms.PictureBox();
+			this.giantSizeColor = new System.Windows.Forms.PictureBox();
+			this.extraLiveColor = new System.Windows.Forms.PictureBox();
+			this.speedBall = new System.Windows.Forms.CheckBox();
+			this.jellyBall = new System.Windows.Forms.CheckBox();
+			this.protection = new System.Windows.Forms.CheckBox();
+			this.jumpBoost = new System.Windows.Forms.CheckBox();
+			this.dwarfSize = new System.Windows.Forms.CheckBox();
+			this.giantSize = new System.Windows.Forms.CheckBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.extraLive = new System.Windows.Forms.CheckBox();
 			this.start_game_btn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.players_creation_records = new System.Windows.Forms.Panel();
+			this.panel11 = new System.Windows.Forms.Panel();
+			this.panel14 = new System.Windows.Forms.Panel();
 			this.player4_record = new System.Windows.Forms.Panel();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
@@ -72,6 +81,8 @@ namespace SnowBallGame
 			this.textBox19 = new System.Windows.Forms.TextBox();
 			this.textBox20 = new System.Windows.Forms.TextBox();
 			this.AddPlayer4 = new System.Windows.Forms.Button();
+			this.panel12 = new System.Windows.Forms.Panel();
+			this.panel13 = new System.Windows.Forms.Panel();
 			this.AddPlayer3 = new System.Windows.Forms.Button();
 			this.player3_record = new System.Windows.Forms.Panel();
 			this.label13 = new System.Windows.Forms.Label();
@@ -87,19 +98,7 @@ namespace SnowBallGame
 			this.textBox12 = new System.Windows.Forms.TextBox();
 			this.textBox14 = new System.Windows.Forms.TextBox();
 			this.textBox13 = new System.Windows.Forms.TextBox();
-			this.player2_record = new System.Windows.Forms.Panel();
-			this.label8 = new System.Windows.Forms.Label();
-			this.pictureBox9 = new System.Windows.Forms.PictureBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.textBox11 = new System.Windows.Forms.TextBox();
-			this.label10 = new System.Windows.Forms.Label();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.label11 = new System.Windows.Forms.Label();
-			this.textBox10 = new System.Windows.Forms.TextBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.textBox9 = new System.Windows.Forms.TextBox();
-			this.textBox8 = new System.Windows.Forms.TextBox();
-			this.textBox7 = new System.Windows.Forms.TextBox();
+			this.panel9 = new System.Windows.Forms.Panel();
 			this.player1_record = new System.Windows.Forms.Panel();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
@@ -113,25 +112,35 @@ namespace SnowBallGame
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.player_color = new System.Windows.Forms.PictureBox();
 			this.player1_name = new System.Windows.Forms.TextBox();
+			this.panel10 = new System.Windows.Forms.Panel();
+			this.player2_record = new System.Windows.Forms.Panel();
+			this.label8 = new System.Windows.Forms.Label();
+			this.pictureBox9 = new System.Windows.Forms.PictureBox();
+			this.label9 = new System.Windows.Forms.Label();
+			this.textBox11 = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.textBox6 = new System.Windows.Forms.TextBox();
+			this.label11 = new System.Windows.Forms.Label();
+			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.textBox9 = new System.Windows.Forms.TextBox();
+			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.textBox7 = new System.Windows.Forms.TextBox();
 			this.game_timer = new System.Windows.Forms.Timer(this.components);
 			this.color_dialog = new System.Windows.Forms.ColorDialog();
 			this.end_panel = new System.Windows.Forms.Panel();
-			this.panel6 = new System.Windows.Forms.Panel();
-			this.win_player_score = new System.Windows.Forms.Label();
-			this.label25 = new System.Windows.Forms.Label();
-			this.win_player_avatar = new System.Windows.Forms.PictureBox();
-			this.win_player_name = new System.Windows.Forms.Label();
+			this.panel15 = new System.Windows.Forms.Panel();
 			this.label23 = new System.Windows.Forms.Label();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.panel8 = new System.Windows.Forms.Panel();
+			this.win_player_name = new System.Windows.Forms.Label();
+			this.win_player_score = new System.Windows.Forms.Label();
+			this.win_player_avatar = new System.Windows.Forms.PictureBox();
+			this.label25 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.new_game_btn = new System.Windows.Forms.Button();
-			this.panel8 = new System.Windows.Forms.Panel();
-			this.panel9 = new System.Windows.Forms.Panel();
-			this.panel10 = new System.Windows.Forms.Panel();
-			this.panel11 = new System.Windows.Forms.Panel();
-			this.panel12 = new System.Windows.Forms.Panel();
-			this.panel13 = new System.Windows.Forms.Panel();
-			this.panel14 = new System.Windows.Forms.Panel();
-			this.panel15 = new System.Windows.Forms.Panel();
+			this.gravityReverseColor = new System.Windows.Forms.PictureBox();
+			this.gravityReverse = new System.Windows.Forms.CheckBox();
 			this.game_panel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -145,28 +154,36 @@ namespace SnowBallGame
 			this.panel4.SuspendLayout();
 			this.panel7.SuspendLayout();
 			this.panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.jellyBallColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.protectionColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.jumpBoostColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dwarfSizeColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.giantSizeColor)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.extraLiveColor)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.players_creation_records.SuspendLayout();
+			this.panel11.SuspendLayout();
+			this.panel14.SuspendLayout();
 			this.player4_record.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-			this.player3_record.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-			this.player2_record.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-			this.player1_record.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.player_color)).BeginInit();
-			this.end_panel.SuspendLayout();
-			this.panel6.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).BeginInit();
-			this.panel5.SuspendLayout();
-			this.panel8.SuspendLayout();
-			this.panel9.SuspendLayout();
-			this.panel10.SuspendLayout();
-			this.panel11.SuspendLayout();
 			this.panel12.SuspendLayout();
 			this.panel13.SuspendLayout();
-			this.panel14.SuspendLayout();
+			this.player3_record.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+			this.panel9.SuspendLayout();
+			this.player1_record.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.player_color)).BeginInit();
+			this.panel10.SuspendLayout();
+			this.player2_record.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+			this.end_panel.SuspendLayout();
 			this.panel15.SuspendLayout();
+			this.panel6.SuspendLayout();
+			this.panel8.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).BeginInit();
+			this.panel5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// game_panel
@@ -326,134 +343,199 @@ namespace SnowBallGame
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.Gray;
-			this.panel3.Controls.Add(this.checkBox7);
-			this.panel3.Controls.Add(this.checkBox6);
-			this.panel3.Controls.Add(this.checkBox5);
-			this.panel3.Controls.Add(this.checkBox4);
-			this.panel3.Controls.Add(this.checkBox3);
-			this.panel3.Controls.Add(this.checkBox2);
+			this.panel3.Controls.Add(this.gravityReverseColor);
+			this.panel3.Controls.Add(this.gravityReverse);
+			this.panel3.Controls.Add(this.speedBallColor);
+			this.panel3.Controls.Add(this.jellyBallColor);
+			this.panel3.Controls.Add(this.protectionColor);
+			this.panel3.Controls.Add(this.jumpBoostColor);
+			this.panel3.Controls.Add(this.dwarfSizeColor);
+			this.panel3.Controls.Add(this.giantSizeColor);
+			this.panel3.Controls.Add(this.extraLiveColor);
+			this.panel3.Controls.Add(this.speedBall);
+			this.panel3.Controls.Add(this.jellyBall);
+			this.panel3.Controls.Add(this.protection);
+			this.panel3.Controls.Add(this.jumpBoost);
+			this.panel3.Controls.Add(this.dwarfSize);
+			this.panel3.Controls.Add(this.giantSize);
 			this.panel3.Controls.Add(this.label2);
-			this.panel3.Controls.Add(this.checkBox1);
+			this.panel3.Controls.Add(this.extraLive);
 			this.panel3.Location = new System.Drawing.Point(3, 3);
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(202, 221);
 			this.panel3.TabIndex = 5;
 			// 
-			// checkBox7
+			// speedBallColor
 			// 
-			this.checkBox7.Checked = true;
-			this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox7.ForeColor = System.Drawing.Color.Snow;
-			this.checkBox7.Location = new System.Drawing.Point(23, 190);
-			this.checkBox7.Name = "checkBox7";
-			this.checkBox7.Size = new System.Drawing.Size(139, 28);
-			this.checkBox7.TabIndex = 11;
-			this.checkBox7.Tag = "SpeedBall";
-			this.checkBox7.Text = "SpeedBall";
-			this.checkBox7.UseVisualStyleBackColor = true;
-			this.checkBox7.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.speedBallColor.Location = new System.Drawing.Point(164, 200);
+			this.speedBallColor.Name = "speedBallColor";
+			this.speedBallColor.Size = new System.Drawing.Size(12, 12);
+			this.speedBallColor.TabIndex = 18;
+			this.speedBallColor.TabStop = false;
 			// 
-			// checkBox6
+			// jellyBallColor
 			// 
-			this.checkBox6.Checked = true;
-			this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox6.ForeColor = System.Drawing.Color.Snow;
-			this.checkBox6.Location = new System.Drawing.Point(23, 166);
-			this.checkBox6.Name = "checkBox6";
-			this.checkBox6.Size = new System.Drawing.Size(139, 28);
-			this.checkBox6.TabIndex = 10;
-			this.checkBox6.Tag = "JellyBall";
-			this.checkBox6.Text = "JellyBall";
-			this.checkBox6.UseVisualStyleBackColor = true;
-			this.checkBox6.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.jellyBallColor.Location = new System.Drawing.Point(165, 178);
+			this.jellyBallColor.Name = "jellyBallColor";
+			this.jellyBallColor.Size = new System.Drawing.Size(12, 12);
+			this.jellyBallColor.TabIndex = 17;
+			this.jellyBallColor.TabStop = false;
 			// 
-			// checkBox5
+			// protectionColor
 			// 
-			this.checkBox5.Checked = true;
-			this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox5.ForeColor = System.Drawing.Color.Snow;
-			this.checkBox5.Location = new System.Drawing.Point(23, 142);
-			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(139, 28);
-			this.checkBox5.TabIndex = 9;
-			this.checkBox5.Tag = "Protection";
-			this.checkBox5.Text = "Protection";
-			this.checkBox5.UseVisualStyleBackColor = true;
-			this.checkBox5.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.protectionColor.Location = new System.Drawing.Point(165, 130);
+			this.protectionColor.Name = "protectionColor";
+			this.protectionColor.Size = new System.Drawing.Size(12, 12);
+			this.protectionColor.TabIndex = 16;
+			this.protectionColor.TabStop = false;
 			// 
-			// checkBox4
+			// jumpBoostColor
 			// 
-			this.checkBox4.Checked = true;
-			this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox4.ForeColor = System.Drawing.Color.Snow;
-			this.checkBox4.Location = new System.Drawing.Point(23, 116);
-			this.checkBox4.Name = "checkBox4";
-			this.checkBox4.Size = new System.Drawing.Size(139, 28);
-			this.checkBox4.TabIndex = 8;
-			this.checkBox4.Tag = "JumpBoost";
-			this.checkBox4.Text = "JumpBoost";
-			this.checkBox4.UseVisualStyleBackColor = true;
-			this.checkBox4.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.jumpBoostColor.Location = new System.Drawing.Point(165, 106);
+			this.jumpBoostColor.Name = "jumpBoostColor";
+			this.jumpBoostColor.Size = new System.Drawing.Size(12, 12);
+			this.jumpBoostColor.TabIndex = 15;
+			this.jumpBoostColor.TabStop = false;
 			// 
-			// checkBox3
+			// dwarfSizeColor
 			// 
-			this.checkBox3.Checked = true;
-			this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox3.ForeColor = System.Drawing.Color.Snow;
-			this.checkBox3.Location = new System.Drawing.Point(23, 90);
-			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(139, 28);
-			this.checkBox3.TabIndex = 7;
-			this.checkBox3.Tag = "DwarfSize";
-			this.checkBox3.Text = "DwarfSize";
-			this.checkBox3.UseVisualStyleBackColor = true;
-			this.checkBox3.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.dwarfSizeColor.Location = new System.Drawing.Point(165, 83);
+			this.dwarfSizeColor.Name = "dwarfSizeColor";
+			this.dwarfSizeColor.Size = new System.Drawing.Size(12, 12);
+			this.dwarfSizeColor.TabIndex = 14;
+			this.dwarfSizeColor.TabStop = false;
 			// 
-			// checkBox2
+			// giantSizeColor
 			// 
-			this.checkBox2.Checked = true;
-			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox2.ForeColor = System.Drawing.Color.Snow;
-			this.checkBox2.Location = new System.Drawing.Point(23, 68);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(139, 28);
-			this.checkBox2.TabIndex = 6;
-			this.checkBox2.Tag = "GiantSize";
-			this.checkBox2.Text = "GiantSize";
-			this.checkBox2.UseVisualStyleBackColor = true;
-			this.checkBox2.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.giantSizeColor.Location = new System.Drawing.Point(166, 60);
+			this.giantSizeColor.Name = "giantSizeColor";
+			this.giantSizeColor.Size = new System.Drawing.Size(12, 12);
+			this.giantSizeColor.TabIndex = 13;
+			this.giantSizeColor.TabStop = false;
+			// 
+			// extraLiveColor
+			// 
+			this.extraLiveColor.Location = new System.Drawing.Point(166, 35);
+			this.extraLiveColor.Name = "extraLiveColor";
+			this.extraLiveColor.Size = new System.Drawing.Size(12, 12);
+			this.extraLiveColor.TabIndex = 12;
+			this.extraLiveColor.TabStop = false;
+			// 
+			// speedBall
+			// 
+			this.speedBall.Checked = true;
+			this.speedBall.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.speedBall.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.speedBall.ForeColor = System.Drawing.Color.Snow;
+			this.speedBall.Location = new System.Drawing.Point(23, 193);
+			this.speedBall.Name = "speedBall";
+			this.speedBall.Size = new System.Drawing.Size(139, 28);
+			this.speedBall.TabIndex = 11;
+			this.speedBall.Tag = "SpeedBall";
+			this.speedBall.Text = "SpeedBall";
+			this.speedBall.UseVisualStyleBackColor = true;
+			this.speedBall.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			// 
+			// jellyBall
+			// 
+			this.jellyBall.Checked = true;
+			this.jellyBall.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.jellyBall.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.jellyBall.ForeColor = System.Drawing.Color.Snow;
+			this.jellyBall.Location = new System.Drawing.Point(23, 172);
+			this.jellyBall.Name = "jellyBall";
+			this.jellyBall.Size = new System.Drawing.Size(139, 28);
+			this.jellyBall.TabIndex = 10;
+			this.jellyBall.Tag = "JellyBall";
+			this.jellyBall.Text = "JellyBall";
+			this.jellyBall.UseVisualStyleBackColor = true;
+			this.jellyBall.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			// 
+			// protection
+			// 
+			this.protection.Checked = true;
+			this.protection.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.protection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.protection.ForeColor = System.Drawing.Color.Snow;
+			this.protection.Location = new System.Drawing.Point(23, 124);
+			this.protection.Name = "protection";
+			this.protection.Size = new System.Drawing.Size(139, 28);
+			this.protection.TabIndex = 9;
+			this.protection.Tag = "Protection";
+			this.protection.Text = "Protection";
+			this.protection.UseVisualStyleBackColor = true;
+			this.protection.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			// 
+			// jumpBoost
+			// 
+			this.jumpBoost.Checked = true;
+			this.jumpBoost.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.jumpBoost.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.jumpBoost.ForeColor = System.Drawing.Color.Snow;
+			this.jumpBoost.Location = new System.Drawing.Point(23, 98);
+			this.jumpBoost.Name = "jumpBoost";
+			this.jumpBoost.Size = new System.Drawing.Size(139, 28);
+			this.jumpBoost.TabIndex = 8;
+			this.jumpBoost.Tag = "JumpBoost";
+			this.jumpBoost.Text = "JumpBoost";
+			this.jumpBoost.UseVisualStyleBackColor = true;
+			this.jumpBoost.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			// 
+			// dwarfSize
+			// 
+			this.dwarfSize.Checked = true;
+			this.dwarfSize.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.dwarfSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.dwarfSize.ForeColor = System.Drawing.Color.Snow;
+			this.dwarfSize.Location = new System.Drawing.Point(23, 75);
+			this.dwarfSize.Name = "dwarfSize";
+			this.dwarfSize.Size = new System.Drawing.Size(139, 28);
+			this.dwarfSize.TabIndex = 7;
+			this.dwarfSize.Tag = "DwarfSize";
+			this.dwarfSize.Text = "DwarfSize";
+			this.dwarfSize.UseVisualStyleBackColor = true;
+			this.dwarfSize.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			// 
+			// giantSize
+			// 
+			this.giantSize.Checked = true;
+			this.giantSize.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.giantSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.giantSize.ForeColor = System.Drawing.Color.Snow;
+			this.giantSize.Location = new System.Drawing.Point(23, 51);
+			this.giantSize.Name = "giantSize";
+			this.giantSize.Size = new System.Drawing.Size(139, 28);
+			this.giantSize.TabIndex = 6;
+			this.giantSize.Tag = "GiantSize";
+			this.giantSize.Text = "GiantSize";
+			this.giantSize.UseVisualStyleBackColor = true;
+			this.giantSize.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.label2.ForeColor = System.Drawing.Color.Snow;
-			this.label2.Location = new System.Drawing.Point(17, 2);
+			this.label2.Location = new System.Drawing.Point(17, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(150, 39);
+			this.label2.Size = new System.Drawing.Size(120, 31);
 			this.label2.TabIndex = 5;
 			this.label2.Text = "Bonuses";
 			// 
-			// checkBox1
+			// extraLive
 			// 
-			this.checkBox1.Checked = true;
-			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.checkBox1.ForeColor = System.Drawing.Color.Snow;
-			this.checkBox1.Location = new System.Drawing.Point(24, 44);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(139, 28);
-			this.checkBox1.TabIndex = 4;
-			this.checkBox1.Tag = "ExtraLive";
-			this.checkBox1.Text = "ExtraLive";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
+			this.extraLive.Checked = true;
+			this.extraLive.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.extraLive.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.extraLive.ForeColor = System.Drawing.Color.Snow;
+			this.extraLive.Location = new System.Drawing.Point(24, 28);
+			this.extraLive.Name = "extraLive";
+			this.extraLive.Size = new System.Drawing.Size(139, 28);
+			this.extraLive.TabIndex = 4;
+			this.extraLive.Tag = "ExtraLive";
+			this.extraLive.Text = "ExtraLive";
+			this.extraLive.UseVisualStyleBackColor = true;
+			this.extraLive.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// start_game_btn
 			// 
@@ -500,6 +582,25 @@ namespace SnowBallGame
 			this.players_creation_records.Name = "players_creation_records";
 			this.players_creation_records.Size = new System.Drawing.Size(1040, 375);
 			this.players_creation_records.TabIndex = 6;
+			// 
+			// panel11
+			// 
+			this.panel11.BackColor = System.Drawing.Color.Snow;
+			this.panel11.Controls.Add(this.panel14);
+			this.panel11.Location = new System.Drawing.Point(785, 25);
+			this.panel11.Name = "panel11";
+			this.panel11.Size = new System.Drawing.Size(206, 328);
+			this.panel11.TabIndex = 17;
+			// 
+			// panel14
+			// 
+			this.panel14.BackColor = System.Drawing.Color.Gray;
+			this.panel14.Controls.Add(this.player4_record);
+			this.panel14.Controls.Add(this.AddPlayer4);
+			this.panel14.Location = new System.Drawing.Point(2, 2);
+			this.panel14.Name = "panel14";
+			this.panel14.Size = new System.Drawing.Size(202, 324);
+			this.panel14.TabIndex = 0;
 			// 
 			// player4_record
 			// 
@@ -687,6 +788,25 @@ namespace SnowBallGame
 			this.AddPlayer4.UseVisualStyleBackColor = false;
 			this.AddPlayer4.Click += new System.EventHandler(this.BtnClickAddPlayer4);
 			// 
+			// panel12
+			// 
+			this.panel12.BackColor = System.Drawing.Color.Snow;
+			this.panel12.Controls.Add(this.panel13);
+			this.panel12.Location = new System.Drawing.Point(542, 27);
+			this.panel12.Name = "panel12";
+			this.panel12.Size = new System.Drawing.Size(206, 328);
+			this.panel12.TabIndex = 17;
+			// 
+			// panel13
+			// 
+			this.panel13.BackColor = System.Drawing.Color.Gray;
+			this.panel13.Controls.Add(this.AddPlayer3);
+			this.panel13.Controls.Add(this.player3_record);
+			this.panel13.Location = new System.Drawing.Point(2, 2);
+			this.panel13.Name = "panel13";
+			this.panel13.Size = new System.Drawing.Size(202, 324);
+			this.panel13.TabIndex = 18;
+			// 
 			// AddPlayer3
 			// 
 			this.AddPlayer3.BackColor = System.Drawing.Color.Gray;
@@ -873,164 +993,14 @@ namespace SnowBallGame
 			this.textBox13.Text = "J";
 			this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyDown);
 			// 
-			// player2_record
+			// panel9
 			// 
-			this.player2_record.BackColor = System.Drawing.Color.Gray;
-			this.player2_record.Controls.Add(this.label8);
-			this.player2_record.Controls.Add(this.pictureBox9);
-			this.player2_record.Controls.Add(this.label9);
-			this.player2_record.Controls.Add(this.textBox11);
-			this.player2_record.Controls.Add(this.label10);
-			this.player2_record.Controls.Add(this.textBox6);
-			this.player2_record.Controls.Add(this.label11);
-			this.player2_record.Controls.Add(this.textBox10);
-			this.player2_record.Controls.Add(this.label12);
-			this.player2_record.Controls.Add(this.textBox9);
-			this.player2_record.Controls.Add(this.textBox8);
-			this.player2_record.Controls.Add(this.textBox7);
-			this.player2_record.Location = new System.Drawing.Point(2, 2);
-			this.player2_record.Name = "player2_record";
-			this.player2_record.Size = new System.Drawing.Size(202, 324);
-			this.player2_record.TabIndex = 4;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label8.ForeColor = System.Drawing.Color.Snow;
-			this.label8.Location = new System.Drawing.Point(20, 259);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(45, 17);
-			this.label8.TabIndex = 24;
-			this.label8.Text = "Right:";
-			// 
-			// pictureBox9
-			// 
-			this.pictureBox9.BackColor = System.Drawing.Color.Blue;
-			this.pictureBox9.Location = new System.Drawing.Point(21, 64);
-			this.pictureBox9.Name = "pictureBox9";
-			this.pictureBox9.Size = new System.Drawing.Size(68, 63);
-			this.pictureBox9.TabIndex = 4;
-			this.pictureBox9.TabStop = false;
-			this.pictureBox9.Tag = "player_color";
-			this.pictureBox9.Click += new System.EventHandler(this.ColorChange);
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label9.ForeColor = System.Drawing.Color.Snow;
-			this.label9.Location = new System.Drawing.Point(18, 192);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(47, 17);
-			this.label9.TabIndex = 23;
-			this.label9.Text = "Down:";
-			// 
-			// textBox11
-			// 
-			this.textBox11.BackColor = System.Drawing.Color.Snow;
-			this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.textBox11.ForeColor = System.Drawing.Color.Black;
-			this.textBox11.Location = new System.Drawing.Point(21, 18);
-			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(157, 30);
-			this.textBox11.TabIndex = 1;
-			this.textBox11.Tag = "player_name";
-			this.textBox11.Text = "Player Name";
-			this.textBox11.TextChanged += new System.EventHandler(this.PlayerNameChange);
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label10.ForeColor = System.Drawing.Color.Snow;
-			this.label10.Location = new System.Drawing.Point(18, 290);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(51, 17);
-			this.label10.TabIndex = 22;
-			this.label10.Text = "Throw:";
-			// 
-			// textBox6
-			// 
-			this.textBox6.BackColor = System.Drawing.Color.Snow;
-			this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.textBox6.Location = new System.Drawing.Point(70, 253);
-			this.textBox6.Name = "textBox6";
-			this.textBox6.ReadOnly = true;
-			this.textBox6.Size = new System.Drawing.Size(108, 26);
-			this.textBox6.TabIndex = 19;
-			this.textBox6.Text = "Right";
-			this.textBox6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyRight);
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label11.ForeColor = System.Drawing.Color.Snow;
-			this.label11.Location = new System.Drawing.Point(20, 227);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(36, 17);
-			this.label11.TabIndex = 21;
-			this.label11.Text = "Left:";
-			// 
-			// textBox10
-			// 
-			this.textBox10.BackColor = System.Drawing.Color.Snow;
-			this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.textBox10.Location = new System.Drawing.Point(70, 151);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.ReadOnly = true;
-			this.textBox10.Size = new System.Drawing.Size(108, 26);
-			this.textBox10.TabIndex = 15;
-			this.textBox10.Text = "Up";
-			this.textBox10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyJump);
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label12.ForeColor = System.Drawing.Color.Snow;
-			this.label12.Location = new System.Drawing.Point(18, 157);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(46, 17);
-			this.label12.TabIndex = 20;
-			this.label12.Text = "Jump:";
-			// 
-			// textBox9
-			// 
-			this.textBox9.BackColor = System.Drawing.Color.Snow;
-			this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.textBox9.Location = new System.Drawing.Point(70, 221);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.ReadOnly = true;
-			this.textBox9.Size = new System.Drawing.Size(108, 26);
-			this.textBox9.TabIndex = 16;
-			this.textBox9.Text = "Left";
-			this.textBox9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyLeft);
-			// 
-			// textBox8
-			// 
-			this.textBox8.BackColor = System.Drawing.Color.Snow;
-			this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.textBox8.Location = new System.Drawing.Point(70, 286);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.ReadOnly = true;
-			this.textBox8.Size = new System.Drawing.Size(108, 26);
-			this.textBox8.TabIndex = 17;
-			this.textBox8.Text = "M";
-			this.textBox8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyThrow);
-			// 
-			// textBox7
-			// 
-			this.textBox7.BackColor = System.Drawing.Color.Snow;
-			this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.textBox7.Location = new System.Drawing.Point(70, 188);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.ReadOnly = true;
-			this.textBox7.Size = new System.Drawing.Size(108, 26);
-			this.textBox7.TabIndex = 18;
-			this.textBox7.Text = "Down";
-			this.textBox7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyDown);
+			this.panel9.BackColor = System.Drawing.Color.Snow;
+			this.panel9.Controls.Add(this.player1_record);
+			this.panel9.Location = new System.Drawing.Point(44, 27);
+			this.panel9.Name = "panel9";
+			this.panel9.Size = new System.Drawing.Size(206, 328);
+			this.panel9.TabIndex = 11;
 			// 
 			// player1_record
 			// 
@@ -1192,6 +1162,174 @@ namespace SnowBallGame
 			this.player1_name.Text = "Player Name";
 			this.player1_name.TextChanged += new System.EventHandler(this.PlayerNameChange);
 			// 
+			// panel10
+			// 
+			this.panel10.BackColor = System.Drawing.Color.Snow;
+			this.panel10.Controls.Add(this.player2_record);
+			this.panel10.Location = new System.Drawing.Point(289, 27);
+			this.panel10.Name = "panel10";
+			this.panel10.Size = new System.Drawing.Size(206, 328);
+			this.panel10.TabIndex = 16;
+			// 
+			// player2_record
+			// 
+			this.player2_record.BackColor = System.Drawing.Color.Gray;
+			this.player2_record.Controls.Add(this.label8);
+			this.player2_record.Controls.Add(this.pictureBox9);
+			this.player2_record.Controls.Add(this.label9);
+			this.player2_record.Controls.Add(this.textBox11);
+			this.player2_record.Controls.Add(this.label10);
+			this.player2_record.Controls.Add(this.textBox6);
+			this.player2_record.Controls.Add(this.label11);
+			this.player2_record.Controls.Add(this.textBox10);
+			this.player2_record.Controls.Add(this.label12);
+			this.player2_record.Controls.Add(this.textBox9);
+			this.player2_record.Controls.Add(this.textBox8);
+			this.player2_record.Controls.Add(this.textBox7);
+			this.player2_record.Location = new System.Drawing.Point(2, 2);
+			this.player2_record.Name = "player2_record";
+			this.player2_record.Size = new System.Drawing.Size(202, 324);
+			this.player2_record.TabIndex = 4;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label8.ForeColor = System.Drawing.Color.Snow;
+			this.label8.Location = new System.Drawing.Point(20, 259);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(45, 17);
+			this.label8.TabIndex = 24;
+			this.label8.Text = "Right:";
+			// 
+			// pictureBox9
+			// 
+			this.pictureBox9.BackColor = System.Drawing.Color.Blue;
+			this.pictureBox9.Location = new System.Drawing.Point(21, 64);
+			this.pictureBox9.Name = "pictureBox9";
+			this.pictureBox9.Size = new System.Drawing.Size(68, 63);
+			this.pictureBox9.TabIndex = 4;
+			this.pictureBox9.TabStop = false;
+			this.pictureBox9.Tag = "player_color";
+			this.pictureBox9.Click += new System.EventHandler(this.ColorChange);
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label9.ForeColor = System.Drawing.Color.Snow;
+			this.label9.Location = new System.Drawing.Point(18, 192);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(47, 17);
+			this.label9.TabIndex = 23;
+			this.label9.Text = "Down:";
+			// 
+			// textBox11
+			// 
+			this.textBox11.BackColor = System.Drawing.Color.Snow;
+			this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.textBox11.ForeColor = System.Drawing.Color.Black;
+			this.textBox11.Location = new System.Drawing.Point(21, 18);
+			this.textBox11.Name = "textBox11";
+			this.textBox11.Size = new System.Drawing.Size(157, 30);
+			this.textBox11.TabIndex = 1;
+			this.textBox11.Tag = "player_name";
+			this.textBox11.Text = "Player Name";
+			this.textBox11.TextChanged += new System.EventHandler(this.PlayerNameChange);
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label10.ForeColor = System.Drawing.Color.Snow;
+			this.label10.Location = new System.Drawing.Point(18, 290);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(51, 17);
+			this.label10.TabIndex = 22;
+			this.label10.Text = "Throw:";
+			// 
+			// textBox6
+			// 
+			this.textBox6.BackColor = System.Drawing.Color.Snow;
+			this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.textBox6.Location = new System.Drawing.Point(70, 253);
+			this.textBox6.Name = "textBox6";
+			this.textBox6.ReadOnly = true;
+			this.textBox6.Size = new System.Drawing.Size(108, 26);
+			this.textBox6.TabIndex = 19;
+			this.textBox6.Text = "Right";
+			this.textBox6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyRight);
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label11.ForeColor = System.Drawing.Color.Snow;
+			this.label11.Location = new System.Drawing.Point(20, 227);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(36, 17);
+			this.label11.TabIndex = 21;
+			this.label11.Text = "Left:";
+			// 
+			// textBox10
+			// 
+			this.textBox10.BackColor = System.Drawing.Color.Snow;
+			this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.textBox10.Location = new System.Drawing.Point(70, 151);
+			this.textBox10.Name = "textBox10";
+			this.textBox10.ReadOnly = true;
+			this.textBox10.Size = new System.Drawing.Size(108, 26);
+			this.textBox10.TabIndex = 15;
+			this.textBox10.Text = "Up";
+			this.textBox10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyJump);
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label12.ForeColor = System.Drawing.Color.Snow;
+			this.label12.Location = new System.Drawing.Point(18, 157);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(46, 17);
+			this.label12.TabIndex = 20;
+			this.label12.Text = "Jump:";
+			// 
+			// textBox9
+			// 
+			this.textBox9.BackColor = System.Drawing.Color.Snow;
+			this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.textBox9.Location = new System.Drawing.Point(70, 221);
+			this.textBox9.Name = "textBox9";
+			this.textBox9.ReadOnly = true;
+			this.textBox9.Size = new System.Drawing.Size(108, 26);
+			this.textBox9.TabIndex = 16;
+			this.textBox9.Text = "Left";
+			this.textBox9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyLeft);
+			// 
+			// textBox8
+			// 
+			this.textBox8.BackColor = System.Drawing.Color.Snow;
+			this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.textBox8.Location = new System.Drawing.Point(70, 286);
+			this.textBox8.Name = "textBox8";
+			this.textBox8.ReadOnly = true;
+			this.textBox8.Size = new System.Drawing.Size(108, 26);
+			this.textBox8.TabIndex = 17;
+			this.textBox8.Text = "M";
+			this.textBox8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyThrow);
+			// 
+			// textBox7
+			// 
+			this.textBox7.BackColor = System.Drawing.Color.Snow;
+			this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.textBox7.Location = new System.Drawing.Point(70, 188);
+			this.textBox7.Name = "textBox7";
+			this.textBox7.ReadOnly = true;
+			this.textBox7.Size = new System.Drawing.Size(108, 26);
+			this.textBox7.TabIndex = 18;
+			this.textBox7.Text = "Down";
+			this.textBox7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SelectKeyDown);
+			// 
 			// game_timer
 			// 
 			this.game_timer.Interval = 20;
@@ -1209,62 +1347,20 @@ namespace SnowBallGame
 			this.end_panel.Controls.Add(this.panel15);
 			this.end_panel.Controls.Add(this.panel6);
 			this.end_panel.Controls.Add(this.panel5);
-			this.end_panel.Location = new System.Drawing.Point(12, 6);
+			this.end_panel.Location = new System.Drawing.Point(12, 7);
 			this.end_panel.Name = "end_panel";
 			this.end_panel.Size = new System.Drawing.Size(1142, 816);
 			this.end_panel.TabIndex = 10;
 			this.end_panel.Visible = false;
 			// 
-			// panel6
+			// panel15
 			// 
-			this.panel6.BackColor = System.Drawing.Color.Gray;
-			this.panel6.Controls.Add(this.panel8);
-			this.panel6.Location = new System.Drawing.Point(51, 213);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(1040, 338);
-			this.panel6.TabIndex = 3;
-			// 
-			// win_player_score
-			// 
-			this.win_player_score.AutoSize = true;
-			this.win_player_score.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.win_player_score.ForeColor = System.Drawing.Color.Snow;
-			this.win_player_score.Location = new System.Drawing.Point(355, 147);
-			this.win_player_score.Name = "win_player_score";
-			this.win_player_score.Size = new System.Drawing.Size(86, 46);
-			this.win_player_score.TabIndex = 4;
-			this.win_player_score.Text = "105";
-			// 
-			// label25
-			// 
-			this.label25.AutoSize = true;
-			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.label25.ForeColor = System.Drawing.Color.Snow;
-			this.label25.Location = new System.Drawing.Point(230, 146);
-			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(137, 46);
-			this.label25.TabIndex = 3;
-			this.label25.Text = "Score:";
-			// 
-			// win_player_avatar
-			// 
-			this.win_player_avatar.BackColor = System.Drawing.Color.Red;
-			this.win_player_avatar.Location = new System.Drawing.Point(106, 133);
-			this.win_player_avatar.Name = "win_player_avatar";
-			this.win_player_avatar.Size = new System.Drawing.Size(80, 80);
-			this.win_player_avatar.TabIndex = 2;
-			this.win_player_avatar.TabStop = false;
-			// 
-			// win_player_name
-			// 
-			this.win_player_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-			this.win_player_name.ForeColor = System.Drawing.Color.Snow;
-			this.win_player_name.Location = new System.Drawing.Point(7, 4);
-			this.win_player_name.Name = "win_player_name";
-			this.win_player_name.Size = new System.Drawing.Size(518, 122);
-			this.win_player_name.TabIndex = 1;
-			this.win_player_name.Text = "Player Name";
-			this.win_player_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.panel15.BackColor = System.Drawing.Color.Gray;
+			this.panel15.Controls.Add(this.label23);
+			this.panel15.Location = new System.Drawing.Point(54, 31);
+			this.panel15.Name = "panel15";
+			this.panel15.Size = new System.Drawing.Size(1040, 154);
+			this.panel15.TabIndex = 6;
 			// 
 			// label23
 			// 
@@ -1276,6 +1372,68 @@ namespace SnowBallGame
 			this.label23.Size = new System.Drawing.Size(711, 120);
 			this.label23.TabIndex = 0;
 			this.label23.Text = "Game Winner";
+			// 
+			// panel6
+			// 
+			this.panel6.BackColor = System.Drawing.Color.Gray;
+			this.panel6.Controls.Add(this.panel8);
+			this.panel6.Location = new System.Drawing.Point(51, 213);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(1040, 338);
+			this.panel6.TabIndex = 3;
+			// 
+			// panel8
+			// 
+			this.panel8.Controls.Add(this.win_player_name);
+			this.panel8.Controls.Add(this.win_player_score);
+			this.panel8.Controls.Add(this.win_player_avatar);
+			this.panel8.Controls.Add(this.label25);
+			this.panel8.Location = new System.Drawing.Point(252, 37);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(533, 277);
+			this.panel8.TabIndex = 5;
+			// 
+			// win_player_name
+			// 
+			this.win_player_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.win_player_name.ForeColor = System.Drawing.Color.Snow;
+			this.win_player_name.Location = new System.Drawing.Point(7, 4);
+			this.win_player_name.Name = "win_player_name";
+			this.win_player_name.Size = new System.Drawing.Size(518, 122);
+			this.win_player_name.TabIndex = 1;
+			this.win_player_name.Text = "No one!";
+			this.win_player_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// win_player_score
+			// 
+			this.win_player_score.AutoSize = true;
+			this.win_player_score.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.win_player_score.ForeColor = System.Drawing.Color.Snow;
+			this.win_player_score.Location = new System.Drawing.Point(355, 147);
+			this.win_player_score.Name = "win_player_score";
+			this.win_player_score.Size = new System.Drawing.Size(42, 46);
+			this.win_player_score.TabIndex = 4;
+			this.win_player_score.Text = "0";
+			// 
+			// win_player_avatar
+			// 
+			this.win_player_avatar.BackColor = System.Drawing.Color.Black;
+			this.win_player_avatar.Location = new System.Drawing.Point(106, 133);
+			this.win_player_avatar.Name = "win_player_avatar";
+			this.win_player_avatar.Size = new System.Drawing.Size(80, 80);
+			this.win_player_avatar.TabIndex = 2;
+			this.win_player_avatar.TabStop = false;
+			// 
+			// label25
+			// 
+			this.label25.AutoSize = true;
+			this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.label25.ForeColor = System.Drawing.Color.Snow;
+			this.label25.Location = new System.Drawing.Point(230, 146);
+			this.label25.Name = "label25";
+			this.label25.Size = new System.Drawing.Size(137, 46);
+			this.label25.TabIndex = 3;
+			this.label25.Text = "Score:";
 			// 
 			// panel5
 			// 
@@ -1299,81 +1457,28 @@ namespace SnowBallGame
 			this.new_game_btn.UseVisualStyleBackColor = false;
 			this.new_game_btn.Click += new System.EventHandler(this.BtnClickNewGame);
 			// 
-			// panel8
+			// gravityReverseColor
 			// 
-			this.panel8.Controls.Add(this.win_player_name);
-			this.panel8.Controls.Add(this.win_player_score);
-			this.panel8.Controls.Add(this.win_player_avatar);
-			this.panel8.Controls.Add(this.label25);
-			this.panel8.Location = new System.Drawing.Point(252, 37);
-			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(533, 277);
-			this.panel8.TabIndex = 5;
+			this.gravityReverseColor.Location = new System.Drawing.Point(165, 154);
+			this.gravityReverseColor.Name = "gravityReverseColor";
+			this.gravityReverseColor.Size = new System.Drawing.Size(12, 12);
+			this.gravityReverseColor.TabIndex = 20;
+			this.gravityReverseColor.TabStop = false;
 			// 
-			// panel9
+			// gravityReverse
 			// 
-			this.panel9.BackColor = System.Drawing.Color.Snow;
-			this.panel9.Controls.Add(this.player1_record);
-			this.panel9.Location = new System.Drawing.Point(44, 27);
-			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(206, 328);
-			this.panel9.TabIndex = 11;
-			// 
-			// panel10
-			// 
-			this.panel10.BackColor = System.Drawing.Color.Snow;
-			this.panel10.Controls.Add(this.player2_record);
-			this.panel10.Location = new System.Drawing.Point(289, 27);
-			this.panel10.Name = "panel10";
-			this.panel10.Size = new System.Drawing.Size(206, 328);
-			this.panel10.TabIndex = 16;
-			// 
-			// panel11
-			// 
-			this.panel11.BackColor = System.Drawing.Color.Snow;
-			this.panel11.Controls.Add(this.panel14);
-			this.panel11.Location = new System.Drawing.Point(785, 25);
-			this.panel11.Name = "panel11";
-			this.panel11.Size = new System.Drawing.Size(206, 328);
-			this.panel11.TabIndex = 17;
-			// 
-			// panel12
-			// 
-			this.panel12.BackColor = System.Drawing.Color.Snow;
-			this.panel12.Controls.Add(this.panel13);
-			this.panel12.Location = new System.Drawing.Point(542, 27);
-			this.panel12.Name = "panel12";
-			this.panel12.Size = new System.Drawing.Size(206, 328);
-			this.panel12.TabIndex = 17;
-			// 
-			// panel13
-			// 
-			this.panel13.BackColor = System.Drawing.Color.Gray;
-			this.panel13.Controls.Add(this.AddPlayer3);
-			this.panel13.Controls.Add(this.player3_record);
-			this.panel13.Location = new System.Drawing.Point(2, 2);
-			this.panel13.Name = "panel13";
-			this.panel13.Size = new System.Drawing.Size(202, 324);
-			this.panel13.TabIndex = 18;
-			// 
-			// panel14
-			// 
-			this.panel14.BackColor = System.Drawing.Color.Gray;
-			this.panel14.Controls.Add(this.player4_record);
-			this.panel14.Controls.Add(this.AddPlayer4);
-			this.panel14.Location = new System.Drawing.Point(2, 2);
-			this.panel14.Name = "panel14";
-			this.panel14.Size = new System.Drawing.Size(202, 324);
-			this.panel14.TabIndex = 0;
-			// 
-			// panel15
-			// 
-			this.panel15.BackColor = System.Drawing.Color.Gray;
-			this.panel15.Controls.Add(this.label23);
-			this.panel15.Location = new System.Drawing.Point(54, 31);
-			this.panel15.Name = "panel15";
-			this.panel15.Size = new System.Drawing.Size(1040, 154);
-			this.panel15.TabIndex = 6;
+			this.gravityReverse.Checked = true;
+			this.gravityReverse.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.gravityReverse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.gravityReverse.ForeColor = System.Drawing.Color.Snow;
+			this.gravityReverse.Location = new System.Drawing.Point(23, 148);
+			this.gravityReverse.Name = "gravityReverse";
+			this.gravityReverse.Size = new System.Drawing.Size(139, 28);
+			this.gravityReverse.TabIndex = 19;
+			this.gravityReverse.Tag = "GravityReverse";
+			this.gravityReverse.Text = "GravityReverse";
+			this.gravityReverse.UseVisualStyleBackColor = true;
+			this.gravityReverse.CheckedChanged += new System.EventHandler(this.ChangeBonusSetting);
 			// 
 			// GameForm
 			// 
@@ -1405,35 +1510,43 @@ namespace SnowBallGame
 			this.panel7.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.speedBallColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.jellyBallColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.protectionColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.jumpBoostColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dwarfSizeColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.giantSizeColor)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.extraLiveColor)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.players_creation_records.ResumeLayout(false);
+			this.panel11.ResumeLayout(false);
+			this.panel14.ResumeLayout(false);
 			this.player4_record.ResumeLayout(false);
 			this.player4_record.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+			this.panel12.ResumeLayout(false);
+			this.panel13.ResumeLayout(false);
 			this.player3_record.ResumeLayout(false);
 			this.player3_record.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-			this.player2_record.ResumeLayout(false);
-			this.player2_record.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+			this.panel9.ResumeLayout(false);
 			this.player1_record.ResumeLayout(false);
 			this.player1_record.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.player_color)).EndInit();
-			this.end_panel.ResumeLayout(false);
-			this.panel6.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).EndInit();
-			this.panel5.ResumeLayout(false);
-			this.panel8.ResumeLayout(false);
-			this.panel8.PerformLayout();
-			this.panel9.ResumeLayout(false);
 			this.panel10.ResumeLayout(false);
-			this.panel11.ResumeLayout(false);
-			this.panel12.ResumeLayout(false);
-			this.panel13.ResumeLayout(false);
-			this.panel14.ResumeLayout(false);
+			this.player2_record.ResumeLayout(false);
+			this.player2_record.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+			this.end_panel.ResumeLayout(false);
 			this.panel15.ResumeLayout(false);
 			this.panel15.PerformLayout();
+			this.panel6.ResumeLayout(false);
+			this.panel8.ResumeLayout(false);
+			this.panel8.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.win_player_avatar)).EndInit();
+			this.panel5.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.gravityReverseColor)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -1457,13 +1570,13 @@ namespace SnowBallGame
 		private System.Windows.Forms.ColorDialog color_dialog;
 		private System.Windows.Forms.Panel player1_record;
 		private System.Windows.Forms.PictureBox player_color;
-		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox extraLive;
 		private System.Windows.Forms.Panel panel3;
-		private System.Windows.Forms.CheckBox checkBox6;
-		private System.Windows.Forms.CheckBox checkBox5;
-		private System.Windows.Forms.CheckBox checkBox4;
-		private System.Windows.Forms.CheckBox checkBox3;
-		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.CheckBox jellyBall;
+		private System.Windows.Forms.CheckBox protection;
+		private System.Windows.Forms.CheckBox jumpBoost;
+		private System.Windows.Forms.CheckBox dwarfSize;
+		private System.Windows.Forms.CheckBox giantSize;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel players_creation_records;
@@ -1531,7 +1644,7 @@ namespace SnowBallGame
 		private System.Windows.Forms.Label label23;
 		private System.Windows.Forms.Panel panel5;
 		private System.Windows.Forms.Button new_game_btn;
-		private System.Windows.Forms.CheckBox checkBox7;
+		private System.Windows.Forms.CheckBox speedBall;
 		private System.Windows.Forms.Panel panel7;
 		private System.Windows.Forms.Panel panel8;
 		private System.Windows.Forms.Panel panel9;
@@ -1541,6 +1654,15 @@ namespace SnowBallGame
 		private System.Windows.Forms.Panel panel10;
 		private System.Windows.Forms.Panel panel14;
 		private System.Windows.Forms.Panel panel15;
+		private System.Windows.Forms.PictureBox speedBallColor;
+		private System.Windows.Forms.PictureBox jellyBallColor;
+		private System.Windows.Forms.PictureBox protectionColor;
+		private System.Windows.Forms.PictureBox jumpBoostColor;
+		private System.Windows.Forms.PictureBox dwarfSizeColor;
+		private System.Windows.Forms.PictureBox giantSizeColor;
+		private System.Windows.Forms.PictureBox extraLiveColor;
+		private System.Windows.Forms.PictureBox gravityReverseColor;
+		private System.Windows.Forms.CheckBox gravityReverse;
 	}
 }
 

@@ -3,15 +3,28 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
+	/// <summary>
+	/// Factory class creating instances of the class <see cref="Player"/>.
+	/// </summary>
 	sealed class PlayerFactory : Factory
 	{
 		private PlayerPanelManager playerPanel;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PlayerFactory"/>.
+		/// </summary>
+		/// <param name="gamePanel">Game panel manager.</param>
+		/// <param name="playerPanel">Player panel manager.</param>
 		public PlayerFactory(GamePanelManager gamePanel, PlayerPanelManager playerPanel) :base(gamePanel)
 		{
 			this.playerPanel = playerPanel;
 		}
 
+		/// <summary>
+		/// Create an instance of the class <see cref="Player"/> with <see cref="PlayerProfile"/>.
+		/// </summary>
+		/// <param name="record">Record of player from initial game settings.</param>
+		/// <returns>Completely set player.</returns>
 		public Player CreatePlayer(PlayerCreationRecord record)
 		{
 			var entity = CreatePlayerEntity();
@@ -21,17 +34,20 @@ namespace SnowBallGame
 			var playerProfile = CreatePlayerProfile();
 
 			playerProfile.SetColor(record.Color);
-			playerProfile.SetName(record.Name); 
+			playerProfile.SetName(record.Name);
 
-			playerPanel.PlayersProfiles.Add(playerProfile);
+			playerPanel.RegisterProfile(playerProfile);
 
-			return new Player(entity, playerProfile, record.Controler, record.Name);
+			var player = new Player(entity, playerProfile, record.Controller, record.Name);
+
+			gamePanel.RegisterPlayer(player);
+
+			return player;
 		}
 
 		private Control CreatePlayerEntity()
 		{
 			var entity = new PictureBox();
-			gamePanel.Register(entity);
 			entity.Tag = Config.PLAYER_TAG;
 			
 			return entity;
@@ -139,7 +155,6 @@ namespace SnowBallGame
 		{
 			var entity = new Panel();
 			entity.Tag = Config.PLAYER_PROFILE_TAG;
-			playerPanel.Register(entity);
 			entity.Width = PlayerPanelManager.PLAYER_PANEL_WIDTH;
 			entity.Height = playerPanel.Entity.Height;
 			entity.BackColor = Color.Silver;

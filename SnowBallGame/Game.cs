@@ -4,12 +4,21 @@ using System.Windows.Forms;
 
 namespace SnowBallGame
 {
+	/// <summary>
+	/// Class representing the game itself and taking care of its course.
+	/// </summary>
 	sealed class Game
 	{
+		/// <summary>
+		/// Internal enum for game state indication.
+		/// </summary>
 		public enum GameState { RUN, END }
 
 		private Dictionary<Keys, bool> _pressedKeys = new Dictionary<Keys, bool>();
 
+		/// <summary>
+		/// Game state. Run when game is running. End when only one player left.
+		/// </summary>
 		public GameState State { get; private set; }
 
 		private PlayerMovementEngine playerMovementEngine;
@@ -22,17 +31,24 @@ namespace SnowBallGame
 		private BallFactory ballFactory;
 		private BonusFactory bonusFactory;
 
-		private List<Player> players = new List<Player>();
-		private List<Ball> balls = new List<Ball>();
-		private Bonus bonus;
 		private Random random = new Random();
 
+		/// <summary>
+		/// Instace of player that won the game.
+		/// </summary>
 		public Player GameWinner { get; private set; }
 
 		private int _bonusSpawnDelayTime = Config.BONUS_SPAWN_DELAY_TIME;
 
 		private int _bonusSpawnDelayTimeCounter;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Game"/>.
+		/// </summary>
+		/// <param name="gamePanelEntity">Form control that contains game space.</param>
+		/// <param name="playerPanelEntity">Form control where players profiles will be generate.</param>
+		/// <param name="pressedKeys">Dictionary of set control keys.</param>
+		/// <param name="bonusesSettings">Additional bonuses settings.</param>
 		public Game(Control gamePanelEntity, Control playerPanelEntity, Dictionary<Keys, bool> pressedKeys, Dictionary<string, bool> bonusesSettings)
 		{
 			this._pressedKeys = pressedKeys;
@@ -45,19 +61,26 @@ namespace SnowBallGame
 			bonusFactory = new BonusFactory(gamePanelManager, ballFactory, bonusesSettings, random);
 
 			playerMovementEngine = new PlayerMovementEngine(gamePanelManager, pressedKeys);
-			ballMovementEngine = new BallMovementEngine(gamePanelManager, players);
+			ballMovementEngine = new BallMovementEngine(gamePanelManager);
 
 			ResetBonusSpawnDelayTimeCounter();
 		}
 
+		/// <summary>
+		/// Method for adding player to game.
+		/// Creates an instace of player and add him a default thrown ball.
+		/// </summary>
+		/// <param name="playerRecord">Record of player from initial game settings.</param>
 		public void RegisterPlayer(PlayerCreationRecord playerRecord)
 		{
 			var player = playerFactory.CreatePlayer(playerRecord);
 			playerMovementEngine.SetSpawnPosition(player);
 			player.Throwment.SetThrownBall(() => ballFactory.CreateBall<SnowBall>(player));
-			players.Add(player);
 		}
 
+		/// <summary>
+		/// Start the game, this set a game state to RUN and show game panels.
+		/// </summary>
 		public void Start()
 		{
 			gamePanelManager.Show();
@@ -66,29 +89,33 @@ namespace SnowBallGame
 			State = GameState.RUN;
 		}
 
+		/// <summary>
+		/// Method that should be called every timer tick action.
+		/// Moves all moving entities and controls subsequent situations.
+		/// </summary>
 		public void TickAction()
 		{
-			players.ForEach(x => {
+			gamePanelManager.Players.ForEach(x => {
 				playerMovementEngine.Move(x);
 				CheckPlayerThrow(x);
 				if(x.DecreaseBonusDurationCounter())
 				{
 					x.ResetBonusDurationCounter();
-					x.ResetBonusMovement();
+					x.ResetPlayerBonus();
 				}
 			});
 
-			balls.ForEach(x => ballMovementEngine.Move(x));
+			gamePanelManager.Balls.ForEach(x => ballMovementEngine.Move(x));
 
-			if (this.bonus != null)
+			if (gamePanelManager.IsSetBonus())
 			{
-				if(CheckBonusCollect()) this.bonus = null;
+				if(CheckBonusCollect()) gamePanelManager.UnregisterBonus();
 			}
 
 			if (DecreaseBonusSpawnDelayTimeCounter())
 			{
-				if (this.bonus != null) gamePanelManager.UnRegister(this.bonus.Entity);
-				this.bonus = bonusFactory.CreateRandomBonus();
+				gamePanelManager.UnregisterBonus();
+				bonusFactory.CreateRandomBonus();
 				ResetBonusSpawnDelayTimeCounter();
 			}
 
@@ -98,14 +125,14 @@ namespace SnowBallGame
 
 		private void CheckPlayerThrow(Player p)
 		{
-			var throwControler = p.Controler.ThrowContoler;
+			var throwControler = p.Controller.ThrowContoler;
 			var throwment = p.Throwment;
 
 			throwment.ThrowTick();
 
 			if (throwment.CanThrow && _pressedKeys[throwControler.Throw])
 			{	
-				balls.Add(throwment.ThrowBall());
+				throwment.ThrowBall();
 
 				if(throwment.DecreaseStackAmountCounter())
 				{
@@ -118,14 +145,12 @@ namespace SnowBallGame
 
 		private bool CheckBonusCollect()
 		{
-			var entity = bonus.Entity;
-			var player = players.Find(p => entity.Bounds.IntersectsWith(p.Entity.Bounds));
+			var player = gamePanelManager.Players.Find(p => gamePanelManager.Bonus.Entity.Bounds.IntersectsWith(p.Entity.Bounds));
 			
 			if(player != null)
 			{
-				gamePanelManager.UnRegister(entity);
 				player.ColectBonusScore();
-				bonus.AplyBonus(player);
+				gamePanelManager.Bonus.ApplyBonus(player);
 				return true;
 			}
 			
@@ -134,29 +159,29 @@ namespace SnowBallGame
 
 		private void RemoveUnactiveSnowBalls()
 		{
-			balls.RemoveAll(x => x.IsActive == false);
+			gamePanelManager.Balls.RemoveAll(x => x.IsActive == false);
 		}
 
 		private void RemoveDeadPlayers()
 		{
-			players.RemoveAll(x => x.Lives <= 0);
-			if (players.Count <= 1) Stop();
+			gamePanelManager.Players.RemoveAll(x => x.Lives <= 0);
+			if (gamePanelManager.Players.Count <= 1) Stop();
 		}
 
 		private void Stop()
 		{
 			State = GameState.END;
 
-			if (bonus != null) gamePanelManager.UnRegister(bonus.Entity);
+			gamePanelManager.UnregisterBonus();
 
-			players.ForEach(p => {
+			gamePanelManager.Players.ForEach(p => {
 				p.Profile.UnRegister();
-				gamePanelManager.UnRegister(p.Entity); 
+				gamePanelManager.UnregisterPlayer(p); 
 			});
 
-			GameWinner = players[0];
+			if(gamePanelManager.Players.Count > 0) GameWinner = gamePanelManager.Players[0];
 
-			balls.ForEach(b => gamePanelManager.UnRegister(b.Entity));
+			gamePanelManager.Balls.ForEach(b => gamePanelManager.UnregisterBall(b));
 
 			gamePanelManager.Hide();
 			playerPanelManager.Hide();

@@ -2,6 +2,9 @@
 
 namespace SnowBallGame
 {
+	/// <summary>
+	/// Configuration class.
+	/// </summary>
 	static class Config
 	{
 		//game
@@ -38,6 +41,7 @@ namespace SnowBallGame
 		//controls tags
 		public static string PLAYER_TAG = "player";
 		public static string BONUS_TAG = "bonus";
+		public static string BALL_TAG = "ball";
 		public static string PLATFORM_TAG = "platform";
 		public static string PLAYER_PROFILE_TAG = "player_profile";
 		public static string PLAYER_PROFILE__NAME_TAG = "player_name";
@@ -86,14 +90,18 @@ namespace SnowBallGame
 
 		//jump boost
 		public static string JUMP_BOOST_NAME = "JumpBoost";
-		public static Color JUMP_BOOST_COLOR = Color.White;
+		public static Color JUMP_BOOST_COLOR = Color.Blue;
 		public static int JUMP_BOOST_JUMP_FORCE = 10;
 		public static int JUMP_BOOST_JUMP_SPEED = 15;
 
 		//protection
 		public static string PROTECTION_NAME = "Protection";
-		public static Color PROTECTION_COLOR = Color.DarkGray;
+		public static Color PROTECTION_COLOR = Color.Green;
 		public static int PROTECTION_PUNCH_FORCE = 1;
+
+		//reverse gravity
+		public static string REVERSE_GRAVITY_NAME = "RevGravity";
+		public static Color REVERSE_GRAVITY_COLOR = Color.White;
 
 		//ball bonus
 		public static Color BALL_BONUS_COLOR = Color.Gold;
@@ -101,6 +109,5 @@ namespace SnowBallGame
 		//balls names
 		public static string JELLYBALL_NAME = "JellyBall";
 		public static string SPEEDBALL_NAME = "SpeedBall";
-
 	}
 }

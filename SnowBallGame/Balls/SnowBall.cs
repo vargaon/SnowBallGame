@@ -1,7 +1,13 @@
 ﻿namespace SnowBallGame
 {
+	/// <summary>
+	/// Type of ball with standart size, punch force and move speed.
+	/// </summary>
 	sealed class SnowBall : Ball
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SnowBall"/>.
+		/// </summary>
 		public SnowBall()
 		{
 			EntitySize = Config.SNOW_BALL_SIZE;

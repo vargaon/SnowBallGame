@@ -1,7 +1,13 @@
 ﻿namespace SnowBallGame
 {
+	/// <summary>
+	/// Type of ball with slower movement speed, decreased punch force and bigger size.
+	/// </summary>
 	sealed class JellyBall : Ball
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JellyBall"/>.
+		/// </summary>
 		public JellyBall()
 		{
 			EntitySize = Config.JELLY_BALL_SIZE;

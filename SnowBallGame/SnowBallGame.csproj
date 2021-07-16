@@ -63,7 +63,7 @@
     <Compile Include="Movements\BallMovement.cs" />
     <Compile Include="MovementEngines\BallMovementEngine.cs" />
     <Compile Include="Controlers\ThrowContoler.cs" />
-    <Compile Include="Controlers\MovementControler.cs" />
+    <Compile Include="Controlers\MovementController.cs" />
     <Compile Include="PlayerCreationRecord.cs" />
     <Compile Include="Factories\PlayerFactory.cs" />
     <Compile Include="Game.cs" />
@@ -71,7 +71,7 @@
     <Compile Include="Balls\Ball.cs" />
     <Compile Include="Movements\PlayerMovement.cs" />
     <Compile Include="MovementEngines\PlayerMovementEngine.cs" />
-    <Compile Include="Controlers\PlayerControler.cs" />
+    <Compile Include="Controlers\PlayerController.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
